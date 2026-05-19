@@ -2,7 +2,7 @@
 
 ## Principle
 
-**Build-up only, no excavation.** Existing clay subgrade is left undisturbed. All leveling = additive (walls, structural fill, topsoil cap).
+**Lot interior is build-up only.** Existing clay subgrade across the lot is left undisturbed. The one exception is a narrow toe trench at each wall line (~6 in deep × ~14 in wide) so the first block course is embedded below outside grade — locks the toe against sliding under fill pressure.
 
 ## Pre-work
 
@@ -14,10 +14,10 @@
 | Spec | Value |
 |---|---|
 | Block | [Oldcastle 6 H × 16 L × 9 D in lip-style segmental concrete](https://www.lowes.com/pd/Oldcastle-6-in-H-x-16-in-L-x-9-in-D-Gray-Char-Concrete-Retaining-wall-block/5016590759) (or equivalent with cast-in setback lip) |
-| Base | 4–6 in compacted ¾ in-minus crushed gravel on existing grade (no trench, no mortar) |
+| Toe trench | ~6 in deep × ~14 in wide along each wall line. 4–6 in of compacted ¾ in-minus gravel in the bottom; first block course embedded in the trench. Doubles as bedding for the drain pipe + gravel column. |
 | Total linear ft | ~141 (west 45 + north 15 + diagonal 21 + east 60) |
-| Max retained height | **3 ft** (north end; = existing -4 ft to finish -1 ft = 6 block courses × 6 in) |
-| Block count (new walls only) | **~350** (north ~70 + diagonal ~90 + east ~160, +10% for diagonal corner cuts). West wall already built. |
+| Max retained height | **3 ft** (north end; = existing -4 ft to finish -1 ft = 6 above-grade courses × 6 in, plus 1 buried toe course) |
+| Block count (new walls only) | **~420** (visible courses ~320 + buried toe course full 96 lin ft ≈ 72 blocks, +10% for diagonal cuts). West wall already built. |
 | Reinforcement | None — 3 ft is at the gravity-wall rating for lip-style block |
 | Permit | Comfortably under CBC 4 ft exemption (no surcharge) — confirm with Lafayette Building Division anyway |
 
@@ -49,16 +49,16 @@ Average fill ~1.5 ft. South end: just cap (existing already at finish). North en
 
 ## French drain (behind every wall)
 
-- ~12 in wide column of clean ¾ in drain rock (washed, angular, no fines)
-- Sits directly on existing grade (no trench), built up in step with wall courses
-- Terminates 12–16 in below finished grade (so the cap above stays plantable)
-- **Filter wrap:** biodegradable coir or jute felt on soil side + top of column (5–10 yr life; clay consolidates by then)
-- Outlet: drainage gaps between bottom block courses → exits onto driveway
-- No buried pipe
+- **Toe trench / base:** 4–6 in compacted ¾ in-minus gravel in the wall's toe trench. Beds both the wall and the drain pipe.
+- **Perforated pipe:** 4 in perforated PVC at the base of the drain rock, sloped ~1% along the wall run, draining to a controlled daylight outlet at the NE corner. Cleanout risers at NW and SE ends of the pipe run.
+- **Drain rock column:** clean ¾ in drain rock (washed, angular, no fines). **Width: 18 in along the north wall; 12 in for east, west, diagonal walls.** Terminates 12–16 in below finished grade so the cap above stays plantable.
+- **Filter fabric:** non-woven geotextile or biodegradable natural-fiber felt — contractor's choice. Wraps the soil side and the top of the gravel column.
+- **Outlet:** single controlled outlet through the wall at the NE corner. Pipe daylights onto a rock-apron splash pad on the driveway side. Block-course gaps along the rest of the wall remain as backup overflow.
+- **Surface swale:** shallow turf swale along the south edge of the north planting band (~6 in × ~18 in), sloped ~1% east toward the NE corner. Collects surface runoff from the lawn before it pools at the wall; routes it to the same NE-corner outlet via a small surface inlet.
 
 ## Long-term drainage notes
 
-- Add a 6–12 in wide pea-gravel apron on driveway side of north wall (catches any sediment)
+- Rock-apron splash pad on the driveway side of the NE-corner outlet (catches any sediment carried out by the pipe)
 - Year-10 maintenance: inspect outlet clarity in heavy rain; rebuild drain section if running muddy
 
 ## Topsoil sourcing
