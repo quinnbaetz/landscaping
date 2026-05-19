@@ -244,17 +244,18 @@
       <rect x="634" y="220" width="80" height="70" fill="#D9D2C2" stroke="#8B7E62" stroke-width="0.5"/>
       <text x="674" y="262" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#5A4A30">north driveway</text>
 
-      <!-- Topsoil cap polygon — varies by zone: 12 in lawn (most of length), 18 in in 6 ft planting band before the drain (x=548-602), 16 in over the drain (x=602-620) -->
-      <polygon points="80,100 620,130 620,170 602,170 602,174 548,171 548,156 260,140" fill="#6E4E3F"/>
+      <!-- Topsoil cap polygon — varies by zone: 12 in lawn, 18 in in the rest of the planting band, 16 in directly over the drain.
+           Planting band = 6 ft measured FROM THE WALL, so it INCLUDES the drain area on its wall-side end (x=602-620 drain, x=566-602 rest of band). -->
+      <polygon points="80,100 620,130 620,170 602,170 602,174 566,172 566,157 260,140" fill="#6E4E3F"/>
 
-      <!-- Step indicator at planting-band edge (x=548) for visual clarity -->
-      <line x1="548" y1="156" x2="548" y2="171" stroke="#F4E8DD" stroke-width="0.7" stroke-dasharray="3 3"/>
+      <!-- Step indicator at planting-band/lawn edge (x=566) for visual clarity -->
+      <line x1="566" y1="157" x2="566" y2="172" stroke="#F4E8DD" stroke-width="0.7" stroke-dasharray="3 3"/>
 
       <!-- Structural clay fill polygon — top steps with cap depth (lawn vs planting band), bottom = existing surface -->
-      <polygon points="260,140 548,156 548,171 602,174 602,217" fill="#8E5A39"/>
+      <polygon points="260,140 566,157 566,172 602,174 602,217" fill="#8E5A39"/>
 
       <!-- Lift lines in structural fill (horizontal, inside the polygon) -->
-      <line x1="395" y1="170" x2="548" y2="170" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
+      <line x1="395" y1="170" x2="566" y2="170" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
       <line x1="510" y1="195" x2="602" y2="195" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
 
       <!-- Scarified line along existing surface (south to north, sloping down) -->
@@ -267,15 +268,15 @@
       <line x1="602" y1="170" x2="602" y2="217" stroke="#3F6B36" stroke-width="3" stroke-dasharray="6 4"/>
       <line x1="602" y1="170" x2="620" y2="170" stroke="#3F6B36" stroke-width="3" stroke-dasharray="6 4"/>
 
-      <!-- Planting-band width dimension above the cap -->
+      <!-- Planting-band width dimension above the cap — 6 ft from wall back, includes drain -->
       <g stroke="#3F2818" stroke-width="0.8" fill="none">
-        <line x1="548" y1="92" x2="602" y2="92"/>
-        <line x1="548" y1="88" x2="548" y2="96"/>
-        <line x1="602" y1="88" x2="602" y2="96"/>
+        <line x1="566" y1="92" x2="620" y2="92"/>
+        <line x1="566" y1="88" x2="566" y2="96"/>
+        <line x1="620" y1="88" x2="620" y2="96"/>
       </g>
-      <polygon points="552,92 547,89 547,95" fill="#3F2818"/>
-      <polygon points="598,92 603,89 603,95" fill="#3F2818"/>
-      <text x="575" y="86" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="9" font-weight="700" fill="#3F2818">6 ft</text>
+      <polygon points="570,92 565,89 565,95" fill="#3F2818"/>
+      <polygon points="616,92 621,89 621,95" fill="#3F2818"/>
+      <text x="593" y="86" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="9" font-weight="700" fill="#3F2818">6 ft planting band</text>
 
       <!-- Wall blocks (6 courses, ~3 ft total, top just above the finish grade) -->
       <g fill="#8B8378" stroke="#3F3833" stroke-width="0.5">
@@ -320,7 +321,7 @@
 
         <!-- Topsoil cap labels — three zones: 12 in lawn, 18 in planting band, 16 in over drain -->
         <text x="380" y="123" font-size="11" font-weight="700" fill="white">topsoil cap — 12 in over lawn</text>
-        <text x="575" y="167" text-anchor="middle" font-size="9" font-weight="700" fill="white">18 in</text>
+        <text x="584" y="167" text-anchor="middle" font-size="9" font-weight="700" fill="white">18 in</text>
 
         <!-- Structural fill label — inside the wedge -->
         <text x="490" y="183" text-anchor="middle" font-size="11" font-weight="700" fill="white">structural clay fill</text>
@@ -346,7 +347,7 @@
       </g>
     </svg>
   </div>
-  <div class="diagram-caption">North-south cross-section through the lot. Existing clay slopes 4 ft from south (flush with patio) down to north. Finish lawn surface slopes 1° south → north for drainage. Topsoil cap varies by zone: <strong>12 in over the lawn</strong>, deepening to <strong>18 in in the 6 ft planting band</strong> just south of the drain, then <strong>16 in directly over the drain</strong> (so the cap is plantable on top of the gravel column). The drain column sits above the structural-fill top at the boundary because the planting-band cap is deeper than the over-drain cap. North wall caps just above the finish soil. Vertical exaggerated ~3× for clarity.</div>
+  <div class="diagram-caption">North-south cross-section through the lot. Existing clay slopes 4 ft from south (flush with patio) down to north. Finish lawn surface slopes 1° south → north for drainage. Topsoil cap varies by zone: <strong>12 in over the lawn</strong>, deepening to <strong>18 in across the 6 ft planting band</strong> (measured from the wall back, so the drain is the wall-side end of this band), then <strong>16 in directly over the drain</strong>. The drain column sits above the structural-fill top at the boundary because the planting-band cap is deeper than the over-drain cap. North wall caps just above the finish soil. Vertical exaggerated ~3× for clarity.</div>
 
   <h3>How to layer and compact</h3>
   <ol>
@@ -424,54 +425,49 @@
       <line x1="189" y1="223" x2="189" y2="290" stroke="#3F6B36" stroke-width="2.5" stroke-dasharray="6 4"/>
       <line x1="149" y1="223" x2="189" y2="223" stroke="#3F6B36" stroke-width="2.5" stroke-dasharray="6 4"/>
 
-      <!-- Width dimensions for cap zones (above the cap) -->
+      <!-- Width dimensions for cap zones (above the cap). 6 ft planting band INCLUDES the drain area at its wall-side end. -->
       <g stroke="#3F2818" stroke-width="0.8" fill="none">
-        <!-- Tick marks at zone boundaries -->
+        <!-- Tick marks at planting-band/lawn edges -->
         <line x1="149" y1="125" x2="149" y2="155"/>
-        <line x1="189" y1="125" x2="189" y2="155"/>
-        <line x1="429" y1="125" x2="429" y2="155"/>
+        <line x1="405" y1="125" x2="405" y2="155"/>
         <line x1="589" y1="125" x2="589" y2="155"/>
-        <!-- Horizontal dim line spanning all three zones -->
+        <!-- Horizontal dim line -->
         <line x1="149" y1="138" x2="589" y2="138"/>
       </g>
       <!-- Arrow heads -->
       <polygon points="153,138 149,135 149,141" fill="#3F2818"/>
-      <polygon points="185,138 189,135 189,141" fill="#3F2818"/>
-      <polygon points="193,138 189,135 189,141" fill="#3F2818"/>
-      <polygon points="425,138 429,135 429,141" fill="#3F2818"/>
-      <polygon points="433,138 429,135 429,141" fill="#3F2818"/>
+      <polygon points="401,138 405,135 405,141" fill="#3F2818"/>
+      <polygon points="409,138 405,135 405,141" fill="#3F2818"/>
       <polygon points="585,138 589,135 589,141" fill="#3F2818"/>
       <!-- Zone width labels (with background rects masking the dim line) -->
-      <rect x="159" y="131" width="20" height="14" fill="#F7F4EB"/>
-      <text x="169" y="142" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="9" font-weight="700" fill="#3F2818">~12 in</text>
-      <rect x="289" y="131" width="40" height="14" fill="#F7F4EB"/>
-      <text x="309" y="142" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" fill="#3F2818">6 ft</text>
-      <rect x="489" y="131" width="40" height="14" fill="#F7F4EB"/>
-      <text x="509" y="142" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" fill="#3F2818">~4 ft</text>
+      <rect x="261" y="131" width="32" height="14" fill="#F7F4EB"/>
+      <text x="277" y="142" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" fill="#3F2818">6 ft</text>
+      <rect x="481" y="131" width="32" height="14" fill="#F7F4EB"/>
+      <text x="497" y="142" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" fill="#3F2818">~4 ft</text>
       <!-- Zone names beneath the dim line -->
-      <text x="169" y="153" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="8" fill="#5A6661" font-style="italic">drain</text>
-      <text x="309" y="153" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="8" fill="#5A6661" font-style="italic">planting band</text>
-      <text x="509" y="153" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="8" fill="#5A6661" font-style="italic">lawn (shown)</text>
+      <text x="277" y="153" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="8" fill="#5A6661" font-style="italic">planting band (drain inside)</text>
+      <text x="497" y="153" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="8" fill="#5A6661" font-style="italic">lawn (shown)</text>
 
       <!-- Mulch ribbon (planting band only — does NOT extend over lawn) -->
-      <rect x="149" y="158" width="280" height="12" fill="#A87A4A" stroke="#6E4E3F" stroke-width="0.3"/>
+      <rect x="149" y="158" width="256" height="12" fill="#A87A4A" stroke="#6E4E3F" stroke-width="0.3"/>
 
-      <!-- Topsoil cap — varies by zone: 16 in over drain, 18 in in 6 ft planting band, 12 in over lawn -->
-      <polygon points="149,170 589,170 589,210 429,210 429,230 189,230 189,223 149,223" fill="#6E4E3F"/>
+      <!-- Topsoil cap — varies by zone: 16 in over drain, 18 in in rest of 6 ft planting band, 12 in over lawn.
+           Planting band = 6 ft from wall back (= drain ~12 in + rest ~5 ft). -->
+      <polygon points="149,170 589,170 589,210 405,210 405,230 189,230 189,223 149,223" fill="#6E4E3F"/>
 
       <!-- In-cap depth labels -->
       <text x="169" y="201" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" fill="white">16 in</text>
-      <text x="309" y="205" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="white">18 in</text>
-      <text x="509" y="195" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="white">12 in</text>
+      <text x="297" y="205" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="white">18 in</text>
+      <text x="497" y="195" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="white">12 in</text>
 
-      <!-- Vertical dashed boundary line at planting-band edge (6 ft from drain) -->
-      <line x1="429" y1="170" x2="429" y2="210" stroke="#F4E8DD" stroke-width="0.7" stroke-dasharray="3 3"/>
+      <!-- Vertical dashed boundary line at planting-band/lawn edge (6 ft from wall back) -->
+      <line x1="405" y1="170" x2="405" y2="210" stroke="#F4E8DD" stroke-width="0.7" stroke-dasharray="3 3"/>
 
       <!-- Structural fill (top steps with cap depth; bottom slopes with existing) -->
-      <polygon points="189,230 429,230 429,210 589,210 589,263 189,288" fill="#8E5A39"/>
-      <line x1="189" y1="250" x2="429" y2="250" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
-      <line x1="429" y1="230" x2="589" y2="230" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
-      <line x1="189" y1="275" x2="465" y2="275" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
+      <polygon points="189,230 405,230 405,210 589,210 589,263 189,288" fill="#8E5A39"/>
+      <line x1="189" y1="250" x2="405" y2="250" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
+      <line x1="405" y1="230" x2="589" y2="230" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
+      <line x1="189" y1="275" x2="395" y2="275" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
 
       <!-- Existing grade scarified wavy line — slopes up going right (south, away from wall) -->
       <path d="M 156 290 Q 180 287 210 287 Q 240 285 270 283 Q 300 281 330 279 Q 360 277 390 274 Q 420 271 450 269 Q 480 267 510 265 Q 540 263 570 263 L 589 263" stroke="#3F2818" stroke-width="1.5" fill="none"/>
@@ -528,7 +524,7 @@
       </g>
     </svg>
   </div>
-  <div class="diagram-caption">Cross-section through the wall at the deepest stretch (3 ft retained at the north end). Topsoil cap varies by zone: <strong>16 in over the gravel drain</strong>, stepping up to <strong>18 in for the 6 ft planting band</strong>, then down to <strong>12 in over the lawn</strong>. Mulch (planting-band only) is the orange ribbon — does not extend over the lawn. Existing subgrade slopes upward going right, away from the wall. Proportions illustrative.</div>
+  <div class="diagram-caption">Cross-section through the wall at the deepest stretch (3 ft retained at the north end). The <strong>6 ft planting band is measured from the back of the wall</strong>, so the gravel drain column is the wall-side end of the band (not a separate zone outside it). Topsoil cap varies inside that band: <strong>16 in directly over the drain</strong>, stepping down to <strong>18 in across the rest of the band</strong>, then up to <strong>12 in over the lawn</strong>. Mulch (planting-band only) is the orange ribbon — does not extend over the lawn. Existing subgrade slopes upward going right, away from the wall. Proportions illustrative.</div>
 
   <div class="diagram-wrap">
     <svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg">
