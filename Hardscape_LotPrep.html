@@ -461,14 +461,26 @@
       <!-- Mulch ribbon (planting band only — does NOT extend over lawn) -->
       <rect x="149" y="158" width="256" height="12" fill="#A87A4A" stroke="#6E4E3F" stroke-width="0.3"/>
 
-      <!-- Topsoil cap — varies by zone: 16 in over drain (now 18 in wide on the north), 18 in in rest of 6 ft planting band, 12 in over lawn.
-           Planting band = 6 ft from wall back (= drain 18 in + rest 4.5 ft). -->
-      <polygon points="149,170 589,170 589,210 405,210 405,230 213,230 213,223 149,223" fill="#6E4E3F"/>
+      <!-- Topsoil cap — varies by zone: 16 in over drain (north wall = 18 in wide), 18 in in rest of 6 ft planting band, 12 in over lawn.
+           Top surface dips into a 6 in × 18 in surface swale just south of the planting-band edge (x=405-469). -->
+      <polygon points="149,170 405,170 411,188 463,188 469,170 589,170 589,210 405,210 405,230 213,230 213,223 149,223" fill="#6E4E3F"/>
+
+      <!-- Swale interior overlay — turf-lined grassy channel -->
+      <polygon points="411,188 463,188 466,176 408,176" fill="#7A9968" opacity="0.55"/>
+
+      <!-- "drains east" arrow inside the swale (into the page in this cross-section view) -->
+      <circle cx="437" cy="184" r="3" fill="none" stroke="#1F3823" stroke-width="0.8"/>
+      <circle cx="437" cy="184" r="1.2" fill="#1F3823"/>
 
       <!-- In-cap depth labels -->
       <text x="181" y="201" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" fill="white">16 in</text>
       <text x="309" y="205" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="white">18 in</text>
-      <text x="497" y="195" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="white">12 in</text>
+      <text x="525" y="200" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="white">12 in</text>
+
+      <!-- Swale label and callout -->
+      <line x1="437" y1="178" x2="495" y2="115" stroke="#1F3823" stroke-width="0.6"/>
+      <text x="500" y="108" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" fill="#1F3823">surface swale</text>
+      <text x="500" y="120" font-family="-apple-system, sans-serif" font-size="9" fill="#1F3823" font-style="italic">6 in × 18 in, drains east →</text>
 
       <!-- Vertical dashed boundary line at planting-band/lawn edge (6 ft from wall back) -->
       <line x1="405" y1="170" x2="405" y2="210" stroke="#F4E8DD" stroke-width="0.7" stroke-dasharray="3 3"/>
@@ -538,7 +550,7 @@
       </g>
     </svg>
   </div>
-  <div class="diagram-caption">Cross-section through the <strong>north wall</strong> at the deepest stretch (3 ft retained). First block course is embedded in a ~6 in toe trench (shown dashed below grade). Drain rock column is <strong>18 in wide here on the north wall</strong> (12 in elsewhere). A <strong>4 in perforated PVC pipe</strong> sits at the base of the drain rock, sloped ~1% to a controlled daylight outlet at the NE corner. The 6 ft planting band is measured from the back of the wall, so the drain column is the wall-side end of the band. Cap depths inside the band: 16 in over the drain → 18 in across the rest → 12 in over the lawn. Mulch (planting-band only) is the orange ribbon. Existing subgrade slopes upward going right. Proportions illustrative.</div>
+  <div class="diagram-caption">Cross-section through the <strong>north wall</strong> at the deepest stretch (3 ft retained). First block course embedded in a ~6 in toe trench (shown dashed below grade). Drain rock column <strong>18 in wide on the north wall</strong> (12 in elsewhere) with a <strong>4 in perforated PVC pipe</strong> at its base, sloped ~1% to a controlled daylight outlet at the NE corner. Cap depths inside the 6 ft planting band: 16 in over the drain → 18 in across the rest → 12 in over the lawn. <strong>Surface swale</strong> at the south edge of the planting band (the green U-shaped dip just inside the lawn at x=405) — 6 in × 18 in, lined with lawn turf, sloped east toward the same NE-corner outlet. Mulch ribbon (orange) is planting-band only. Existing subgrade slopes upward going right. Proportions illustrative.</div>
 
   <div class="diagram-wrap">
     <svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg">
