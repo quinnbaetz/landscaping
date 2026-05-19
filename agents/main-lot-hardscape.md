@@ -17,7 +17,7 @@
 | Toe trench | ~6 in deep × ~14 in wide along each wall line. 4–6 in of compacted ¾ in-minus gravel in the bottom; first block course embedded in the trench. Doubles as bedding for the drain pipe + gravel column. |
 | Total linear ft | ~141 (west 45 + north 15 + diagonal 21 + east 60) |
 | Max retained height | **3 ft** (north end; = existing -4 ft to finish -1 ft = 6 above-grade courses × 6 in, plus 1 buried toe course) |
-| Block count (new walls only) | **~420** (visible courses ~320 + buried toe course full 96 lin ft ≈ 72 blocks, +10% for diagonal cuts). West wall already built. |
+| Block count (new walls only) | **~380** (north 78 + diagonal 105 + east 202 = 385; west already built). |
 | Reinforcement | None — 3 ft is at the gravity-wall rating for lip-style block |
 | Permit | Comfortably under CBC 4 ft exemption (no surcharge) — confirm with Lafayette Building Division anyway |
 
@@ -25,10 +25,10 @@
 
 | Layer | Volume | Material |
 |---|---|---|
-| Structural fill (bottom) | ~45 cu yd | On-site stockpiled clay, 6–8 in compacted lifts |
-| Topsoil cap (top) | ~50 cu yd | Imported sandy loam + compost, 12–24 in thick (12 in over central lawn, 16–24 in in 6 ft perimeter planting band) |
+| Structural fill (bottom) | ~40 cu yd | On-site stockpiled clay, 6–8 in compacted lifts |
+| Topsoil cap (top) | ~45 cu yd | Imported sandy loam + compost, 12–24 in thick (12 in over central lawn, 16–24 in in 6 ft perimeter planting band) |
 
-Average fill ~1.5 ft. South end: just cap (existing already at finish). North end: ~3 ft total.
+Total fill ~85 cu yd (1,687 sq ft × avg 1.4 ft). South end: zero fill (existing already at finish). North end: ~3 ft total.
 
 ## Layering & compaction
 
@@ -50,11 +50,11 @@ Average fill ~1.5 ft. South end: just cap (existing already at finish). North en
 ## French drain (behind every wall)
 
 - **Toe trench / base:** 4–6 in compacted ¾ in-minus gravel in the wall's toe trench. Beds both the wall and the drain pipe.
-- **Perforated pipe:** 4 in perforated PVC at the base of the drain rock, sloped ~1% along the wall run, draining to a controlled daylight outlet at the NE corner. Cleanout risers at NW and SE ends of the pipe run.
+- **Perforated pipe:** 4 in perforated PVC at the base of the drain rock, sloped ~1% along the wall run, draining to a controlled daylight outlet at the north wall (6 ft west of east wall). Cleanout risers at NW and SE ends of the pipe run.
 - **Drain rock column:** clean ¾ in drain rock (washed, angular, no fines). **Width: 18 in along the north wall; 12 in for east, west, diagonal walls.** Terminates 12–16 in below finished grade so the cap above stays plantable.
 - **Filter fabric:** non-woven geotextile or biodegradable natural-fiber felt — contractor's choice. Wraps the soil side and the top of the gravel column.
-- **Outlet:** single controlled outlet through the wall at the NE corner. Pipe daylights onto a rock-apron splash pad on the driveway side. Block-course gaps along the rest of the wall remain as backup overflow.
-- **Surface swale:** shallow turf swale along the south edge of the north planting band (~6 in × ~18 in), sloped ~1% east toward the NE corner. Collects surface runoff from the lawn before it pools at the wall; routes it to the same NE-corner outlet via a small surface inlet.
+- **Outlet:** single controlled outlet through the wall at the north wall (6 ft west of east wall). Pipe daylights onto a rock-apron splash pad on the driveway side. Block-course gaps along the rest of the wall remain as backup overflow.
+- **Surface swale:** L-shaped turf channel (~6 in × ~18 in) along the inside of the north planting band, 6 ft south of the north wall. East-west leg runs between points 6 ft east of the west wall and 6 ft west of the east wall (~18 ft long). Then cuts north and ends at the wall outlet. Sloped ~1% along its run, lined with lawn turf. Catches surface runoff from the lawn and routes it to the same outlet as the perforated pipe.
 
 ## Long-term drainage notes
 
