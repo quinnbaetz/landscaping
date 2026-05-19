@@ -381,7 +381,7 @@
     <li><strong>Filter fabric.</strong> Wraps the soil side and the top of the gravel column. Either non-woven geotextile or a biodegradable natural-fiber felt is fine — contractor's choice. The fabric stops between the wall blocks and the gravel — water has to be able to leave through the pipe.</li>
     <li><strong>Cap on top of the drain.</strong> 16 in of topsoil cap sits over the gravel column, sealed off from the gravel by the filter fabric. That's enough rooting depth to plant shallow-rooted shrubs, groundcovers, and guild perennials directly above the drain — see <a href="#planting-band">Planting band notes</a> below.</li>
     <li><strong>Outlet.</strong> One controlled outlet through the north wall, 6 ft west of where the north wall meets the east wall. The 4 in pipe daylights here onto a small rock-apron splash pad on the driveway side. The natural drainage gaps between bottom block courses along the rest of the wall remain as a secondary backup overflow path.</li>
-    <li><strong>Surface swale.</strong> An L-shaped turf swale runs along the inside of the north planting band, 6 ft south of the north wall. The east-west leg starts 6 ft east of the west wall and runs to a point 6 ft west of the east wall (~18 ft long). It then cuts north and ends at the wall outlet. ~6 in deep × ~18 in wide, sloped ~1% along its run, lined with the lawn turf. Catches surface runoff from the lawn before it pools at the wall and routes it to the same outlet as the perforated pipe (via a small grated surface inlet next to the pipe daylight).</li>
+    <li><strong>Surface swale.</strong> A three-segment turf swale runs 6 ft inside the wall: <strong>(1)</strong> follows the 45° diagonal wall 6 ft to its lot-side, from the inset-W / inset-diagonal junction up to the inset-diagonal / inset-N junction; <strong>(2)</strong> continues east 6 ft south of the north wall to a point 6 ft west of the east wall; <strong>(3)</strong> cuts north to the wall outlet. ~6 in deep × ~18 in wide, sloped ~1% along its full run, lined with lawn turf. Catches surface runoff from the lawn before it pools at the diagonal or north wall and routes it to the same outlet as the perforated pipe (via a small grated surface inlet next to the pipe daylight).</li>
   </ul>
 
   <div class="diagram-wrap">
@@ -669,20 +669,24 @@
       <!-- East wall drain -->
       <line x1="408" y1="92" x2="408" y2="668" stroke="#B5462C" stroke-width="4" stroke-dasharray="8 5"/>
 
-      <!-- Surface swale (L-shape, inside the north planting band by 6 ft) -->
+      <!-- Surface swale: 3 segments, all 6 ft inset from their respective walls -->
       <g stroke="#3B7DD8" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.85">
-        <!-- Horizontal segment: 6 ft south of north wall, from 6 ft east of west wall to 6 ft west of east wall -->
-        <line x1="164" y1="140" x2="356" y2="140"/>
-        <!-- Vertical segment: cuts north, ends at the wall outlet at x=356 -->
+        <!-- Segment 1: diagonal, 6 ft inside the 45° wall (from inset-W/inset-diagonal junction to inset-diagonal/inset-N junction) -->
+        <line x1="164" y1="264" x2="288" y2="140"/>
+        <!-- Segment 2: 6 ft south of north wall, from the diagonal junction to 6 ft west of east wall -->
+        <line x1="288" y1="140" x2="356" y2="140"/>
+        <!-- Segment 3: cuts north to the wall outlet -->
         <line x1="356" y1="140" x2="356" y2="92"/>
       </g>
-      <!-- Flow arrows on the swale -->
-      <polygon points="232,140 224,135 224,145" fill="#3B7DD8"/>
-      <polygon points="304,140 296,135 296,145" fill="#3B7DD8"/>
-      <polygon points="356,108 351,116 361,116" fill="#3B7DD8"/>
+      <!-- Flow arrows along the swale (pointing toward the outlet) -->
+      <polygon points="234,194 220,196 226,205" fill="#3B7DD8"/>
+      <polygon points="280,148 266,150 272,159" fill="#3B7DD8"/>
+      <polygon points="328,140 318,135 318,145" fill="#3B7DD8"/>
+      <polygon points="356,104 351,114 361,114" fill="#3B7DD8"/>
       <!-- Swale label -->
-      <text x="260" y="163" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#3B7DD8">surface swale (6 in × 18 in)</text>
-      <text x="260" y="177" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" fill="#3B7DD8" font-style="italic">collects lawn runoff, drains east to the outlet</text>
+      <text x="320" y="330" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="13" font-weight="700" fill="#3B7DD8">surface swale (6 in × 18 in)</text>
+      <text x="320" y="347" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#3B7DD8" font-style="italic">parallels diagonal + north walls (6 ft inset);</text>
+      <text x="320" y="361" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#3B7DD8" font-style="italic">drains east to the wall outlet</text>
 
       <!-- Outlet marker (along the north wall, 6 ft west of the east wall — where the swale meets the drain pipe) -->
       <circle cx="356" cy="92" r="9" fill="#B5462C" stroke="white" stroke-width="2"/>
@@ -717,7 +721,7 @@
       </g>
     </svg>
   </div>
-  <div class="diagram-caption">Top-down view. The orange dashed lines are the gravel drain column behind every wall — west, 45° diagonal, north, east. The blue L-shape is the <strong>surface swale</strong> (6 in × 18 in turf channel): horizontal leg 6 ft south of the north wall, running between points 6 ft from the east and west walls; vertical leg cuts north to the wall outlet at 6 ft west of the east wall. The 4 in perforated drain pipe (under each drain column) and the swale both terminate at that single outlet through the wall. The south side has no wall and no drain — the lot meets the patio at grade there.</div>
+  <div class="diagram-caption">Top-down view. The orange dashed lines are the gravel drain column behind every wall — west, 45° diagonal, north, east. The blue swale (6 in × 18 in turf channel) runs <strong>6 ft inside the diagonal wall</strong>, then continues 6 ft south of the north wall, then cuts north to the outlet at 6 ft west of the east wall. Both the 4 in perforated drain pipe (under each drain column) and the swale terminate at that single outlet through the wall. The south side has no wall and no drain — the lot meets the patio at grade there.</div>
 </section>
 
 <section id="soil">

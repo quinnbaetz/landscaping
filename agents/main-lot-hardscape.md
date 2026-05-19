@@ -54,7 +54,7 @@ Total fill ~85 cu yd (1,687 sq ft × avg 1.4 ft). South end: zero fill (existing
 - **Drain rock column:** clean ¾ in drain rock (washed, angular, no fines). **Width: 18 in along the north wall; 12 in for east, west, diagonal walls.** Terminates 12–16 in below finished grade so the cap above stays plantable.
 - **Filter fabric:** non-woven geotextile or biodegradable natural-fiber felt — contractor's choice. Wraps the soil side and the top of the gravel column.
 - **Outlet:** single controlled outlet through the wall at the north wall (6 ft west of east wall). Pipe daylights onto a rock-apron splash pad on the driveway side. Block-course gaps along the rest of the wall remain as backup overflow.
-- **Surface swale:** L-shaped turf channel (~6 in × ~18 in) along the inside of the north planting band, 6 ft south of the north wall. East-west leg runs between points 6 ft east of the west wall and 6 ft west of the east wall (~18 ft long). Then cuts north and ends at the wall outlet. Sloped ~1% along its run, lined with lawn turf. Catches surface runoff from the lawn and routes it to the same outlet as the perforated pipe.
+- **Surface swale:** three-segment turf channel (~6 in × ~18 in), 6 ft inset from walls: (1) follows the 45° diagonal wall (6 ft to its lot-side) from inset-W to inset-N junction; (2) continues 6 ft south of the north wall to a point 6 ft west of the east wall; (3) cuts north to the wall outlet. Sloped ~1% along its full run, lined with lawn turf. Catches surface runoff from the lawn and routes it to the same outlet as the perforated pipe.
 
 ## Long-term drainage notes
 
