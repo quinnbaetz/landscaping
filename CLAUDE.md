@@ -34,10 +34,18 @@ This folder is a multi-session-built food forest design for a 30 × 60 ft lot in
 
 | File | Purpose |
 |---|---|
-| `Lafayette_Food_Forest_Plan.html` | **Index page** — overview, summary, 5 lock-in decisions, plant counts, navigation to other phase pages |
-| `Hardscape_LotPrep.html` | **Phase 1** — site assessment, walls + fill + drainage table, soil & water plan, first 60 days |
-| `Planting.html` | **Phase 2** — main top-down SVG diagram (now ~181 circles), zoomed-in tree guild view, color key, plant counts, plant palette with hover tooltips and reference links |
-| `Plant_Reference.html` | **Encyclopedia** — 36 plant entries with tags, descriptions, mature size, count, Lafayette growing notes, image-frame placeholders |
+| `index.html` | **Index page** — overview, project nav cards (main lot + 4 other project areas), main-lot design summary, site characteristics. (Formerly `Lafayette_Food_Forest_Plan.html`, renamed for GitHub Pages root URL.) |
+| `Hardscape_LotPrep.html` | **Main lot Phase 1** — site assessment, walls + fill + drainage, layering & compaction, French drain (cross-section + top view), planting band layout, topsoil sourcing, other prep |
+| `Planting.html` | **Main lot Phase 2** — main top-down SVG diagram, zoomed-in tree guild view, color key, plant palette with hover tooltips, plant counts table |
+| `Irrigation_Well.html` | **Main lot Phase 3** — well + new pump, pressure tank, filter, backflow, mainline, 5 zones, build order |
+| `Plant_Reference.html` | **Encyclopedia** — 36 plant entries with tags, descriptions, mature size, count, Lafayette growing notes, Wikimedia Commons images |
+| `Between_Justins_Anas.html` | Project — evergreen privacy screen between Justin's & Ana's house |
+| `Between_Sohrabs_Anas.html` | Project — evergreen privacy screen between Sohrab's & Ana's house |
+| `Perimeters.html` | Project — shaded perimeter beds (pollinator/pest-deterrent/aromatic/culinary/medicinal) |
+| `Playground.html` | Project — shaded kid-safe play area planting |
+| `agents/` | **Compressed Markdown extracts** of all the HTML pages, structured for agent/LLM ingestion. Mirror the page contents at ~7× lower file size. Has its own `agents/README.md` as an index. Update these when you change a live HTML page. |
+| `CNAME` | GitHub Pages custom domain: `landscaping.quinnbaetz.com` |
+| `.gitignore` | .DS_Store, node_modules, *.log |
 | `build_plan.js` | **LEGACY** — original Node.js docx generator from session 1 (built a 40 × 60 lot Word document with hybrid leveling that's since been superseded). Owner asked to keep it for Claude reference. Not part of the live plan. |
 
 ## Current plan summary
