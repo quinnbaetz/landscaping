@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>From Compacted Clay to Food Forest — Lafayette, CA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --green: #2F5233;
+    --green-dark: #1F3823;
+    --green-light: #E6EFE3;
+    --clay: #C2845B;
+    --clay-dark: #8E5A39;
+    --clay-light: #F4E8DD;
+    --bg: #FAF7F0;
+    --paper: #FFFFFF;
+    --ink: #1F2421;
+    --ink-muted: #5A6661;
+    --line: #D9D2C2;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Arial, sans-serif; font-size: 16px; line-height: 1.6; }
+  .page { max-width: 920px; margin: 0 auto; padding: 48px 32px 96px; background: var(--paper); box-shadow: 0 0 0 1px var(--line), 0 24px 60px rgba(31,36,33,0.06); }
+  @media (max-width: 700px) { .page { padding: 28px 18px 64px; } }
+
+  h1, h2, h3, h4 { font-family: "Georgia", serif; color: var(--green-dark); line-height: 1.25; margin: 0; }
+  h1 { font-size: 2.4em; margin-bottom: 8px; }
+  h2 { font-size: 1.7em; margin-top: 56px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--green); }
+  h3 { font-size: 1.25em; color: var(--clay-dark); margin-top: 32px; margin-bottom: 10px; }
+  h4 { font-size: 1.05em; color: var(--ink); margin-top: 20px; margin-bottom: 6px; }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 16px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  strong { color: var(--ink); }
+  a { color: var(--green); text-decoration: underline; text-underline-offset: 2px; }
+
+  header.hero { text-align: center; padding: 8px 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 32px; }
+  header.hero .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.78em; color: var(--clay-dark); font-weight: 600; margin-bottom: 16px; }
+  header.hero h1 { font-size: 2.8em; }
+  header.hero .subtitle { color: var(--ink-muted); font-size: 1.1em; font-style: italic; margin-bottom: 18px; }
+  header.hero .arc { color: var(--ink-muted); font-size: 0.95em; }
+  header.hero .arc span { color: var(--green); font-weight: 600; }
+  header.hero .ref-link { display: inline-block; margin-top: 18px; padding: 8px 16px; background: var(--green); color: white; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9em; }
+  header.hero .ref-link:hover { background: var(--green-dark); }
+
+  .callout { background: var(--green-light); border-left: 6px solid var(--green); padding: 18px 22px; border-radius: 6px; margin: 20px 0; }
+  .callout h4 { margin-top: 0; color: var(--green-dark); }
+  .callout ul, .callout ol { margin-bottom: 0; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 0.95em; }
+  th { background: var(--green); color: white; text-align: left; padding: 10px 12px; font-weight: 600; font-size: 0.92em; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tbody tr:nth-child(even) td { background: #FBF8F1; }
+
+  .diagram-wrap {
+    background: linear-gradient(180deg, #F7F4EB 0%, #EFE9D8 100%);
+    padding: 18px; border-radius: 10px; border: 1px solid var(--line);
+    margin: 20px 0 8px; overflow-x: auto;
+  }
+  .diagram-wrap svg { width: 100%; height: auto; max-width: 860px; display: block; margin: 0 auto; }
+  .diagram-wrap svg .plant { cursor: pointer; }
+  .diagram-wrap svg .plant:hover circle { stroke: #FFF7B0; stroke-width: 3; }
+  .diagram-caption { text-align: center; color: var(--ink-muted); font-style: italic; font-size: 0.9em; margin: 8px 0 28px; }
+  .hover-hint { text-align: center; color: var(--green-dark); font-weight: 600; font-size: 0.9em; margin: -6px 0 18px; }
+
+  /* INSTANT tooltip */
+  .plant-tooltip {
+    position: fixed; pointer-events: none;
+    background: rgba(31, 56, 35, 0.97);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.45;
+    max-width: 320px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    opacity: 0;
+    transition: opacity 0.05s linear;
+    z-index: 1000;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .plant-tooltip.show { opacity: 1; }
+  .plant-tooltip strong { color: #FFE38C; display: block; margin-bottom: 4px; font-size: 14px; }
+  .plant-tooltip .cat {
+    display: inline-block;
+    background: rgba(255,255,255,0.14);
+    color: #E8D9B5;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 6px;
+  }
+  .plant-tooltip em { color: #C5D5BF; font-style: normal; font-size: 12px; display: block; margin-top: 4px; }
+  .plant-tooltip .alt-label { color: #C5D5BF; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-top: 8px; display: block; }
+  .plant-tooltip .ref-hint { color: #FFE38C; font-size: 11px; margin-top: 8px; font-style: italic; }
+
+  .legend { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px 18px; margin: 12px 0 30px; font-size: 0.92em; }
+  .legend .item { display: flex; align-items: center; gap: 10px; }
+  .legend .swatch { width: 22px; height: 22px; border-radius: 50%; display: inline-block; flex-shrink: 0; border: 2px solid rgba(0,0,0,0.15); font-size: 0.7em; color: white; text-align: center; line-height: 22px; font-weight: 700; }
+  .legend .swatch.square { border-radius: 4px; }
+
+  .plants { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin: 14px 0 28px; }
+  .plant-card { background: #FCFAF4; border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+  .plant-card h4 { margin: 0 0 4px; font-family: "Georgia", serif; font-size: 1em; }
+  .plant-card h4 a { color: var(--green-dark); text-decoration: none; }
+  .plant-card h4 a:hover { color: var(--green); text-decoration: underline; }
+  .plant-card .vars { color: var(--ink-muted); font-size: 0.88em; font-style: italic; margin-bottom: 6px; }
+  .plant-card .note { font-size: 0.9em; margin: 0; }
+  .plant-card .pos { display: inline-block; background: var(--green); color: white; font-weight: 700; font-size: 0.78em; padding: 2px 8px; border-radius: 4px; margin-right: 6px; }
+  .plant-card .ref { display: inline-block; margin-top: 8px; font-size: 0.82em; color: var(--green); font-weight: 600; text-decoration: none; }
+  .plant-card .ref:hover { text-decoration: underline; }
+  .plant-card .ref::after { content: " →"; }
+
+  .color-key { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; margin: 18px 0 30px; }
+  .color-key .row { display: flex; align-items: flex-start; gap: 12px; background: #FCFAF4; border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+  .color-key .dot { width: 24px; height: 24px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.15); flex-shrink: 0; margin-top: 2px; }
+  .color-key .lbl { font-size: 0.92em; }
+  .color-key .lbl b { color: var(--green-dark); font-family: "Georgia", serif; display: block; }
+
+  .phase { border-left: 4px solid var(--green); padding: 4px 0 4px 18px; margin: 18px 0 22px; }
+  .phase h3 { margin-top: 0; }
+  .phase .when { display: inline-block; background: var(--green); color: white; font-size: 0.78em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 9px; border-radius: 3px; margin-right: 10px; vertical-align: middle; }
+
+  nav.toc { background: #FCFAF4; border: 1px solid var(--line); border-radius: 8px; padding: 16px 22px; margin-bottom: 28px; font-size: 0.95em; }
+  nav.toc h4 { margin: 0 0 8px; color: var(--green-dark); }
+  nav.toc ol { columns: 2; column-gap: 28px; margin: 0; }
+  @media (max-width: 600px) { nav.toc ol { columns: 1; } }
+  nav.toc a { color: var(--green-dark); text-decoration: none; }
+  nav.toc a:hover { text-decoration: underline; }
+
+  footer.fine { text-align: center; color: var(--ink-muted); font-size: 0.85em; margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line); }
+
+  .phase-nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 20px 0 36px; }
+  .phase-nav a { display: block; padding: 22px 24px; border-radius: 10px; text-decoration: none; background: linear-gradient(135deg, #2F5233 0%, #1F3823 100%); color: white; transition: transform 0.15s ease, box-shadow 0.15s ease; box-shadow: 0 4px 12px rgba(31,36,33,0.12); }
+  .phase-nav a:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(31,36,33,0.18); }
+  .phase-nav a.alt { background: linear-gradient(135deg, #8E5A39 0%, #5A3823 100%); }
+  .phase-nav a.ref { background: linear-gradient(135deg, #5A6661 0%, #3A3F3D 100%); }
+  .phase-nav .phase-label { font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; margin-bottom: 6px; }
+  .phase-nav .phase-title { font-family: "Georgia", serif; font-size: 1.4em; font-weight: 700; margin-bottom: 8px; }
+  .phase-nav .phase-desc { font-size: 0.92em; opacity: 0.95; line-height: 1.45; }
+  .phase-nav .arrow { display: inline-block; margin-top: 12px; font-weight: 700; }
+  .back-link { display: inline-block; color: var(--green); text-decoration: none; font-weight: 600; font-size: 0.95em; margin-bottom: 16px; }
+  .back-link:hover { text-decoration: underline; }
+  .back-link::before { content: "← "; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="hero">
+  <div class="eyebrow">Lafayette, CA · 30 × 60 ft pentagon lot · USDA 9b</div>
+  <h1>From Compacted Clay to Food Forest</h1>
+  <div class="subtitle">A multi-phase plan to turn a clay-bound infill lot into a productive orchard, kid lawn, and patio garden</div>
+</header>
+
+<section>
+  <h2 style="margin-top:0;">Overview</h2>
+  <p>You have a 30 × 60 ft pentagon-shaped lot (back-left corner cut at 45°), surrounded by pavement on all sides — driveway east, 2-lane driveway west, walkway north, patio + house south. Across the west driveway, three 100-year coast live oaks cast late-afternoon shade onto the lot from about 3 PM onward.</p>
+  <p>The plan delivers three things over time: a leveled kid lawn, a productive orchard ringing the lawn with 17 fruit trees + east-wall trellis fruits + gooseberries + bridge shrubs + guild plants, and a mature food forest as the kids grow up. <strong>All leveling is build-up only — no digging into the existing grade</strong>, which protects the neighbor's oaks from root damage. The plan is split into two execution phases plus a reference document — open whichever you're working on.</p>
+</section>
+
+<nav class="phase-nav">
+  <a href="Hardscape_LotPrep.html">
+    <div class="phase-label">Phase 1</div>
+    <div class="phase-title">Hardscaping &amp; Lot Prep</div>
+    <div class="phase-desc">Site assessment, retaining walls, fill, soil prep, drip irrigation, rainwater, greywater. Everything to do <em>before</em> any plant goes in the ground.</div>
+    <div class="arrow">Open →</div>
+  </a>
+  <a class="alt" href="Planting.html">
+    <div class="phase-label">Phase 2</div>
+    <div class="phase-title">Planting Plan</div>
+    <div class="phase-desc">Top-down placement diagram with measurements, zoomed-in tree guild, color key, full plant palette with hover details, and links to every species&#39; full entry.</div>
+    <div class="arrow">Open →</div>
+  </a>
+  <a class="ref" href="Plant_Reference.html">
+    <div class="phase-label">Reference</div>
+    <div class="phase-title">Plant Encyclopedia</div>
+    <div class="phase-desc">All ~33 selected species: scientific names, tags (edible / pollinator / N-fixer / etc.), descriptions, mature size, chill, count in plan, Lafayette growing notes, and Devil Mountain Nursery buy links.</div>
+    <div class="arrow">Open →</div>
+  </a>
+</nav>
+
+<section>
+  <h2>The Plan at a Glance</h2>
+  <div class="callout">
+    <h4>The five decisions this plan locks in</h4>
+    <ol>
+      <li><strong>Earthworks — build up only, no digging:</strong> new dry-stack segmental walls on north, 45° diagonal, and east, set on the existing grade. Existing wall on west. On-site clay placed on top in 6–8 in compacted lifts; cap with 12–18 in imported topsoil. No excavation = no damage to neighbor's coast live oak roots.</li>
+      <li><strong>Soil:</strong> on-site clay = structural fill (placed on existing surface). Wood chips = sheet mulch, pathways, annual top-dress around every tree.</li>
+      <li><strong>Perimeter:</strong> 17 freestanding fruit trees + east-wall trellis (blackberry + grape + fig) + 2 gooseberries + ~14 ball-catching bridge shrubs + guild plants around every tree.</li>
+      <li><strong>South:</strong> patio + table between lawn and house. Two Cornelian cherries at SW + SE south ends — placed in the house's winter shade intentionally (Cornus mas prefers part shade in 9b).</li>
+      <li><strong>Water:</strong> drip backbone with smart controller before any planting. West-band zone on its own manifold, shut off June–October once trees are established (oak Phytophthora protection). Rainwater cistern off the roof. Laundry-to-Landscape greywater in Year 2.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <h2>Plant Counts at a Glance</h2>
+  <p>The whole plan, by the numbers: <strong>~33 species, ~260 individual plants</strong>.</p>
+  <table>
+    <thead>
+      <tr><th>Category</th><th>Species</th><th>Plants</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Fruit trees</strong> (apple multi-graft, Asian pear multi-graft, persimmon ×2, mulberry, plum, peach 'Indian Free', apricot, jujube, fig, pomegranate, olive, lemon, mandarin, loquat, Cornelian cherry pair)</td><td>16</td><td>17</td></tr>
+      <tr><td><strong>Wall &amp; trellis fruit</strong> — thornless blackberry ×1, table grape ×1, fan-trained fig ×1, gooseberry ×2</td><td>4</td><td>5</td></tr>
+      <tr><td><strong>Bridge / perimeter shrubs</strong> — pineapple guava ×10, pomegranate shrub ×4, upright rosemary ×2, toyon ×1 (moved NE)</td><td>4</td><td>17</td></tr>
+      <tr><td><strong>Wall cascading plantings</strong> — primary trailing rosemary, secondary California fuchsia + trailing lantana, tertiary alpine strawberry + nasturtium + creeping thyme</td><td>5+</td><td>~30+</td></tr>
+      <tr><td><strong>Guild plants around every tree</strong> — comfrey ×17, Ceanothus 'Concha' ×16 (DOUBLED — replaces goumi), borage ×10, yarrow ×6, chives ~48, garlic chives ~12, alpine strawberry ~80</td><td>7</td><td>~190</td></tr>
+      <tr style="font-weight:700; background: var(--green-light);"><td>Total</td><td>~33</td><td>~260</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.92em; color:var(--ink-muted); font-style:italic;">For per-species breakdown plus what each plant is good for, see the <a href="Plant_Reference.html#summary">plant reference summary table</a>.</p>
+</section>
+
+<section>
+  <h2>Site At a Glance</h2>
+  <ul>
+    <li><strong>Lot:</strong> 30 × 60 ft pentagon (NW corner cut at 45°), net ~1,687 sq ft</li>
+    <li><strong>Climate:</strong> Lafayette CA · USDA Zone 9b · Sunset Zone 14 · ~200–400 winter chill hours</li>
+    <li><strong>Topography:</strong> 1 ft below datum at the south, 3 ft below at the north (filled to level)</li>
+    <li><strong>Soil:</strong> compacted expansive clay (East Bay Diablo/Altamont)</li>
+    <li><strong>Walls:</strong> existing west · new north + 45° diagonal + east</li>
+    <li><strong>Sun:</strong> 6–8 hours direct/day; afternoon shaded after ~3 PM by neighbor's 100-year oaks across the west driveway</li>
+    <li><strong>House:</strong> 10 ft south of lawn, 14 ft tall; winter-noon shadow ~16 ft into lot</li>
+    <li><strong>Orientation:</strong> lot back-edge ~26° east of true north</li>
+  </ul>
+</section>
+
+<footer class="fine">
+  Plan prepared for a 30 × 60 ft pentagon lot in Lafayette, CA · USDA Zone 9b · Sunset Zone 14<br>
+  <a href="Hardscape_LotPrep.html" style="color:var(--green); font-weight:600;">Phase 1: Hardscape</a> ·
+  <a href="Planting.html" style="color:var(--green); font-weight:600;">Phase 2: Planting</a> ·
+  <a href="Plant_Reference.html" style="color:var(--green); font-weight:600;">Plant Reference</a>
+</footer>
+
+</div>
+</body>
+</html>

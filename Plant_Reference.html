@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Plant Reference — Lafayette Food Forest</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --green: #2F5233;
+    --green-dark: #1F3823;
+    --green-light: #E6EFE3;
+    --clay: #C2845B;
+    --clay-dark: #8E5A39;
+    --bg: #FAF7F0;
+    --paper: #FFFFFF;
+    --ink: #1F2421;
+    --ink-muted: #5A6661;
+    --line: #D9D2C2;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Arial, sans-serif; font-size: 16px; line-height: 1.6; }
+  .page { max-width: 920px; margin: 0 auto; padding: 48px 32px 96px; background: var(--paper); box-shadow: 0 0 0 1px var(--line), 0 24px 60px rgba(31,36,33,0.06); }
+  @media (max-width: 700px) { .page { padding: 28px 18px 64px; } }
+
+  h1, h2, h3 { font-family: "Georgia", serif; color: var(--green-dark); line-height: 1.25; margin: 0; }
+  h1 { font-size: 2.4em; margin-bottom: 8px; }
+  h2 { font-size: 1.7em; margin-top: 48px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--green); }
+  h3 { font-size: 1.25em; color: var(--green-dark); margin: 0 0 4px; }
+  p { margin: 0 0 12px; }
+
+  header.hero { text-align: center; padding: 8px 0 28px; border-bottom: 1px solid var(--line); margin-bottom: 28px; }
+  header.hero .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.78em; color: var(--clay-dark); font-weight: 600; margin-bottom: 14px; }
+  header.hero h1 { font-size: 2.4em; }
+  header.hero .back { display: inline-block; margin-top: 14px; color: var(--green); text-decoration: none; font-weight: 600; font-size: 0.95em; }
+  header.hero .back:hover { text-decoration: underline; }
+
+  nav.toc { background: #FCFAF4; border: 1px solid var(--line); border-radius: 8px; padding: 16px 22px; margin-bottom: 32px; font-size: 0.95em; }
+  nav.toc h4 { margin: 0 0 8px; color: var(--green-dark); font-family: "Georgia", serif; }
+  nav.toc ul { columns: 2; column-gap: 28px; margin: 0; padding-left: 18px; }
+  @media (max-width: 600px) { nav.toc ul { columns: 1; } }
+  nav.toc a { color: var(--green-dark); text-decoration: none; }
+  nav.toc a:hover { text-decoration: underline; }
+
+  article.plant-entry {
+    background: #FCFAF4; border: 1px solid var(--line); border-radius: 10px;
+    padding: 18px 22px; margin-bottom: 18px;
+    scroll-margin-top: 20px;
+  }
+  article.plant-entry header { margin-bottom: 8px; }
+  article.plant-entry h3 em { color: var(--ink-muted); font-weight: 400; font-style: italic; font-size: 0.88em; font-family: "Georgia", serif; }
+  article.plant-entry .tags { margin: 6px 0 10px; line-height: 1.9; }
+  article.plant-entry .tag {
+    display: inline-block;
+    font-size: 0.74em;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 999px;
+    margin-right: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  /* Tag color categories */
+  .tag.edible        { background: #DCE9D6; color: #2F5233; }
+  .tag.flowers       { background: #F0E1D6; color: #8E5A39; }
+  .tag.pollinator    { background: #F6E6A0; color: #6B5D1E; }
+  .tag.nfix          { background: #D3DCE9; color: #2C4A6E; }
+  .tag.accumulator   { background: #E2D6EE; color: #4D2F6E; }
+  .tag.pest          { background: #F5D3B6; color: #6B3A1E; }
+  .tag.drought       { background: #ECD9B1; color: #6B5318; }
+  .tag.deer          { background: #E9C8C8; color: #6B2E2E; }
+  .tag.native        { background: #D3DCC4; color: #3D4A1E; }
+  .tag.evergreen     { background: #B6D6BE; color: #1E4A2A; }
+  .tag.deciduous     { background: #E1CB9A; color: #4A3A1E; }
+  .tag.ornamental    { background: #E9C8DE; color: #6B2E58; }
+  .tag.groundcover   { background: #BFE2C5; color: #2D5A38; }
+  .tag.medicinal     { background: #C8DCE9; color: #2C4A6E; }
+  .tag.annual        { background: #F0E2C7; color: #6B5429; }
+
+  article.plant-entry .stat { font-size: 0.92em; color: var(--ink-muted); margin: 0 0 8px; }
+  article.plant-entry .stat strong { color: var(--ink); }
+  article.plant-entry p.desc { margin: 8px 0; }
+  article.plant-entry p.note { font-size: 0.92em; background: #F1ECDB; padding: 8px 12px; border-radius: 6px; border-left: 3px solid var(--clay-dark); }
+  article.plant-entry p.note strong { color: var(--clay-dark); }
+  article.plant-entry p.buy { font-size: 0.88em; background: #E6EFE3; padding: 7px 12px; border-radius: 6px; border-left: 3px solid var(--green); margin-top: 10px; }
+  article.plant-entry p.buy strong { color: var(--green-dark); }
+  article.plant-entry p.buy a { color: var(--green-dark); font-weight: 600; }
+  article.plant-entry p.buy a:hover { text-decoration: underline; }
+
+
+  /* Image infrastructure for plant entries */
+  article.plant-entry { display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: start; }
+  article.plant-entry .entry-images { display: flex; flex-direction: column; gap: 6px; }
+  article.plant-entry .thumb-frame {
+    width: 220px; height: 160px; border-radius: 8px; border: 1px solid var(--line);
+    background: linear-gradient(135deg, #E6EFE3 0%, #C5D5BF 100%);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+  article.plant-entry .thumb-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  article.plant-entry .thumb-frame .placeholder { color: #5A6661; font-size: 0.78em; font-style: italic; padding: 8px; text-align: center; }
+  article.plant-entry .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  article.plant-entry .gallery .gframe {
+    aspect-ratio: 1; border-radius: 4px; border: 1px solid var(--line);
+    background: linear-gradient(135deg, #F1ECDB 0%, #D9D2C2 100%);
+    overflow: hidden; display: flex; align-items: center; justify-content: center;
+    color: #8A8276; font-size: 0.7em; font-style: italic;
+  }
+  article.plant-entry .gallery .gframe img { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 600px) { article.plant-entry { grid-template-columns: 1fr; } }
+  article.plant-entry .entry-content { min-width: 0; }
+
+  footer.fine { text-align: center; color: var(--ink-muted); font-size: 0.85em; margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="hero">
+  <div class="eyebrow">Lafayette, CA Food Forest — Plant Reference</div>
+  <h1>Plant Reference</h1>
+  <p style="color:var(--ink-muted); font-style: italic;">~33 selected species — what each one is, what it's good for, where to buy, and how many are in the plan.</p>
+  <a class="back" href="index.html">← Back to main plan</a>
+</header>
+
+<div class="callout" style="background: #E6EFE3; border-left: 6px solid var(--green); padding: 14px 18px; border-radius: 6px; margin: 0 0 28px;">
+  <strong style="color: var(--green-dark);">Where to buy</strong> — Each entry has a "Where to buy" line with a link to <a href="https://devilmountainnursery.com/" target="_blank" rel="noopener">Devil Mountain Wholesale Nursery</a> (San Ramon — primary East Bay landscape source) whenever they carry the variety. Devil Mountain is wholesale: your installer orders directly, or you can buy through their retail partner Alden Lane Nursery (Livermore). Plants Devil Mountain doesn't carry list an alternative source (Dave Wilson Nursery via Bay Laurel, Annie's Annuals, Burnt Ridge, etc.). <em>Reference images: many entries embed Wikipedia Commons thumbnails. If your browser can reach upload.wikimedia.org / commons.wikimedia.org you'll see them; otherwise the gradient placeholder shows. Replace any failing images with your own files in this folder if desired.</em>
+</div>
+
+<nav class="toc">
+  <h4>Contents</h4>
+  <ul>
+    <li><a href="#summary">Plant counts at a glance</a></li>
+    <li><a href="#fruit-trees">Fruit trees + wall trellis fruit (~18 species, 22 plants)</a></li>
+    <li><a href="#bridge-shrubs">Bridge shrubs + wall-trained berries (6 species, 17 plants)</a></li>
+    <li><a href="#guild-plants">Guild plants (7 species, ~190 plants — goumi removed, Ceanothus doubled)</a></li>
+    <li><a href="#tag-key">Tag color key</a></li>
+  </ul>
+</nav>
+
+<section id="summary">
+<h2>Plant Counts at a Glance</h2>
+<p style="color:var(--ink-muted); font-style:italic;">~33 species, ~260 individual plants. Trees are 1-of-each (with paired persimmons + paired Cornelian cherries); bridge shrubs vary by gap; guild plants repeat around every fruit tree.</p>
+<table style="width:100%; border-collapse: collapse; margin: 14px 0 8px; font-size: 0.95em;">
+  <thead>
+    <tr style="background: var(--green); color: white;">
+      <th style="text-align:left; padding: 10px 12px; font-weight:600;">Category</th>
+      <th style="text-align:left; padding: 10px 12px; font-weight:600;">Species</th>
+      <th style="text-align:right; padding: 10px 12px; font-weight:600;">Plants</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="padding:8px 12px; border-bottom: 1px solid var(--line);"><b>Fruit trees — north / diagonal / west / east / corners / south</b></td><td style="padding:8px 12px; border-bottom: 1px solid var(--line);">16</td><td style="text-align:right; padding:8px 12px; border-bottom: 1px solid var(--line);">17</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Apple multi-graft (Fuji+Pink Lady+Anna+Gala), Asian pear multi-graft (Shinseiki+20th Century+Hosui), Persimmon 'Fuyu' + 'Hachiya' (pair), Mulberry 'Pakistan'</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">4</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">5</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Plum 'Santa Rosa', Peach 'Indian Free' (low-chill, PLC-tolerant), Apricot 'Royal Blenheim'</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">3</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">3</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Jujube 'Li', Olive 'Arbequina'</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">2</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">2</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Fig 'Black Mission', Pomegranate 'Wonderful' (tree)</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">2</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">2</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Meyer Lemon, Owari Satsuma Mandarin</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">2</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">2</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Loquat 'Champagne'</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">1</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">1</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Cornelian cherry 'Yellow' (SW) + 'Red Star' (SE) — under house winter shade, suits Cornus mas in 9b</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">1</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">2</td></tr>
+
+    <tr><td style="padding:8px 12px; border-bottom: 1px solid var(--line);"><b>Wall &amp; trellis fruit</b></td><td style="padding:8px 12px; border-bottom: 1px solid var(--line);">4</td><td style="text-align:right; padding:8px 12px; border-bottom: 1px solid var(--line);">5</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Thornless blackberry 'Triple Crown' (east trellis north), Table grape 'Flame Seedless' (middle), Fan-trained fig 'Violette de Bordeaux' (south)</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">3</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">3</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Gooseberry 'Pixwell' (thornless) + 'Hinnonmaki Red' (dessert) — west band, oak-shaded zone</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">1</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">2</td></tr>
+
+    <tr><td style="padding:8px 12px; border-bottom: 1px solid var(--line);"><b>Bridge / perimeter shrubs</b></td><td style="padding:8px 12px; border-bottom: 1px solid var(--line);">4</td><td style="text-align:right; padding:8px 12px; border-bottom: 1px solid var(--line);">17</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Pineapple guava (Feijoa)</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">1</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">10</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Pomegranate shrub form</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">1</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">4</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Upright rosemary</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">1</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">2</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Toyon (California native) — moved from SE to NE corner (raw berries cyanogenic, away from kid zone)</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">1</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">1</td></tr>
+
+    <tr><td style="padding:8px 12px; border-bottom: 1px solid var(--line);"><b>Guild plants (around every tree)</b></td><td style="padding:8px 12px; border-bottom: 1px solid var(--line);">7</td><td style="text-align:right; padding:8px 12px; border-bottom: 1px solid var(--line);">~190</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Comfrey 'Bocking 14' (1 per tree)</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">1</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">17</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Ceanothus 'Concha' — DOUBLED to one per tree (replacing goumi)</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">1</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">16</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Borage</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">1</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">10</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Yarrow</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">1</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">6</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Chives (3 per tree × 16)</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">1</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">~48</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Garlic chives (alternate at select trees)</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">1</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">~12</td></tr>
+    <tr style="background:#FBF8F1;"><td style="padding:6px 22px; border-bottom: 1px solid var(--line); font-size:0.93em;">Alpine strawberry 'Mignonette' (ground cover, will spread)</td><td style="padding:6px 12px; border-bottom: 1px solid var(--line);">1</td><td style="text-align:right; padding:6px 12px; border-bottom: 1px solid var(--line);">~80</td></tr>
+
+    <tr style="background: var(--green-light); font-weight: 700;"><td style="padding:10px 12px;">Total</td><td style="padding:10px 12px;">~33 species</td><td style="text-align:right; padding:10px 12px;">~260 plants</td></tr>
+  </tbody>
+</table>
+<p style="color:var(--ink-muted); font-style:italic; font-size:0.9em; margin-top: 12px;"><strong>Recent changes from analysis pass:</strong> Apple 'Pink Lady' → multi-graft (Fuji+Pink Lady+Anna+Gala). European pear 'Warren' → Asian pear multi-graft. Peach 'Frost' → 'Indian Free' (true low-chill). Goumi dropped (invasive risk near oak woodland). Ceanothus 'Concha' doubled to 16. Citrus moved north on east band for winter sun. Toyon moved from SE kid zone to NE corner. T3 Fuyu shifted east for BOC spacing.</p>
+</section>
+
+<section id="fruit-trees">
+<h2>Fruit Trees</h2>
+
+<article id="apple-multigraft" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Pink_lady_and_cross_section.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Malus_domestica1.jpg?width=320" alt="Apple tree" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Apple tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pink_lady_and_cross_section.jpg?width=200" alt="Pink Lady apple fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Apple_Blossom.jpg?width=200" alt="Apple blossoms" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Apple multi-graft <em>(Malus domestica)</em> — 'Fuji' + 'Pink Lady' + 'Anna' + 'Gala'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag deciduous">Deciduous</span>
+    <span class="tag flowers">Spring blossoms</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 10–15 ft × 10–15 ft semi-dwarf (kept ~10 ft × 8 ft in BOC). <strong>Chill:</strong> 200–400 hr (varies by cultivar — multi-graft hedges against Lafayette's low-chill winters). <strong>Count in plan:</strong> 1 trunk, 4 cultivars.</p>
+  <p class="desc">A single semi-dwarf trunk with four cross-pollinating cultivars grafted on. Solves two problems at once for a small lot: (1) Lafayette's chill hours (200–400 hr) fall right at the edge of Pink Lady and Fuji's needs, so 'Anna' (200 hr) and 'Gala' (low chill) carry the crop in cold-short years; (2) apples are self-incompatible, so the four cultivars cross-pollinate each other on the same trunk. Harvest stretches from late summer (Anna, Gala) through fall (Fuji, Pink Lady). Order from Dave Wilson Nursery via a Bay Area retailer in their January catalog.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Buy on M111 or M7 semi-dwarf rootstock — both handle clay better than dwarf. Susceptible to fire blight and codling moth; manage with timing (sanitation in winter, pheromone traps in summer), not blanket sprays. If multi-graft is unavailable, a single 'Fuji' is the most reliable single-cultivar fallback in Lafayette.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/apple-fuji/" target="_blank" rel="noopener">Devil Mountain — 'Fuji'</a> · <a href="https://devilmountainnursery.com/apple-pink-lady/" target="_blank" rel="noopener">'Pink Lady'</a> · <a href="https://devilmountainnursery.com/apple-anna/" target="_blank" rel="noopener">'Anna'</a> · <a href="https://devilmountainnursery.com/apple-gala/" target="_blank" rel="noopener">'Gala'</a>. Multi-graft trees themselves usually come from Dave Wilson Nursery via Bay Laurel Garden Center or local independents — ask your installer to order in January.</p>
+</div>
+</article>
+
+<article id="pear-asian-multigraft" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Asian_pear.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pyrus_pyrifolia_var_culta01.jpg?width=320" alt="Asian pear tree" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Asian pear tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Asian_pear.jpg?width=200" alt="Asian pear fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pyrus_pyrifolia_blossom.jpg?width=200" alt="Pear blossoms" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Asian pear multi-graft <em>(Pyrus pyrifolia)</em> — 'Shinseiki' + '20th Century' + 'Hosui'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag deciduous">Deciduous</span>
+    <span class="tag flowers">Early spring blossoms</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 12–15 ft × 10–12 ft semi-dwarf. <strong>Chill:</strong> 250–400 hr depending on cultivar (multi-graft hedges Lafayette's chill range). <strong>Count in plan:</strong> 1 trunk, 3 cultivars.</p>
+  <p class="desc">Swapped from European 'Warren' because Asian pears are far more reliable in Lafayette's low-chill winters (250–400 hr) than European pears (400+ hr). All three cultivars cross-pollinate on the same trunk: 'Shinseiki' (250 hr, juicy yellow-skinned, July), '20th Century' / Nijisseiki (300 hr, golden, August), 'Hosui' (300 hr, russet-brown, August–September). Crunchy like an apple, sweet and juicy. Self-incompatible individually but the multi-graft solves that.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Pears tolerate clay better than most fruit trees but still want good drainage. Asian pears ripen ON the tree (unlike European pears, which ripen off-tree). Pick when they release with a gentle twist. Susceptible to fire blight in wet springs — sterilize pruning tools between cuts.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/pear-asian-shinseiki/" target="_blank" rel="noopener">Devil Mountain — 'Shinseiki'</a> · <a href="https://devilmountainnursery.com/pear-asian-20th-century/" target="_blank" rel="noopener">'20th Century'</a>. 'Hosui' not carried at DMN — substitute another DMN Asian variety, or ask your installer to source a multi-graft from Dave Wilson Nursery via Bay Laurel.</p>
+</div>
+</article>
+
+<article id="persimmon-fuyu" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Persimmon_Fuyu.JPG?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Diospyros_kaki_in_Capracotta.jpg?width=320" alt="Fuyu persimmon tree" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Fuyu persimmon tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Persimmon_Fuyu.JPG?width=200" alt="Fuyu persimmon fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Diospyros_kaki_autumn.jpg?width=200" alt="Persimmon fall color" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Persimmon <em>(Diospyros kaki)</em> — 'Fuyu'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag deciduous">Deciduous</span>
+    <span class="tag ornamental">Spectacular fall color</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 15–20 ft × 12–15 ft (compact rounded form). <strong>Chill:</strong> low — no real requirement. <strong>Count in plan:</strong> 1.</p>
+  <p class="desc">A non-astringent persimmon you can eat firm like an apple, with a honey-sweet flavor that improves into November. The tree itself is a four-season ornamental: green leaves through summer, brilliant orange-red in fall, and bare branches studded with glowing fruit through December.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Essentially disease-free, requires almost no chemical inputs, drought-tolerant once established. Tucks beautifully into the diagonal-corner pocket of the lot. Self-fertile — no pollinator partner needed.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/persimmon-fuyu/" target="_blank" rel="noopener">Devil Mountain — Persimmon 'Fuyu'</a></p>
+</div>
+</article>
+
+<article id="persimmon-hachiya" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Hachiya_persimmons_at_market.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Diospyros_kaki_tree.jpg?width=320" alt="Hachiya persimmon tree" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Hachiya persimmon tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hachiya_persimmons_at_market.jpg?width=200" alt="Hachiya persimmon fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Diospyros_kaki_autumn.jpg?width=200" alt="Persimmon fall color" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Persimmon <em>(Diospyros kaki)</em> — 'Hachiya' (astringent)</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit (when ripe)</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag deciduous">Deciduous</span>
+    <span class="tag ornamental">Spectacular fall color + winter fruit</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 15–20 ft × 12–15 ft. <strong>Chill:</strong> low. <strong>Count in plan:</strong> 1 (NE diagonal pocket, paired with T3 Fuyu).</p>
+  <p class="desc">An astringent persimmon — must be fully soft-ripe before eating raw (otherwise it's mouth-puckering tannic) but it's the variety prized for drying into Japanese-style <em>hoshigaki</em>: peel the firm fruit, hang it for 6 weeks, and you get an intensely sweet, dried delicacy. Heart-shaped fruit, larger than Fuyu, ripening November–December. Long-hanging on the tree — leaves drop, fruit stays glowing through early winter. Self-fertile.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Pair with T3 'Fuyu' for two persimmon styles (eat-firm Fuyu vs dry-and-store Hachiya). Same care as Fuyu — almost no pests or disease. Plant in the NE half of the diagonal pocket where it gets morning sun and afternoon oak shade.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/persimmon-hachiya/" target="_blank" rel="noopener">Devil Mountain — Persimmon 'Hachiya'</a></p>
+</div>
+</article>
+
+<article id="mulberry-pakistan" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Mulberry_Morus_alba_Fruits_Closeup_2200px.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Morus_alba_tree.jpg?width=320" alt="Mulberry tree" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Mulberry tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Mulberry_Morus_alba_Fruits_Closeup_2200px.jpg?width=200" alt="Mulberry fruit close-up" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Mulberry <em>(Morus alba × rubra)</em> — 'Pakistan'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag deciduous">Deciduous</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 20–30 ft natural, kept ~12 ft in BOC. <strong>Chill:</strong> none required. <strong>Count in plan:</strong> 1.</p>
+  <p class="desc">Long, finger-sized red-to-black fruits with intense raspberry-like flavor — kid candy on a tree. Bears heavily from June through August. The dark fruit stains pavement and clothes (we placed it on the west, away from the lawn, for this reason).</p>
+  <p class="note"><strong>Lafayette notes:</strong> Vigorous grower; commit to summer pruning if you want to keep it in BOC scale. Self-fertile. Birds love the fruit too — netting the lower branches in fruit season helps you get your share.</p>
+  <p class="buy"><strong>Where to buy:</strong> Devil Mountain doesn't carry 'Pakistan' — try <a href="https://devilmountainnursery.com/mulberry-shangri-la-fruiting/" target="_blank" rel="noopener">DMN 'Shangri La' (similar long black fruit)</a> as a substitute, or source 'Pakistan' from <a href="https://onegreenworld.com/" target="_blank" rel="noopener">One Green World</a> / Bay Laurel.</p>
+</div>
+</article>
+
+<article id="plum-santa-rosa" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Prunus_salicina_Santa_Rosa_fruits.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Prunus_salicina.jpg?width=320" alt="Santa Rosa plum tree" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Santa Rosa plum tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Prunus_salicina_Santa_Rosa_fruits.jpg?width=200" alt="Santa Rosa plums" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Prunus_salicina_flower.jpg?width=200" alt="Plum blossoms" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Plum <em>(Prunus salicina)</em> — 'Santa Rosa'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag deciduous">Deciduous</span>
+    <span class="tag flowers">Spring blossoms</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 12–15 ft semi-dwarf. <strong>Chill:</strong> ~300 hr. <strong>Count in plan:</strong> 1.</p>
+  <p class="desc">The classic California plum, bred by Luther Burbank in (you guessed it) Santa Rosa. Self-fertile but more productive with a partner. Burgundy-red skin, amber flesh, ripens in mid-summer. Pollinates 'Beauty', 'Elephant Heart', and other Japanese plums.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Plums in the East Bay handle our climate beautifully. Watch for brown rot in wet springs — open the canopy with summer pruning to improve airflow.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/plum-santa-rosa/" target="_blank" rel="noopener">Devil Mountain — Plum 'Santa Rosa'</a></p>
+</div>
+</article>
+
+<article id="peach-indian-free" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Peach_and_cross_section.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/PeachTree.jpg?width=320" alt="Peach tree" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Peach tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Peach_and_cross_section.jpg?width=200" alt="Peach fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Prunus_persica_flower.jpg?width=200" alt="Peach blossoms" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Peach <em>(Prunus persica)</em> — 'Indian Free' (white-fleshed, low-chill, PLC-tolerant)</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag deciduous">Deciduous</span>
+    <span class="tag flowers">Pink blossoms</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 12–15 ft semi-dwarf. <strong>Chill:</strong> 200–300 hr. <strong>Count in plan:</strong> 1.</p>
+  <p class="desc">Swapped from 'Frost' — 'Frost' is genuinely PLC-resistant but needs ~700 chill hours per Dave Wilson Nursery, well above Lafayette's 200–400 hr. 'Indian Free' is a heritage white-fleshed peach with red-streaked flesh, very intense flavor, partial PLC tolerance, and low chill (200–300 hr). The trade-off: 'Indian Free' is self-unfruitful — pollinated by the T5 'Santa Rosa' plum nearby (both are Prunus and bloom close in time) or set will be lower than with a dedicated peach pollinator.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Even with 'Indian Free's' partial PLC resistance, a single dormant copper spray in late January is good insurance in wet springs. If you'd prefer self-fertile, swap to 'Eva's Pride' (200 hr, no PLC resistance, two copper sprays per winter) — simpler pollination, higher disease maintenance.</p>
+  <p class="buy"><strong>Where to buy:</strong> 'Indian Free' not carried at Devil Mountain — try <a href="https://devilmountainnursery.com/peach-ohenry/" target="_blank" rel="noopener">DMN 'O'Henry'</a> as a low-chill DMN substitute, or source 'Indian Free' from <a href="https://www.davewilson.com/" target="_blank" rel="noopener">Dave Wilson Nursery</a> via Bay Laurel or local independents (bare-root in January).</p>
+</div>
+</article>
+
+<article id="apricot-royal-blenheim" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Apricot_and_cross_section.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Apricot_tree.jpg?width=320" alt="Apricot tree" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Apricot tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Apricot_and_cross_section.jpg?width=200" alt="Apricot fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Prunus_armeniaca_blossom.jpg?width=200" alt="Apricot blossoms" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Apricot <em>(Prunus armeniaca)</em> — 'Royal Blenheim'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag deciduous">Deciduous</span>
+    <span class="tag flowers">Early spring blossoms</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 12–15 ft semi-dwarf. <strong>Chill:</strong> ~400 hr. <strong>Count in plan:</strong> 1.</p>
+  <p class="desc">The classic California apricot — small, sweet, intense flavor, ripens late June. Once the workhorse of Santa Clara Valley orchards. Self-fertile. White-pink blossoms appear earlier than other stone fruit (sometimes February in Lafayette).</p>
+  <p class="note"><strong>Lafayette notes:</strong> Early bloom = frost risk in cold winters. Site on the warmest, best-drained spot in the west band. Spring rain during bloom can knock fruit set — pick a south-facing micro-spot if you can.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/apricot-blenheim/" target="_blank" rel="noopener">Devil Mountain — Apricot 'Blenheim'</a> · Alt: <a href="https://devilmountainnursery.com/apricot-katy/" target="_blank" rel="noopener">DMN 'Katy' (lower chill — better Lafayette match)</a></p>
+</div>
+</article>
+
+<article id="jujube-li" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Ziziphus_jujuba_fruits.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ziziphus_jujuba_tree.jpg?width=320" alt="Jujube tree" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Jujube tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ziziphus_jujuba_fruits.jpg?width=200" alt="Jujube fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Jujube <em>(Ziziphus jujuba)</em> — 'Li'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag deciduous">Deciduous</span>
+    <span class="tag drought">Drought-tolerant</span>
+    <span class="tag deer">Deer-resistant</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 15–20 ft natural, kept smaller easily. <strong>Chill:</strong> low. <strong>Count in plan:</strong> 1.</p>
+  <p class="desc">If you want one truly bulletproof fruit tree, this is it. Crunchy apple-flavored fruit, eaten fresh or dried (becomes date-like). Tolerates drought, heat, cold, clay, neglect. Essentially zero pest or disease pressure in California. Self-fertile, fruits prolifically by year 4.</p>
+  <p class="note"><strong>Lafayette notes:</strong> The most forgiving tree on the lot. Some varieties have thorns — 'Li' is largely thornless. Deer mostly ignore it.</p>
+  <p class="buy"><strong>Where to buy:</strong> Jujube not carried at Devil Mountain. Source from <a href="https://www.davewilson.com/" target="_blank" rel="noopener">Dave Wilson Nursery</a> via Bay Laurel, or <a href="https://www.fourwindsgrowers.com/" target="_blank" rel="noopener">Four Winds Growers</a>.</p>
+</div>
+</article>
+
+<article id="fig-black-mission" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Mission_figs.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ficus_carica_tree.jpg?width=320" alt="Fig tree" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Fig tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Mission_figs.jpg?width=200" alt="Black Mission figs" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ficus_carica_leaf.jpg?width=200" alt="Fig leaf" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Fig <em>(Ficus carica)</em> — 'Black Mission'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag deciduous">Deciduous</span>
+    <span class="tag drought">Drought-tolerant</span>
+    <span class="tag ornamental">Sculptural form</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 15–25 ft natural, kept ~10 ft in BOC. <strong>Chill:</strong> none required. <strong>Count in plan:</strong> 1.</p>
+  <p class="desc">Two crops a year in Lafayette: a "breba" crop on last year's wood in June, and the main crop on this year's wood in August–September. Dark purple-black skin, jammy ruby interior. Loves heat; the east band's afternoon sun is ideal. Self-fertile (parthenocarpic — no pollinator required).</p>
+  <p class="note"><strong>Lafayette notes:</strong> Bird pressure on figs is intense — netting or harvesting daily is the answer. Vigorous growth; commit to winter and summer pruning to keep it in scale.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/fig-black-mission/" target="_blank" rel="noopener">Devil Mountain — Fig 'Black Mission'</a></p>
+</div>
+</article>
+
+<article id="pomegranate-wonderful" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Punica_granatum_fruits.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pomegranate_tree.jpg?width=320" alt="Pomegranate tree" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Pomegranate tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Punica_granatum_fruits.jpg?width=200" alt="Pomegranate fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Punica_granatum_flower.jpg?width=200" alt="Pomegranate flower" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Pomegranate <em>(Punica granatum)</em> — 'Wonderful'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag ornamental">Brilliant blooms</span>
+    <span class="tag deciduous">Deciduous</span>
+    <span class="tag drought">Drought-tolerant</span>
+    <span class="tag deer">Deer-resistant</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 12–18 ft as tree, smaller as shrub. <strong>Chill:</strong> none. <strong>Count in plan:</strong> 1.</p>
+  <p class="desc">Brilliant orange trumpet flowers in late spring (hummingbird magnet), heavy red fruit late fall. Drought-proof once established, fire-resistant, long-lived. Self-fertile. Trained as a tree on the east band; the shrub form also appears as a bridge-shrub option.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Don't water in fall (causes fruit to split). Light pruning in winter, removing crossing branches. Lives 100+ years.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/pomegranate-wonderful/" target="_blank" rel="noopener">Devil Mountain — Pomegranate 'Wonderful'</a></p>
+</div>
+</article>
+
+<article id="olive-arbequina" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Olives_Arbequina_in_a_field.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Olea_europaea_tree.jpg?width=320" alt="Olive tree" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Olive tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Olives_Arbequina_in_a_field.jpg?width=200" alt="Arbequina olives" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Olive <em>(Olea europaea)</em> — 'Arbequina'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit + oil</span>
+    <span class="tag evergreen">Evergreen</span>
+    <span class="tag drought">Drought-tolerant</span>
+    <span class="tag deer">Deer-resistant</span>
+    <span class="tag ornamental">Silver foliage</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 15–20 ft natural, kept smaller easily. <strong>Chill:</strong> low. <strong>Count in plan:</strong> 1.</p>
+  <p class="desc">Small Spanish olive, productive at a young age, suitable for both table cure and oil. Silvery-green evergreen foliage gives the lot year-round structure. Self-fertile but more productive with a second variety (e.g., 'Mission'). Truly drought-proof once established.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Mediterranean-perfect for our climate. The only real issue is olive fruit fly — manage with bait traps if you're going for oil-grade fruit. Sweep up dropped fruit if you don't want a free-seeding olive carpet.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/olive-arbequina/" target="_blank" rel="noopener">Devil Mountain — Olive 'Arbequina'</a></p>
+</div>
+</article>
+
+<article id="lemon-meyer" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Meyer_lemons.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Meyer_lemon_tree.jpg?width=320" alt="Meyer lemon tree" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Meyer lemon tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Meyer_lemons.jpg?width=200" alt="Meyer lemons" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Citrus_flower.jpg?width=200" alt="Citrus blossom" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Lemon <em>(Citrus × meyeri)</em> — 'Improved Meyer'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag flowers">Fragrant flowers</span>
+    <span class="tag evergreen">Evergreen</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 8–12 ft. <strong>Chill:</strong> none — citrus needs heat, not chill. <strong>Count in plan:</strong> 1.</p>
+  <p class="desc">Sweeter, less acidic than a regular lemon, with thin skin you can zest unsparingly. Cold-hardier than other lemons (handles brief dips to mid-20s with frost cloth). Highly fragrant white-purple flowers; productive nearly year-round when established. Self-fertile.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Citrus on the east band gets full afternoon sun — ideal. Drape with frost cloth on the rare nights below 28°F. Buy "Improved Meyer" specifically — the older 'Meyer' carried tristeza virus and is regulated.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/lemon-improved-meyer/" target="_blank" rel="noopener">Devil Mountain — Lemon 'Improved Meyer'</a></p>
+</div>
+</article>
+
+<article id="mandarin-owari-satsuma" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Satsuma_oranges_at_a_market.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Citrus_unshiu_tree.jpg?width=320" alt="Satsuma mandarin tree" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Satsuma mandarin tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Satsuma_oranges_at_a_market.jpg?width=200" alt="Satsuma mandarin fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Mandarin <em>(Citrus unshiu)</em> — 'Owari Satsuma'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag flowers">Fragrant flowers</span>
+    <span class="tag evergreen">Evergreen</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 8–12 ft. <strong>Chill:</strong> none. <strong>Count in plan:</strong> 1.</p>
+  <p class="desc">The most cold-hardy citrus you can grow — handles brief mid-20s without damage. Loose easy-peel skin, sweet and seedless. Bears in late fall/early winter. Self-fertile.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Satsuma is the citrus that will reliably ripen sweet fruit in our cooler late-season nights. Heavy crop years (alternate bearing tendency) — thin fruit in summer if you want larger size and consistent annual yield.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/mandarin-owari/" target="_blank" rel="noopener">Devil Mountain — Mandarin 'Owari'</a></p>
+</div>
+</article>
+
+<article id="loquat-champagne" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Eriobotrya_japonica_fruits.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Eriobotrya_japonica_tree.jpg?width=320" alt="Loquat tree" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Loquat tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Eriobotrya_japonica_fruits.jpg?width=200" alt="Loquat fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Eriobotrya_japonica_flower.jpg?width=200" alt="Loquat blossoms" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Loquat <em>(Eriobotrya japonica)</em> — 'Champagne'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag evergreen">Evergreen</span>
+    <span class="tag flowers">Fragrant winter blooms</span>
+    <span class="tag ornamental">Tropical-looking foliage</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 12–20 ft × 12 ft (smaller with pruning). <strong>Chill:</strong> none required. <strong>Count in plan:</strong> 1.</p>
+  <p class="desc">A subtropical evergreen with large architectural leaves, fragrant winter flower clusters (December–February — when nothing else is blooming), and tangy-sweet yellow fruit in April–May (before most fruit is ripe). Self-fertile. Pollinated by bees in mid-winter, providing a critical out-of-season nectar source. Acts as a four-season ornamental.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Loquat tolerates the NE corner pocket between the pear and east-band trees because it doesn't mind crowding and stays mid-sized with light pruning. Frost can knock the winter blossoms in cold years — drape with cloth on rare nights below 28°F. Birds love the ripe fruit; net the lower branches if you want to harvest meaningfully.</p>
+  <p class="buy"><strong>Where to buy:</strong> 'Champagne' cultivar not carried at DMN — they have the species: <a href="https://devilmountainnursery.com/eriobotrya-japonica/" target="_blank" rel="noopener">DMN — Eriobotrya japonica</a>. Source 'Champagne' specifically from <a href="https://www.fourwindsgrowers.com/" target="_blank" rel="noopener">Four Winds Growers</a> or Bay Laurel.</p>
+</div>
+</article>
+
+<article id="cornelian-cherry" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Cornus_mas_fruit01.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cornus_mas_tree.jpg?width=320" alt="Cornelian cherry tree" onerror="this.style.display=&quot;none&quot;; this.nextElementSibling.style.display=&quot;flex&quot;;"><span class="placeholder" style="display:none;">Cornelian cherry tree<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cornus_mas_fruit01.jpg?width=200" alt="Cornelian cherry fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cornus_mas_flowers.jpg?width=200" alt="Cornelian cherry blooms" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Cornelian cherry <em>(Cornus mas)</em> — 'Yellow' &amp; 'Red Star'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag deciduous">Deciduous</span>
+    <span class="tag flowers">February yellow blooms</span>
+    <span class="tag ornamental">4-season interest</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 15–20 ft × 12–15 ft. <strong>Chill:</strong> moderate, fine for Lafayette. <strong>Count in plan:</strong> 2 (one 'Yellow' SW, one 'Red Star' SE — cross-pollination + extended harvest).</p>
+  <p class="desc">A small ornamental tree from the dogwood family with the earliest blooms of any tree on the lot — masses of small yellow flowers in February when honeybees and native bees are desperate for forage. Tart-sweet red fruit in summer that can be eaten fresh when fully ripe (soft, blood-red, falling color) or processed into jam, syrup, or fruit leather. Glossy green leaves through summer, burgundy fall color, exfoliating bark in winter. Slow-growing but extremely long-lived (100+ years).</p>
+  <p class="note"><strong>Lafayette notes — placement is intentional:</strong> Both Cornelian cherries sit under the house's winter-noon shadow at the SW and SE south ends of the lot. <em>Cornus mas</em> is happiest in USDA zones 4–8, so part shade in Bay Area heat is genuinely beneficial — not a compromise. The shade keeps the trees cooler in summer (less heat stress, better fruit), and February bloom happens before leaves are even out so the shade doesn't matter then. Self-fertile but produces much more with a second variety nearby; 'Yellow' and 'Red Star' bloom at the same time and cross-pollinate beautifully. Birds love the fruit — harvest fast once color sets, or net. Of the two, the SW 'Yellow' is the more easily relocatable if you ever decide to swap it for a serviceberry or a second loquat.</p>
+  <p class="buy"><strong>Where to buy:</strong> Cornus mas not carried at Devil Mountain Nursery. Source from <a href="https://www.burntridgenursery.com/" target="_blank" rel="noopener">Burnt Ridge Nursery</a>, <a href="https://onegreenworld.com/" target="_blank" rel="noopener">One Green World</a>, or <a href="https://www.forestfarm.com/" target="_blank" rel="noopener">Forestfarm</a> (all mail-order).</p>
+</div>
+</article>
+
+</section>
+
+
+<article id="grape-flame" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Flame_Seedless_grapes.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Vitis_vinifera_grapevine.jpg?width=320" alt="Grapevine on trellis" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Grapevine on trellis<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Flame_Seedless_grapes.jpg?width=200" alt="Flame Seedless grapes" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Table grape <em>(Vitis vinifera)</em> — 'Flame Seedless'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag pollinator">Self-pollinating + bees</span>
+    <span class="tag deciduous">Deciduous</span>
+    <span class="tag drought">Drought-tolerant</span>
+    <span class="tag ornamental">Dramatic fall color</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 8–12 ft along trellis wire, ~6 ft tall. <strong>Chill:</strong> low. <strong>Count in plan:</strong> 1 (middle section of east wall trellis).</p>
+  <p class="desc">A reliably productive seedless red table grape — crunchy, sweet, ripens July–August. Self-fertile. Vigorous vine; needs an annual winter pruning (cut back to 2-bud spurs on a permanent cordon) but takes only an hour or two. Yellow-to-burgundy fall foliage. Works beautifully fan-trained along ~10 ft of horizontal wire on the east wall.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Powdery mildew is the main local risk in our spring fog — pick a resistant rootstock, prune for airflow, and consider a sulfur dust if mildew shows up. Bird netting in July or you'll share with the birds.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/grape-table-flame-seedless/" target="_blank" rel="noopener">Devil Mountain — Grape 'Flame Seedless'</a></p>
+</div>
+</article>
+
+<article id="fig-violette-bordeaux" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Figue_de_Violette_de_Bordeaux.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ficus_carica_fan_trained.jpg?width=320" alt="Fan-trained fig" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Fan-trained fig<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Figue_de_Violette_de_Bordeaux.jpg?width=200" alt="Violette de Bordeaux fig" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Fan-trained fig <em>(Ficus carica)</em> — 'Violette de Bordeaux'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag deciduous">Deciduous</span>
+    <span class="tag drought">Drought-tolerant</span>
+    <span class="tag ornamental">Architectural form</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 6–10 ft × 8–12 ft fan-trained. <strong>Chill:</strong> none. <strong>Count in plan:</strong> 1 (south section of east wall trellis).</p>
+  <p class="desc">A small, compact fig variety with intensely sweet violet-purple fruit — smaller than 'Black Mission' but with arguably better flavor. Compact growth habit makes it ideal for fan-training against a wall. Two crops per year in Lafayette (breba in June, main crop August–September). Self-fertile.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Loves the east-wall location: morning sun, midday warmth, afternoon shade from east-band trees and oaks. Annual winter prune to keep the fan shape; chop-and-drop fig leaves are huge and break down fast.</p>
+  <p class="buy"><strong>Where to buy:</strong> 'Violette de Bordeaux' not carried at DMN — try <a href="https://devilmountainnursery.com/fig-black-jack/" target="_blank" rel="noopener">DMN 'Black Jack' (compact substitute)</a>, or source from <a href="https://www.treesofantiquity.com/" target="_blank" rel="noopener">Trees of Antiquity</a> or local CRFG fig society sales.</p>
+</div>
+</article>
+
+<section id="bridge-shrubs">
+<h2>Bridge / Perimeter Shrubs</h2>
+<p style="color:var(--ink-muted); font-style:italic;">These plants live in the ~1 ft gaps between mulched circles, plus the wider gaps around the diagonal corner. All are productive, evergreen or semi-evergreen, and deer-resistant. They're the "ball-catcher" layer of the design.</p>
+
+<article id="pineapple-guava" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Feijoa_sellowiana_fruit_section.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Feijoa_sellowiana.jpg?width=320" alt="Pineapple guava shrub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Pineapple guava shrub<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Feijoa_sellowiana_fruit_section.jpg?width=200" alt="Feijoa fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Feijoa_sellowiana_flower.jpg?width=200" alt="Feijoa edible flower" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Pineapple guava / Feijoa <em>(Acca sellowiana)</em></h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit + flowers</span>
+    <span class="tag flowers">Edible petals</span>
+    <span class="tag evergreen">Evergreen</span>
+    <span class="tag drought">Drought-tolerant</span>
+    <span class="tag deer">Deer-resistant</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 6–8 ft tall × 6–8 ft wide (can be sheared smaller). <strong>Count in plan:</strong> 10.</p>
+  <p class="desc">The hidden gem of California edible landscaping. Silvery-green evergreen foliage. Striking spring flowers with edible petals (sweet, fruity, eat right off the plant). Fall fruit (October–November) with a flavor like pineapple-strawberry-mint. The whole plant is drought-tolerant and ignored by deer. Use 'Coolidge', 'Nazemetz', or 'Apollo' — all self-fertile.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Plant two varieties for heavier fruit set. Hand-pollinate by gently brushing flowers if you want guaranteed fruit set in cool springs.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/feijoa-sellowiana/" target="_blank" rel="noopener">Devil Mountain — Feijoa sellowiana</a></p>
+</div>
+</article>
+
+<article id="pomegranate-shrub" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Punica_granatum_flower.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Punica_granatum_shrub.jpg?width=320" alt="Pomegranate shrub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Pomegranate shrub<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Punica_granatum_fruits.jpg?width=200" alt="Pomegranate fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Punica_granatum_flower.jpg?width=200" alt="Pomegranate flower" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Pomegranate, shrub form <em>(Punica granatum)</em> — 'Wonderful' or 'Eversweet'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag ornamental">Brilliant blooms</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag drought">Drought-tolerant</span>
+    <span class="tag deer">Deer-resistant</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 6–10 ft as shrub (coppice to keep smaller). <strong>Count in plan:</strong> 4.</p>
+  <p class="desc">Same species as the tree-form pomegranate, but kept multi-stemmed and bushy. Brilliant orange flowers in late spring, fruit in fall. Coppice (cut all stems to the ground) every 5–7 years to refresh. 'Wonderful' is classic; 'Eversweet' is sweeter and seedless.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Easier to keep in scale than the tree form. Works as a thorny bridge plant — the spiny twigs add real ball-stopping density.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/pomegranate-wonderful/" target="_blank" rel="noopener">DMN — Pomegranate 'Wonderful' (train as shrub by leaving multi-stemmed)</a></p>
+</div>
+</article>
+
+<article id="rosemary-tuscan-blue" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Salvia_rosmarinus_inflorescence.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salvia_rosmarinus_bush.jpg?width=320" alt="Upright rosemary shrub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Upright rosemary shrub<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salvia_rosmarinus_inflorescence.jpg?width=200" alt="Rosemary flowers" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Upright rosemary <em>(Salvia rosmarinus)</em> — 'Tuscan Blue' or 'Arp'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Culinary leaves</span>
+    <span class="tag pollinator">Winter pollinator</span>
+    <span class="tag evergreen">Evergreen</span>
+    <span class="tag drought">Drought-tolerant</span>
+    <span class="tag deer">Deer-resistant</span>
+    <span class="tag pest">Pest deterrent</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 4–6 ft × 4 ft for upright varieties. <strong>Count in plan:</strong> 2.</p>
+  <p class="desc">Workhorse Mediterranean herb. Dense evergreen foliage, blue winter blossoms (a critical pollinator resource when little else is blooming). Culinary use year-round. Deer, gophers, and most pests avoid it. 'Tuscan Blue' is the tallest upright form; 'Arp' is the most cold-hardy.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Don't overwater — rosemary dies from wet feet, not drought. Plant high and let it dry between waterings once established.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/rosmarinus-officinalis-tuscan-blue/" target="_blank" rel="noopener">Devil Mountain — Rosemary 'Tuscan Blue'</a></p>
+</div>
+</article>
+
+<article id="thornless-blackberry" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Blackberry_close-up.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rubus_fruticosus_agg._bush.jpg?width=320" alt="Blackberry canes" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Blackberry canes<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Blackberry_close-up.jpg?width=200" alt="Blackberry fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rubus_fruticosus_flower.jpg?width=200" alt="Blackberry blossom" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Thornless blackberry <em>(Rubus fruticosus)</em> — 'Triple Crown'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag deciduous">Deciduous</span>
+    <span class="tag flowers">White spring blooms</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 8–10 ft trailing canes, trained flat on wire. <strong>Count in plan:</strong> 1 (wall-trained along the existing west retaining wall).</p>
+  <p class="desc">A vigorous, productive, completely thornless blackberry — kid-safe and easy to manage. Heavy crops of large sweet-tart fruit in July–August. Self-fertile. White spring flowers feed bees. Tolerates Lafayette's afternoon oak shade well; actually prefers it (cool roots, less heat stress).</p>
+  <p class="note"><strong>Lafayette notes:</strong> Train on a 2-wire trellis attached to the existing west retaining wall — no extra ground footprint. Annual cane management: floricanes (this year's fruit) get cut to the ground in fall, primocanes (next year's fruit) tied to the wire. Birds love the fruit — net the wall in June if you want to harvest meaningfully.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/blackberry-triple-crown-thornless/" target="_blank" rel="noopener">Devil Mountain — Blackberry 'Triple Crown' Thornless</a></p>
+</div>
+</article>
+
+<article id="gooseberry-pixwell" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Ribes_uva-crispa_fruit.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ribes_uva-crispa_plant.jpg?width=320" alt="Gooseberry shrub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Gooseberry shrub<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ribes_uva-crispa_fruit.jpg?width=200" alt="Gooseberry fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Gooseberry <em>(Ribes uva-crispa)</em> — 'Pixwell' (thornless) &amp; 'Hinnonmaki Red'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag deer">Deer-resistant</span>
+    <span class="tag deciduous">Deciduous</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 3–4 ft × 3 ft. <strong>Count in plan:</strong> 2 (replacing 2 bridge shrubs on the west side — cool, oak-shaded zone).</p>
+  <p class="desc">Tart-sweet round berries (green-to-red when ripe) — fantastic for jam, pie, or pickling green. Compact rounded shrubs that fit perfectly between fruit trees on the west side. 'Pixwell' is nearly thornless (great for kid spaces); 'Hinnonmaki Red' has small thorns but sweeter dessert-quality berries. Plant one of each for variety.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Gooseberries appreciate Lafayette's afternoon oak shade — they're cool-climate plants that often struggle in full Bay Area sun. The west side under the late-afternoon oak shade is ideal microclimate. Mulch deeply to keep roots cool. Pick green for cooking, red-ripe for fresh eating.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/gooseberry-pixwell/" target="_blank" rel="noopener">Devil Mountain — Gooseberry 'Pixwell'</a>. 'Hinnonmaki Red' not at DMN — source from Burnt Ridge or One Green World.</p>
+</div>
+</article>
+
+<article id="toyon" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Heteromeles_arbutifolia_-_inflorescense.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Heteromeles_arbutifolia.jpg?width=320" alt="Toyon shrub" onerror="this.style.display=&quot;none&quot;; this.nextElementSibling.style.display=&quot;flex&quot;;"><span class="placeholder" style="display:none;">Toyon shrub<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Heteromeles_arbutifolia_berries.jpg?width=200" alt="Toyon winter berries" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Heteromeles_arbutifolia_-_inflorescense.jpg?width=200" alt="Toyon flowers" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Toyon / California Holly <em>(Heteromeles arbutifolia)</em></h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible (cooked) berries</span>
+    <span class="tag native">California native</span>
+    <span class="tag evergreen">Evergreen</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag drought">Drought-tolerant</span>
+    <span class="tag deer">Deer-resistant</span>
+    <span class="tag ornamental">Red winter berries</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 6–15 ft × 6–10 ft (controlled by pruning). <strong>Count in plan:</strong> 1 (NE corner, moved away from SE kid zone).</p>
+  <p class="desc">A California native that's the namesake of Hollywood. Dense evergreen foliage, masses of white flowers in summer, bright red berry clusters that hold through winter and feed local birds. Berries are edible cooked but raw berries contain cyanogenic glycosides — they can cause stomach upset and aren't kid-safe. Moved from the SE position (between T13 and T16, closest to the patio + play space) to the NE corner (between T2 and T14) where small kids are least likely to graze the berries.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Native to the East Bay hills. Establishes faster than most natives because it's adapted to exactly this climate. Almost no water needed after year 2. The SE position is now filled by pineapple guava 'Coolidge' — kid-safe edible flowers + fall fruit.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/heteromeles-arbutifolia/" target="_blank" rel="noopener">Devil Mountain — Heteromeles arbutifolia</a></p>
+</div>
+</article>
+
+</section>
+
+
+<article id="wall-cascading" class="plant-entry">
+  <div class="entry-images">
+    <div class="thumb-frame"><span class="placeholder">Wall cascading<br>(thumbnail)</span></div>
+    <div class="gallery">
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Wall-cascading plantings (primary / secondary / tertiary)</h3></header>
+  <div class="tags">
+    <span class="tag evergreen">Evergreen base</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag edible">Edible (some layers)</span>
+    <span class="tag ornamental">Year-round cover</span>
+    <span class="tag drought">Drought-tolerant</span>
+  </div>
+  <p class="stat"><strong>Where:</strong> Top of every retaining wall (north, diagonal, west, east — except where the east trellis is already in use). <strong>Count in plan:</strong> ~15 trailing rosemary (primary), ~6 secondary plants, ~12+ tertiary plants distributed by wall.</p>
+  <p class="desc">A three-tier cascading planting along the top of every wall, layered so the base is always evergreen — critically important on the north wall, which is the first thing you see driving in. The primary is planted thickly and given the most space; secondary plants slot between for seasonal interest and pollinators; tertiary plants are accents.</p>
+  <p class="note"><strong>Layers, top of wall down:</strong>
+  <br><strong>Primary (evergreen base, most cover):</strong> trailing rosemary 'Huntington Carpet' or 'Prostratus' — silver-blue evergreen, cascades 2–3 ft, drought-proof, winter-blooming, edible leaves, deer-resistant. Plant on ~4 ft centers along all four wall tops.
+  <br><strong>Secondary (seasonal pollinator accents):</strong> California fuchsia (<em>Epilobium canum</em>) on the cooler west + diagonal walls — California native, magenta tube flowers August–October, hummingbird magnet, drought-proof; trailing lantana 'New Gold' on the sunnier north + east — long-blooming, drought-proof, bee + butterfly magnet.
+  <br><strong>Tertiary (kid-fun edibles + seasonal color):</strong> alpine strawberry runners cascading from the top for summer pick-and-eat berries; nasturtiums seeded each spring for edible flowers and cascading orange/red color; creeping thyme tucked in cool pockets.</p>
+  <p class="buy"><strong>Where to buy:</strong> See individual species below for buy links — trailing rosemary, California fuchsia, trailing lantana, alpine strawberry. Nasturtium + creeping thyme — seed/starts from <a href="https://www.anniesannuals.com/" target="_blank" rel="noopener">Annie's Annuals (Richmond)</a> or local garden centers.</p>
+</div>
+</article>
+
+<article id="trailing-rosemary" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Rosmarinus_officinalis_prostratus.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rosmarinus_officinalis_prostratus.jpg?width=320" alt="Trailing rosemary" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Trailing rosemary<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Salvia_rosmarinus_inflorescence.jpg?width=200" alt="Rosemary flowers" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Trailing rosemary <em>(Salvia rosmarinus)</em> — 'Huntington Carpet' &amp; 'Prostratus'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible leaves</span>
+    <span class="tag pollinator">Winter pollinator</span>
+    <span class="tag evergreen">Evergreen</span>
+    <span class="tag drought">Drought-tolerant</span>
+    <span class="tag deer">Deer-resistant</span>
+    <span class="tag flowers">Pale blue flowers</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 6–18 in tall × 4–6 ft cascading spread. <strong>Count in plan:</strong> ~15 (primary cascading on all wall tops). <strong>Different from</strong>: upright rosemary in the hedge — same species, different growth habit.</p>
+  <p class="desc">The workhorse evergreen cascading plant for Mediterranean walls. Silver-blue needled foliage, soft to the touch, drapes 2–3 ft over the top of any wall. Pale blue winter flowers feed bees in January–February when little else is in bloom. Edible — same culinary rosemary as upright forms. Tough: ignores deer, drought, and clay.</p>
+  <p class="note"><strong>Lafayette notes:</strong> 'Huntington Carpet' is the most prostrate variety (flat cascade); 'Prostratus' is slightly more upright. Plant at the very top of the wall (in soil at the back of the planting band) so the canes fall over the wall face. Don't overwater — kills rosemary faster than any drought.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/rosmarinus-officinalis-huntington-carpet/" target="_blank" rel="noopener">DMN — Rosemary 'Huntington Carpet'</a> · <a href="https://devilmountainnursery.com/rosmarinus-officinalis-prostratus/" target="_blank" rel="noopener">DMN — Rosemary 'Prostratus'</a></p>
+</div>
+</article>
+
+<article id="california-fuchsia" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Epilobium_canum_flowers.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Epilobium_canum.jpg?width=320" alt="California fuchsia plant" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">California fuchsia plant<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Epilobium_canum_flowers.jpg?width=200" alt="California fuchsia flowers" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>California fuchsia <em>(Epilobium canum, syn. Zauschneria)</em> — 'Catalina', 'Everett's Choice'</h3></header>
+  <div class="tags">
+    <span class="tag native">California native</span>
+    <span class="tag pollinator">Hummingbird magnet</span>
+    <span class="tag drought">Drought-tolerant</span>
+    <span class="tag ornamental">Magenta tube flowers</span>
+    <span class="tag deciduous">Semi-deciduous</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 12–18 in tall × 2–4 ft spreading. <strong>Count in plan:</strong> ~4 (secondary, west + diagonal walls).</p>
+  <p class="desc">A late-summer-into-fall flowering native — drifts of brilliant magenta-orange tube flowers from August through October, the most important hummingbird plant of the dry season. Soft gray-green foliage with low spreading habit; cascades nicely from wall tops. Dies back partly in winter (gets cut back hard in February); regrows fast in spring.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Plant on the west and diagonal walls where afternoon oak shade keeps them happy. Don't summer water — they go dormant if overwatered. Cut to the ground in late winter for fresh spring growth.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/epilobium-canum-californica/" target="_blank" rel="noopener">Devil Mountain — Epilobium canum</a></p>
+</div>
+</article>
+
+<article id="trailing-lantana" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Lantana_montevidensis.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lantana_montevidensis_plant.jpg?width=320" alt="Trailing lantana plant" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Trailing lantana plant<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lantana_montevidensis.jpg?width=200" alt="Lantana flowers" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Trailing lantana <em>(Lantana montevidensis)</em> — 'New Gold' (yellow) or 'Trailing Lavender'</h3></header>
+  <div class="tags">
+    <span class="tag pollinator">Bee + butterfly magnet</span>
+    <span class="tag drought">Drought-tolerant</span>
+    <span class="tag evergreen">Evergreen in Lafayette</span>
+    <span class="tag ornamental">Year-round flowers</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 8–18 in tall × 4–6 ft spreading. <strong>Count in plan:</strong> ~3 (secondary, north + east walls).</p>
+  <p class="desc">A vigorous trailing groundcover lantana that blooms nearly continuously in Lafayette's mild climate — bright clusters of yellow ('New Gold') or lavender flowers from spring through hard frost. Butterflies (especially monarchs and swallowtails) love it. Drought-proof; thrives in heat. Cascades 2–3 ft over a wall.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Some lantana species (notably <em>L. camara</em>) are invasive in CA — this prostrate species (<em>L. montevidensis</em>) is the well-behaved cousin. Pick the trailing form specifically. Cut hard in late winter; regrows quickly. Berries are toxic if eaten in quantity (kid concern — but trailing lantana sets few berries).</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/lantana-montevidensis-purple/" target="_blank" rel="noopener">Devil Mountain — Lantana montevidensis</a></p>
+</div>
+</article>
+
+<section id="guild-plants">
+<h2>Guild Plants</h2>
+<p style="color:var(--ink-muted); font-style:italic;">These are the small plants in the 6 ft mulched circle around each fruit tree. Each plays a specific role — fertility, pollination, pest deterrence, or ground cover.</p>
+
+<article id="comfrey-bocking" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Symphytum_officinale_flowers.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Symphytum_officinale.jpg?width=320" alt="Comfrey plant" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Comfrey plant<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Symphytum_officinale_flowers.jpg?width=200" alt="Comfrey bell flowers" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Comfrey <em>(Symphytum × uplandicum)</em> — 'Bocking 14' (sterile cultivar)</h3></header>
+  <div class="tags">
+    <span class="tag accumulator">Dynamic accumulator</span>
+    <span class="tag medicinal">Medicinal (topical)</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag deer">Deer-resistant</span>
+    <span class="tag flowers">Bell flowers</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 2–3 ft tall × 3 ft wide, dies to the ground in winter. <strong>Count in plan:</strong> 16 (one per fruit tree).</p>
+  <p class="desc">The chop-and-drop powerhouse of permaculture. A deep taproot mines minerals (especially potassium) from subsoil that fruit trees can't reach, lifting them into leaves you cut down 4–6 times per year as in-place mulch. Pink/purple bell flowers feed bees. Medicinally famous for poultices.</p>
+  <p class="note"><strong>Critical: only buy 'Bocking 14'.</strong> It's a sterile clone — sets no viable seed. The seeded form of comfrey is moderately invasive in California. Propagate by root cuttings only.</p>
+  <p class="buy"><strong>Where to buy:</strong> Comfrey 'Bocking 14' not carried at Devil Mountain (sterile cultivar — only sold as root crowns/cuttings). Order from <a href="https://coescomfrey.com/" target="_blank" rel="noopener">Coe's Comfrey</a> (mail-order, direct-source) or <a href="https://strictlymedicinalseeds.com/" target="_blank" rel="noopener">Strictly Medicinal Seeds</a>.</p>
+</div>
+</article>
+
+<article id="ceanothus-concha" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Ceanothus_thyrsiflorus_-_flowers.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ceanothus_concha_shrub.jpg?width=320" alt="Ceanothus Concha shrub" onerror="this.style.display=&quot;none&quot;; this.nextElementSibling.style.display=&quot;flex&quot;;"><span class="placeholder" style="display:none;">Ceanothus Concha shrub<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ceanothus_thyrsiflorus_-_flowers.jpg?width=200" alt="Ceanothus blue flowers" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>California lilac <em>(Ceanothus 'Concha')</em></h3></header>
+  <div class="tags">
+    <span class="tag nfix">Nitrogen-fixer</span>
+    <span class="tag native">California native</span>
+    <span class="tag pollinator">Pollinator magnet</span>
+    <span class="tag evergreen">Evergreen</span>
+    <span class="tag drought">Drought-tolerant</span>
+    <span class="tag deer">Deer-resistant</span>
+    <span class="tag ornamental">Deep blue blooms</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 6–8 ft × 8 ft if unpruned. <strong>Count in plan:</strong> 16 (doubled — one in every fruit-tree guild, after dropping goumi).</p>
+  <p class="desc">A California native nitrogen-fixer that doubles as one of the best pollinator plants in the state. Masses of cobalt-blue flowers in March–April host every bee within range. Evergreen foliage; drought-proof once established. Fixes atmospheric nitrogen into the soil for adjacent fruit trees. Doubled to 16 plants (one per fruit-tree guild) after dropping goumi (Elaeagnus multiflora) for invasive-spread concerns near East Bay oak woodland.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Don't water in summer — that's how you kill it. Let it stay tall (6+ ft) to act as a ball-catcher and to maximize bloom + N-fixing. 'Concha' is the workhorse cultivar but 'Yankee Point' (shorter), 'Dark Star' (deeper blue), and 'Ray Hartman' (small tree form) are all good substitutes if 'Concha' is unavailable.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/ceanothus-concha-blue/" target="_blank" rel="noopener">Devil Mountain — Ceanothus 'Concha'</a></p>
+</div>
+</article>
+
+<article id="goumi" class="plant-entry" style="background:#FAF1E1; border-color: #E5A93B;">
+  <div class="entry-images">
+    <div class="thumb-frame" style="background: linear-gradient(135deg, #F4E8DD, #C2845B);"><span class="placeholder" style="color:#5A4830;">Goumi<br>(removed from plan)</span></div>
+    <div class="gallery" style="opacity:0.4;">
+      <div class="gframe">—</div>
+      <div class="gframe">—</div>
+      <div class="gframe">—</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3 style="color:#8E5A39;">Goumi <em>(Elaeagnus multiflora)</em> — REMOVED from plan</h3></header>
+  <p class="stat"><strong>Status:</strong> Dropped from plan. <strong>Replaced by:</strong> doubled Ceanothus 'Concha' (now one per fruit tree, 16 total).</p>
+  <p class="desc">Originally included as the nitrogen-fixing alternate to Ceanothus, with the bonus of edible red vitamin-C berries. Removed because Elaeagnus species spread by bird-dispersed seed; with East Bay oak woodland nearby, this is a real invasive risk. Closely related E. umbellata (autumn olive) is on California invasive-plant watch lists. E. multiflora is less aggressive but still naturalizes.</p>
+  <p class="note"><strong>What replaces it:</strong> Ceanothus 'Concha' (California native, also nitrogen-fixing, far better pollinator value, no invasive risk) is doubled from 8 to 16 plants — one in every fruit-tree guild. If you want edible berries in the guilds, gooseberries (already in the plan, west band) cover that.</p>
+</div>
+</article>
+
+<article id="borage" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Borago_officinalis_flowers.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Borago_officinalis.jpg?width=320" alt="Borage plant" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Borage plant<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Borago_officinalis_flowers.jpg?width=200" alt="Borage star flowers" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Borage <em>(Borago officinalis)</em></h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible flowers + young leaves</span>
+    <span class="tag pollinator">Top-tier pollinator</span>
+    <span class="tag accumulator">Dynamic accumulator</span>
+    <span class="tag flowers">Star-shaped blue flowers</span>
+    <span class="tag annual">Self-seeding annual</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 2–3 ft tall, ~2 ft wide, annual but reseeds. <strong>Count in plan:</strong> 10.</p>
+  <p class="desc">One of the highest-yielding pollinator plants you can grow — bees prefer it over almost anything else. Star-shaped vivid-blue flowers with a cucumber-like flavor (edible, beautiful in salads or frozen into ice cubes). Accumulates calcium, potassium, and silica. Self-seeds gently.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Pull seedlings where you don't want them — borage stays put but reseeds enthusiastically. Reaches full size in 8 weeks from seed.</p>
+  <p class="buy"><strong>Where to buy:</strong> Annual herb — not carried at Devil Mountain. Seed packets from <a href="https://www.botanicalinterests.com/" target="_blank" rel="noopener">Botanical Interests</a> or <a href="https://www.anniesannuals.com/" target="_blank" rel="noopener">Annie's Annuals (Richmond)</a> for starts.</p>
+</div>
+</article>
+
+<article id="yarrow" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Achillea_millefolium_flower_head.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Achillea_millefolium.jpg?width=320" alt="Yarrow plant" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Yarrow plant<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Achillea_millefolium_flower_head.jpg?width=200" alt="Yarrow flower heads" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Yarrow <em>(Achillea millefolium)</em></h3></header>
+  <div class="tags">
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag accumulator">Dynamic accumulator</span>
+    <span class="tag native">California native (some forms)</span>
+    <span class="tag drought">Drought-tolerant</span>
+    <span class="tag deer">Deer-resistant</span>
+    <span class="tag medicinal">Medicinal</span>
+    <span class="tag flowers">Flat flower heads</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 1–2 ft tall × 1–2 ft wide, perennial. <strong>Count in plan:</strong> 6.</p>
+  <p class="desc">Perennial pollinator plant; the flat flower clusters serve as landing pads for beneficial insects (hoverflies, lacewings, parasitic wasps) that control pests. Drought-proof, deer-resistant, accumulates several minerals. White, gold, or pink/red varieties available; the native California form is white-flowered.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Spreads by rhizomes — divide every 3–4 years. The cultivar 'Moonshine' (sulfur-yellow) is a popular ornamental form.</p>
+  <p class="buy"><strong>Where to buy:</strong> <a href="https://devilmountainnursery.com/achillea-millefolium-white/" target="_blank" rel="noopener">Devil Mountain — Achillea millefolium</a></p>
+</div>
+</article>
+
+<article id="chives" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Allium_schoenoprasum_flower_heads.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Allium_schoenoprasum.jpg?width=320" alt="Chives plant" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Chives plant<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Allium_schoenoprasum_flower_heads.jpg?width=200" alt="Chive purple flowers" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Chives <em>(Allium schoenoprasum)</em></h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible leaves + flowers</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag pest">Pest deterrent</span>
+    <span class="tag deer">Deer-resistant</span>
+    <span class="tag flowers">Purple pompoms</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 10–18 in tall, slowly clumping. <strong>Count in plan:</strong> ~48 (3 per tree × 16 trees).</p>
+  <p class="desc">Edible everything (leaves and flowers both), and the strong sulfur compounds in allium roots confuse pest insects targeting fruit trees. Purple pompom flowers in late spring are beloved by bees. Deer ignore them entirely.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Plant 3–4 in a partial ring at 1.5 ft from each fruit-tree trunk. Divide and replant every 3–4 years to keep clumps vigorous.</p>
+  <p class="buy"><strong>Where to buy:</strong> Not carried at Devil Mountain. Source from any herb nursery (Sloat, Annie's Annuals, grocery-store herb starts) or seed.</p>
+</div>
+</article>
+
+<article id="garlic-chives" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Allium_tuberosum.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Allium_tuberosum.jpg?width=320" alt="Garlic chives plant" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Garlic chives plant<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Allium_tuberosum_flowers.jpg?width=200" alt="Garlic chive flowers" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Garlic chives <em>(Allium tuberosum)</em></h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible leaves + flowers</span>
+    <span class="tag pollinator">Pollinator-friendly</span>
+    <span class="tag pest">Pest deterrent</span>
+    <span class="tag deer">Deer-resistant</span>
+    <span class="tag flowers">White star flowers</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 18–24 in tall, clumping. <strong>Count in plan:</strong> ~12 (alternates for chives at select trees).</p>
+  <p class="desc">A close cousin of chives with flat (not tubular) leaves and a clear garlic-onion flavor. White star-shaped flowers in late summer attract beneficial insects. Same pest-deterrent function as chives; pick whichever you'll cook with more.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Will self-seed if flowers go to seed — deadhead spent flowers if you don't want spread. Drought-tolerant once established.</p>
+  <p class="buy"><strong>Where to buy:</strong> Not carried at Devil Mountain. Source from any herb nursery or seed (<a href="https://www.botanicalinterests.com/" target="_blank" rel="noopener">Botanical Interests</a>).</p>
+</div>
+</article>
+
+<article id="alpine-strawberry" class="plant-entry" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Fragaria_vesca_fruits.jpg?width=320">
+  <div class="entry-images">
+    <div class="thumb-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fragaria_vesca.jpg?width=320" alt="Alpine strawberry groundcover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="placeholder" style="display:none;">Alpine strawberry groundcover<br>(image unavailable)</span></div>
+    <div class="gallery">
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fragaria_vesca_fruits.jpg?width=200" alt="Alpine strawberry fruit" onerror="this.style.display='none';"></div>
+      <div class="gframe"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fragaria_vesca_flower.jpg?width=200" alt="Strawberry flower" onerror="this.style.display='none';"></div>
+      <div class="gframe">+</div>
+    </div>
+  </div>
+  <div class="entry-content">
+  <header><h3>Alpine strawberry <em>(Fragaria vesca)</em> — 'Mignonette'</h3></header>
+  <div class="tags">
+    <span class="tag edible">Edible fruit</span>
+    <span class="tag groundcover">Ground cover</span>
+    <span class="tag deer">Deer-resistant</span>
+    <span class="tag flowers">White flowers all season</span>
+  </div>
+  <p class="stat"><strong>Mature size:</strong> 6–10 in tall, runners cover ground. <strong>Count in plan:</strong> ~80 starts (will spread to cover all 16 mulched circles).</p>
+  <p class="desc">Tiny intense-flavored strawberries (sweeter than commercial ones) all season long from June to frost. Forms a low-growing groundcover under fruit trees — closes the soil to weeds, holds moisture, looks beautiful. 'Mignonette' is the standard runnering cultivar; non-runnering forms also exist.</p>
+  <p class="note"><strong>Lafayette notes:</strong> Tolerates part-shade well (good under tree canopies). Replace clumps every 3–4 years for best fruit production. Birds eat the berries — share the harvest.</p>
+  <p class="buy"><strong>Where to buy:</strong> 'Mignonette' not at DMN — they carry the native subspecies: <a href="https://devilmountainnursery.com/fragaria-vesca-ssp-californica/" target="_blank" rel="noopener">DMN — Fragaria vesca ssp. californica</a> (works ecologically). For 'Mignonette' specifically: <a href="https://www.anniesannuals.com/" target="_blank" rel="noopener">Annie's Annuals</a> or seed.</p>
+</div>
+</article>
+
+</section>
+
+<section id="tag-key">
+<h2>Tag Color Key</h2>
+<div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px;">
+  <div><span class="tag edible">Edible</span> The plant or part of it can be eaten.</div>
+  <div><span class="tag flowers">Edible flowers / blooms</span> Showy flowers, often edible.</div>
+  <div><span class="tag pollinator">Pollinator-friendly</span> Attracts bees, beneficial insects.</div>
+  <div><span class="tag nfix">Nitrogen-fixer</span> Adds nitrogen to soil via root nodules.</div>
+  <div><span class="tag accumulator">Dynamic accumulator</span> Mines deep nutrients to leaves for chop-and-drop mulch.</div>
+  <div><span class="tag pest">Pest deterrent</span> Repels or confuses pest insects.</div>
+  <div><span class="tag drought">Drought-tolerant</span> Survives Lafayette summers with minimal water once established.</div>
+  <div><span class="tag deer">Deer-resistant</span> Deer largely avoid eating it.</div>
+  <div><span class="tag native">California native</span> Adapted to East Bay ecology.</div>
+  <div><span class="tag evergreen">Evergreen</span> Holds foliage year-round.</div>
+  <div><span class="tag deciduous">Deciduous</span> Drops leaves in winter.</div>
+  <div><span class="tag ornamental">Ornamental</span> Adds significant beauty (form, color, fall display).</div>
+  <div><span class="tag groundcover">Ground cover</span> Covers soil to suppress weeds.</div>
+  <div><span class="tag medicinal">Medicinal</span> Traditional medicinal uses.</div>
+  <div><span class="tag annual">Annual / self-seeding</span> Completes life cycle in a year; may reseed.</div>
+</div>
+</section>
+
+<footer class="fine">
+  Plant Reference — companion to the Lafayette Food Forest 15-year plan.<br>
+  <a href="index.html" style="color:var(--green); font-weight:600;">← Back to main plan</a>
+</footer>
+
+</div>
+</body>
+</html>

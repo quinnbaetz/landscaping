@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phase 1: Hardscaping &amp; Lot Prep — Lafayette Food Forest</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --green: #2F5233;
+    --green-dark: #1F3823;
+    --green-light: #E6EFE3;
+    --clay: #C2845B;
+    --clay-dark: #8E5A39;
+    --clay-light: #F4E8DD;
+    --bg: #FAF7F0;
+    --paper: #FFFFFF;
+    --ink: #1F2421;
+    --ink-muted: #5A6661;
+    --line: #D9D2C2;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Arial, sans-serif; font-size: 16px; line-height: 1.6; }
+  .page { max-width: 920px; margin: 0 auto; padding: 48px 32px 96px; background: var(--paper); box-shadow: 0 0 0 1px var(--line), 0 24px 60px rgba(31,36,33,0.06); }
+  @media (max-width: 700px) { .page { padding: 28px 18px 64px; } }
+
+  h1, h2, h3, h4 { font-family: "Georgia", serif; color: var(--green-dark); line-height: 1.25; margin: 0; }
+  h1 { font-size: 2.4em; margin-bottom: 8px; }
+  h2 { font-size: 1.7em; margin-top: 56px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--green); }
+  h3 { font-size: 1.25em; color: var(--clay-dark); margin-top: 32px; margin-bottom: 10px; }
+  h4 { font-size: 1.05em; color: var(--ink); margin-top: 20px; margin-bottom: 6px; }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 16px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  strong { color: var(--ink); }
+  a { color: var(--green); text-decoration: underline; text-underline-offset: 2px; }
+
+  header.hero { text-align: center; padding: 8px 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 32px; }
+  header.hero .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.78em; color: var(--clay-dark); font-weight: 600; margin-bottom: 16px; }
+  header.hero h1 { font-size: 2.8em; }
+  header.hero .subtitle { color: var(--ink-muted); font-size: 1.1em; font-style: italic; margin-bottom: 18px; }
+  header.hero .arc { color: var(--ink-muted); font-size: 0.95em; }
+  header.hero .arc span { color: var(--green); font-weight: 600; }
+  header.hero .ref-link { display: inline-block; margin-top: 18px; padding: 8px 16px; background: var(--green); color: white; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9em; }
+  header.hero .ref-link:hover { background: var(--green-dark); }
+
+  .callout { background: var(--green-light); border-left: 6px solid var(--green); padding: 18px 22px; border-radius: 6px; margin: 20px 0; }
+  .callout h4 { margin-top: 0; color: var(--green-dark); }
+  .callout ul, .callout ol { margin-bottom: 0; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 0.95em; }
+  th { background: var(--green); color: white; text-align: left; padding: 10px 12px; font-weight: 600; font-size: 0.92em; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tbody tr:nth-child(even) td { background: #FBF8F1; }
+
+  .diagram-wrap {
+    background: linear-gradient(180deg, #F7F4EB 0%, #EFE9D8 100%);
+    padding: 18px; border-radius: 10px; border: 1px solid var(--line);
+    margin: 20px 0 8px; overflow-x: auto;
+  }
+  .diagram-wrap svg { width: 100%; height: auto; max-width: 860px; display: block; margin: 0 auto; }
+  .diagram-wrap svg .plant { cursor: pointer; }
+  .diagram-wrap svg .plant:hover circle { stroke: #FFF7B0; stroke-width: 3; }
+  .diagram-caption { text-align: center; color: var(--ink-muted); font-style: italic; font-size: 0.9em; margin: 8px 0 28px; }
+  .hover-hint { text-align: center; color: var(--green-dark); font-weight: 600; font-size: 0.9em; margin: -6px 0 18px; }
+
+  /* INSTANT tooltip */
+  .plant-tooltip {
+    position: fixed; pointer-events: none;
+    background: rgba(31, 56, 35, 0.97);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.45;
+    max-width: 320px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    opacity: 0;
+    transition: opacity 0.05s linear;
+    z-index: 1000;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .plant-tooltip.show { opacity: 1; }
+  .plant-tooltip strong { color: #FFE38C; display: block; margin-bottom: 4px; font-size: 14px; }
+  .plant-tooltip .cat {
+    display: inline-block;
+    background: rgba(255,255,255,0.14);
+    color: #E8D9B5;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 6px;
+  }
+  .plant-tooltip em { color: #C5D5BF; font-style: normal; font-size: 12px; display: block; margin-top: 4px; }
+  .plant-tooltip .alt-label { color: #C5D5BF; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-top: 8px; display: block; }
+  .plant-tooltip .ref-hint { color: #FFE38C; font-size: 11px; margin-top: 8px; font-style: italic; }
+
+  .legend { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px 18px; margin: 12px 0 30px; font-size: 0.92em; }
+  .legend .item { display: flex; align-items: center; gap: 10px; }
+  .legend .swatch { width: 22px; height: 22px; border-radius: 50%; display: inline-block; flex-shrink: 0; border: 2px solid rgba(0,0,0,0.15); font-size: 0.7em; color: white; text-align: center; line-height: 22px; font-weight: 700; }
+  .legend .swatch.square { border-radius: 4px; }
+
+  .plants { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin: 14px 0 28px; }
+  .plant-card { background: #FCFAF4; border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+  .plant-card h4 { margin: 0 0 4px; font-family: "Georgia", serif; font-size: 1em; }
+  .plant-card h4 a { color: var(--green-dark); text-decoration: none; }
+  .plant-card h4 a:hover { color: var(--green); text-decoration: underline; }
+  .plant-card .vars { color: var(--ink-muted); font-size: 0.88em; font-style: italic; margin-bottom: 6px; }
+  .plant-card .note { font-size: 0.9em; margin: 0; }
+  .plant-card .pos { display: inline-block; background: var(--green); color: white; font-weight: 700; font-size: 0.78em; padding: 2px 8px; border-radius: 4px; margin-right: 6px; }
+  .plant-card .ref { display: inline-block; margin-top: 8px; font-size: 0.82em; color: var(--green); font-weight: 600; text-decoration: none; }
+  .plant-card .ref:hover { text-decoration: underline; }
+  .plant-card .ref::after { content: " →"; }
+
+  .color-key { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; margin: 18px 0 30px; }
+  .color-key .row { display: flex; align-items: flex-start; gap: 12px; background: #FCFAF4; border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+  .color-key .dot { width: 24px; height: 24px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.15); flex-shrink: 0; margin-top: 2px; }
+  .color-key .lbl { font-size: 0.92em; }
+  .color-key .lbl b { color: var(--green-dark); font-family: "Georgia", serif; display: block; }
+
+  .phase { border-left: 4px solid var(--green); padding: 4px 0 4px 18px; margin: 18px 0 22px; }
+  .phase h3 { margin-top: 0; }
+  .phase .when { display: inline-block; background: var(--green); color: white; font-size: 0.78em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 9px; border-radius: 3px; margin-right: 10px; vertical-align: middle; }
+
+  nav.toc { background: #FCFAF4; border: 1px solid var(--line); border-radius: 8px; padding: 16px 22px; margin-bottom: 28px; font-size: 0.95em; }
+  nav.toc h4 { margin: 0 0 8px; color: var(--green-dark); }
+  nav.toc ol { columns: 2; column-gap: 28px; margin: 0; }
+  @media (max-width: 600px) { nav.toc ol { columns: 1; } }
+  nav.toc a { color: var(--green-dark); text-decoration: none; }
+  nav.toc a:hover { text-decoration: underline; }
+
+  footer.fine { text-align: center; color: var(--ink-muted); font-size: 0.85em; margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line); }
+
+  .phase-nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 20px 0 36px; }
+  .phase-nav a { display: block; padding: 22px 24px; border-radius: 10px; text-decoration: none; background: linear-gradient(135deg, #2F5233 0%, #1F3823 100%); color: white; transition: transform 0.15s ease, box-shadow 0.15s ease; box-shadow: 0 4px 12px rgba(31,36,33,0.12); }
+  .phase-nav a:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(31,36,33,0.18); }
+  .phase-nav a.alt { background: linear-gradient(135deg, #8E5A39 0%, #5A3823 100%); }
+  .phase-nav a.ref { background: linear-gradient(135deg, #5A6661 0%, #3A3F3D 100%); }
+  .phase-nav .phase-label { font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; margin-bottom: 6px; }
+  .phase-nav .phase-title { font-family: "Georgia", serif; font-size: 1.4em; font-weight: 700; margin-bottom: 8px; }
+  .phase-nav .phase-desc { font-size: 0.92em; opacity: 0.95; line-height: 1.45; }
+  .phase-nav .arrow { display: inline-block; margin-top: 12px; font-weight: 700; }
+  .back-link { display: inline-block; color: var(--green); text-decoration: none; font-weight: 600; font-size: 0.95em; margin-bottom: 16px; }
+  .back-link:hover { text-decoration: underline; }
+  .back-link::before { content: "← "; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<a class="back-link" href="index.html">Back to overview</a>
+
+<header class="hero">
+  <div class="eyebrow">Phase 1 · Lafayette, CA Food Forest</div>
+  <h1>Hardscaping &amp; Lot Prep</h1>
+  <div class="subtitle">Walls, fill, drainage, soil, and water — everything before the first plant goes in</div>
+</header>
+
+<section id="site">
+  <h2>Site Assessment</h2>
+  <p><strong>Location &amp; climate.</strong> Lafayette, CA. USDA Zone 9b. ~200–400 winter chill hours — low-chill cultivars only.</p>
+
+  <p><strong>Lot shape.</strong> Pentagon. 30 × 60 ft with the back-left (NW) corner cut at 45°. Net area ~1,687 sq ft.</p>
+
+  <p><strong>Surrounded by pavement.</strong> Driveway on the east, driveway/walkway on the west, driveway on the north, patio + house on the south. No soil overflow — all roots live within the lot's retaining walls.</p>
+
+  <p><strong>House.</strong> 14 ft tall, occupying the east 2/3 of the south boundary; patio wraps the west 1/3. Winter-noon shadow reaches ~16 ft into the east portion of the lot.</p>
+
+  <p><strong>Topography.</strong> Existing grade is level at the south edge (flush with the patio / house slab) and drops to ~4 ft below datum at the north edge. About 4 ft of cross-fall over 60 ft (~3.8°).</p>
+
+  <p><strong>Soil.</strong> Compacted clay (East Bay Diablo/Altamont — expansive).</p>
+
+  <p><strong>Orientation.</strong> Lot back edge is ~26° east of true north. "North" in this document refers to the lot's back edge (the new north wall).</p>
+
+  <p><strong>Existing site condition.</strong> A small pile of leftover construction materials currently sits on the lot. It needs to be cleared and hauled off before any base course or wall block goes down.</p>
+</section>
+
+<section id="build-up-only">
+  <h2 style="border-color: var(--clay-dark); color: var(--clay-dark);">Build-Up-Only — No Excavation</h2>
+
+  <div class="callout" style="background: #FBEFE0; border-left-color: var(--clay-dark);">
+    <h4 style="color: var(--clay-dark);">This plan does not dig into the existing grade — anywhere.</h4>
+    <p style="margin-bottom: 0;">All leveling is achieved by <strong>adding material on top</strong> of the existing surface: walls go up, fill goes in, planting cap goes on. The native clay subgrade is left undisturbed. The goal is for the finished lawn to sit <strong>flush with the house and patio</strong> at the south edge, so the family can walk straight out from the slab onto the lawn without a step, and so the finish line of the planting cap reads as one continuous surface with the patio.</p>
+  </div>
+
+  <p><strong>What "no dig" means in practice:</strong></p>
+  <ul>
+    <li><strong>Pre-work cleanup.</strong> Clear the existing construction-debris pile off the lot. Surface-rake any rubble, then lightly scarify the top 1–2 in of clay where new fill will land — just enough to give the first lift something to key into.</li>
+    <li><strong>Walls.</strong> Dry-stack lip-style segmental concrete block (e.g., <a href="https://www.lowes.com/pd/Oldcastle-6-in-H-x-16-in-L-x-9-in-D-Gray-Char-Concrete-Retaining-wall-block/5016590759">Oldcastle 6 in H × 16 in L × 9 in D gray-char block</a>, or any equivalent retaining-wall block with a cast-in setback lip). Set the first course on a 4–6 in compacted gravel base on the existing grade. The lip on each block sets the batter and locks the next course in — no mortar, no rebar, no footing trench. The north wall tops out at just under 4 ft (the lot's lowest existing point); the east wall tapers down to grade at the south end.</li>
+    <li><strong>French drain.</strong> A column of clean gravel sits directly behind every wall on top of the existing grade, then gets buried by the structural fill above. No trenching below grade.</li>
+    <li><strong>Structural fill.</strong> On-site clay goes on the existing surface and is placed in 6–8 in compacted lifts.</li>
+    <li><strong>Topsoil cap.</strong> Imported sandy-loam / compost blend goes on top of the structural fill, 12–18 in thick. All tree and guild root zones live in this cap.</li>
+  </ul>
+</section>
+
+<section id="leveling">
+  <h2>Walls &amp; Fill</h2>
+
+  <table>
+    <thead>
+      <tr><th>Item</th><th>Quantity</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Retaining walls</td><td>~141 linear ft total</td><td>North (~15 ft) + 45° diagonal (~21 ft) + east (~60 ft) + west (~45 ft, recently built). All four wall segments use the same lip-style segmental concrete block (Oldcastle 6 × 16 × 9 in or equivalent), dry-stacked on a 4–6 in compacted gravel base on the existing grade — no footing trench, no mortar. The west wall is already built to spec; the north, diagonal, and east are still to build. Drainage and planting-band treatment are identical for all four.</td></tr>
+      <tr><td>Wall height</td><td>just under 4 ft (max)</td><td>North wall + 45° diagonal + north end of the east wall sit near the 4 ft mark (~8 block courses). The east wall tapers down to zero at the south end; the west wall similarly tapers. At this height, confirm the manufacturer's gravity-wall spec — Oldcastle-style lip block is typically gravity-rated to ~3 ft, and the top course or two of the north wall may want a row of geogrid tie-back into the structural fill behind. Permit-wise, California Building Code exempts walls up to 4 ft measured from bottom of footing with no surcharge — this design sits right at that line, so confirm with the Lafayette Building Division before ordering.</td></tr>
+      <tr><td>Block count (new walls only)</td><td>~420 blocks</td><td>Slope-aware: existing grade drops 4 ft south → north, so every wall tapers along its length. North wall (~15 ft × full 8 courses ≈ 90 blocks) + 45° diagonal (~21 ft × avg 7 courses ≈ 110 blocks) + east wall (60 ft × avg 4 courses, tapering 8→0 ≈ 180 blocks) ≈ 380 blocks. Add ~10% for diagonal cuts → ~420. West wall already built — no blocks to order for it.</td></tr>
+      <tr><td>Drain behind west wall</td><td>~45 linear ft</td><td>Add the gravel-only drainage column + filter wrap <em>behind</em> the existing west wall, laid on existing grade and buried by new fill — identical spec to the new walls' drains.</td></tr>
+      <tr><td>Total fill volume</td><td>~95 cubic yards</td><td>Average ~1.5 ft fill over 1,687 sq ft. South edge: just the topsoil cap. North edge: ~3 ft total (≈18 in structural clay + 18 in topsoil cap).</td></tr>
+      <tr><td>Structural fill</td><td>~45 cu yd</td><td>Your on-site stockpiled clay, moisture-conditioned and compacted in 6–8 in lifts.</td></tr>
+      <tr><td>Topsoil cap</td><td>~50 cu yd</td><td>Imported sandy-loam / compost blend, 12–18 in thick across the whole lot.</td></tr>
+      <tr><td>Finish-grade slope</td><td>~1° south → north</td><td>About 1 ft of drop across 60 ft (~1° ≈ 2%). South edge sits flush with the house/patio; water sheds toward the north wall, where the French drain handles it.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="dr-rock-ns" width="10" height="10" patternUnits="userSpaceOnUse">
+          <rect width="10" height="10" fill="#B8B0A0"/>
+          <circle cx="3" cy="3" r="2" fill="#7E7568"/>
+          <circle cx="7" cy="6" r="2.2" fill="#8B8378"/>
+          <circle cx="2" cy="8" r="1.4" fill="#9A9388"/>
+        </pattern>
+      </defs>
+      <rect x="0" y="0" width="800" height="360" fill="#F7F4EB"/>
+
+      <text x="400" y="22" text-anchor="middle" font-family="Georgia, serif" font-size="14" font-weight="700" fill="#2F5233">Side view: north-south cross-section through the lot</text>
+
+      <!-- Orientation -->
+      <text x="40" y="42" font-family="-apple-system, sans-serif" font-size="11" font-style="italic" fill="#5A6661">south end →</text>
+      <text x="780" y="42" text-anchor="end" font-family="-apple-system, sans-serif" font-size="11" font-style="italic" fill="#5A6661">← north end</text>
+
+      <!-- Existing clay background (sloped top from south level to north 4 ft below) -->
+      <polygon points="80,100 602,217 620,220 634,220 634,290 80,290" fill="#5A3823"/>
+
+      <!-- Patio block on the south (left of lot) -->
+      <rect x="10" y="100" width="70" height="190" fill="#D9D2C2" stroke="#8B7E62" stroke-width="0.5"/>
+      <text x="45" y="200" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#5A4A30" transform="rotate(-90, 45, 200)">patio / house slab</text>
+
+      <!-- Driveway on the north (right of wall) -->
+      <rect x="634" y="220" width="80" height="70" fill="#D9D2C2" stroke="#8B7E62" stroke-width="0.5"/>
+      <text x="674" y="262" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#5A4A30">north driveway</text>
+
+      <!-- Topsoil cap polygon — extends over gravel column at the wall, where cap = 16 in (deeper) -->
+      <polygon points="80,100 620,130 620,169 602,169 602,159 260,140" fill="#6E4E3F"/>
+
+      <!-- Structural clay fill polygon (only east of x=260) -->
+      <polygon points="260,140 602,159 602,217" fill="#8E5A39"/>
+
+      <!-- Lift lines in structural fill -->
+      <line x1="330" y1="170" x2="602" y2="184" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
+      <line x1="430" y1="194" x2="602" y2="203" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
+
+      <!-- Scarified line along existing surface (south to north, sloping down) -->
+      <path d="M 80 100 Q 110 100 140 105 Q 175 113 205 121 Q 240 130 270 138 Q 305 148 335 157 Q 365 167 395 176 Q 425 185 460 195 Q 490 204 520 213 Q 550 219 580 217 L 602 217" stroke="#3F2818" stroke-width="1.4" fill="none"/>
+
+      <!-- Gravel drain column — terminates 16 in below finish so cap above is plantable -->
+      <rect x="602" y="169" width="18" height="48" fill="url(#dr-rock-ns)" stroke="#5A4A30" stroke-width="0.5"/>
+
+      <!-- Filter wrap (dashed green) — on lot side and top of (shorter) gravel column -->
+      <line x1="602" y1="169" x2="602" y2="217" stroke="#3F6B36" stroke-width="3" stroke-dasharray="6 4"/>
+      <line x1="602" y1="169" x2="620" y2="169" stroke="#3F6B36" stroke-width="3" stroke-dasharray="6 4"/>
+
+      <!-- Wall blocks (6 courses, ~3 ft total, top just above the finish grade) -->
+      <g fill="#8B8378" stroke="#3F3833" stroke-width="0.5">
+        <rect x="620" y="204" width="14" height="16"/>
+        <rect x="620" y="188" width="14" height="16"/>
+        <rect x="620" y="172" width="14" height="16"/>
+        <rect x="620" y="156" width="14" height="16"/>
+        <rect x="620" y="140" width="14" height="16"/>
+        <rect x="620" y="124" width="14" height="16"/>
+      </g>
+
+      <!-- Wall base course gravel under bottom block -->
+      <rect x="615" y="220" width="24" height="6" fill="#A8A0A0" stroke="#5A4A30" stroke-width="0.3"/>
+
+      <!-- Patio surface (level line, datum) -->
+      <line x1="10" y1="100" x2="80" y2="100" stroke="#3F2818" stroke-width="0.8"/>
+      <line x1="80" y1="100" x2="602" y2="129" stroke="#3F2818" stroke-width="0.8"/>
+
+      <!-- 3 ft wall dimension (on driveway side of wall) -->
+      <g stroke="#3F2818" stroke-width="1" fill="none">
+        <line x1="648" y1="124" x2="648" y2="220"/>
+      </g>
+      <polygon points="648,130 644,124 652,124" fill="#3F2818"/>
+      <polygon points="648,214 644,220 652,220" fill="#3F2818"/>
+      <rect x="639" y="166" width="20" height="14" fill="#F7F4EB"/>
+      <text x="649" y="177" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="#3F2818">3 ft</text>
+
+      <!-- Datum and elevation callouts -->
+      <g font-family="-apple-system, sans-serif">
+        <!-- "level with patio" at south -->
+        <line x1="80" y1="100" x2="80" y2="70" stroke="#3F2818" stroke-width="0.5"/>
+        <text x="80" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#3F2818">flush with patio</text>
+
+        <!-- "1 ft below patio" at north finish -->
+        <line x1="602" y1="129" x2="602" y2="70" stroke="#3F2818" stroke-width="0.5"/>
+        <text x="500" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#3F2818">1 ft below patio (1° finish slope)</text>
+        <line x1="540" y1="68" x2="600" y2="72" stroke="#3F2818" stroke-width="0.5"/>
+
+        <!-- Existing clay slope callout (inside the existing clay polygon) -->
+        <text x="320" y="270" text-anchor="middle" font-size="11" font-weight="700" fill="white">existing clay subgrade</text>
+        <text x="320" y="283" text-anchor="middle" font-size="10" font-style="italic" fill="white">slopes 4 ft south → north (~3.8°)</text>
+
+        <!-- Topsoil cap label -->
+        <text x="380" y="123" font-size="11" font-weight="700" fill="white">topsoil cap (12–18 in)</text>
+
+        <!-- Structural fill label — inside the wedge -->
+        <text x="540" y="183" text-anchor="middle" font-size="11" font-weight="700" fill="white">structural clay fill</text>
+        <text x="540" y="196" text-anchor="middle" font-size="9" font-style="italic" fill="white">(wedge: 0 → 18 in)</text>
+
+        <!-- Wall label -->
+        <line x1="627" y1="124" x2="627" y2="55" stroke="#3F2818" stroke-width="0.5"/>
+        <text x="627" y="50" text-anchor="middle" font-size="10" font-weight="700" fill="#3F2818">north wall</text>
+        <text x="685" y="50" text-anchor="start" font-size="9" fill="#5A6661">(caps just above finish soil)</text>
+
+        <!-- Filter wrap callout — white text + green leader, readable on dark brown bg -->
+        <line x1="600" y1="190" x2="540" y2="244" stroke="#3F6B36" stroke-width="0.8"/>
+        <text x="467" y="248" font-size="10" font-weight="700" fill="#FFE38C">filter wrap (coir / jute)</text>
+
+        <!-- Drain rock callout -->
+        <line x1="611" y1="195" x2="720" y2="155" stroke="#3F2818" stroke-width="0.5"/>
+        <text x="760" y="152" text-anchor="middle" font-size="10" font-weight="700" fill="#3F2818">¾ in drain rock</text>
+
+        <!-- Plantable cap callout -->
+        <line x1="611" y1="155" x2="720" y2="105" stroke="#2F5233" stroke-width="0.5"/>
+        <text x="760" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#2F5233">12–16 in plantable</text>
+        <text x="760" y="112" text-anchor="middle" font-size="10" font-weight="700" fill="#2F5233">cap over drain</text>
+      </g>
+    </svg>
+  </div>
+  <div class="diagram-caption">North-south cross-section through the lot. Existing clay slopes 4 ft from south (flush with patio) down to north. Finish lawn surface slopes 1° south → north for drainage. Drain column terminates 12–16 in below finish so the topsoil cap is continuous across the entire lot — including over the drain, which is plantable for shrubs and perennials. The north wall caps just above the finish soil. Vertical exaggerated ~3× for clarity.</div>
+
+  <h3>How to layer and compact</h3>
+  <ol>
+    <li><strong>Prep the existing surface.</strong> After construction-debris cleanup, lightly scarify (rake or rototill) the top 1–2 in of clay. This keys the first new lift into the original surface so the new fill doesn't shear along the interface during rain or seismic events.</li>
+    <li><strong>Set the walls first.</strong> Build the gravel base course, set the first row of block, and start the gravel drainage column behind the wall <em>before</em> any clay fill is placed against it. Build the wall up in step with the fill — never top out a ~4 ft wall and then dump 4 ft of clay against it (the lateral load on an un-bedded wall will push it out of plumb). At the north wall, where height tops out near the 4 ft mark, lay a single course of geogrid between the 4th and 5th block courses, extended ~4 ft back into the structural fill, before continuing up.</li>
+    <li><strong>Moisture-condition the clay.</strong> East Bay clay compacts well only at <em>optimum moisture</em>. The field test: squeeze a handful into a ball — it should hold its shape but not smear water on your palm. Too dry, it powders and won't densify; too wet, it "pumps" under the compactor and will not consolidate at all. If a lift is too wet, spread it thin and let it dry a day. If too dry, mist with a hose and turn it with a rake.</li>
+    <li><strong>Place in 6–8 in loose lifts.</strong> A 6–8 in loose lift compacts to roughly 5–6 in finished. Spread evenly with a rake before compacting — uneven lifts compact unevenly and leave a wavy interface that holds pockets of water.</li>
+    <li><strong>Compact each lift before the next one goes down.</strong> For clay, rent a <strong>jumping-jack (rammer) compactor</strong> from a tool yard — not a flat plate. The rammer's high-impact, low-frequency blow is what drives air out of plastic clay; plate compactors are for granular base rock and will just polish the top of a clay lift. Plan 4–6 passes per lift, with each pass running perpendicular to the previous direction.</li>
+    <li><strong>Field-check compaction.</strong> A boot heel pressed hard into a compacted lift should leave a print no deeper than ~¼ in. If it sinks in or feels mushy, add a pass or two. If the surface bounces or cracks, the lift is too wet — pull it back, re-spread, and let it dry.</li>
+    <li><strong>Build the 1° finish slope into the structural fill, not just the cap.</strong> When you reach the top of the structural lifts (~18 in below finished grade), grade that surface itself at the same ~1° south-to-north slope as the final cap. That way, any water that ever percolates through the topsoil cap still has somewhere to go and won't perch on a flat clay shelf.</li>
+    <li><strong>Top with the topsoil cap.</strong> 12–18 in of imported sandy-loam / compost. <em>Don't</em> compact the cap hard — one or two light plate-compactor passes, or just foot-walked. Root zones need air. Final grade the surface with a landscape rake to the 1° drainage slope.</li>
+  </ol>
+
+  <h3>Using your existing materials</h3>
+  <p><strong>The clay you already have</strong> is structural fill, not topsoil. It is excellent at compaction and lousy at supporting roots — exactly the right material for the bottom 18 in.</p>
+  <p><strong>The wood chips you already have</strong> become the mulched circles around every tree, the pathway network through the planting band, and the twice-yearly top-dress on the cap.</p>
+</section>
+
+<section id="drainage">
+  <h2>French Drain</h2>
+
+  <p>The French drain is a <strong>column of clean gravel behind every wall</strong>, wrapped on the soil side with a biodegradable natural-fiber filter cloth. Water enters the gravel from the soil, falls by gravity, and exits at the base through the natural drainage gaps between block courses. Nothing buried, nothing to maintain.</p>
+
+  <p><strong>The one part you can't skip:</strong> the filter wrap. Without it, clay fines migrate into the gravel and clog it within a few seasons.</p>
+
+  <p><strong>Cross-section of the gravel column (behind every wall):</strong></p>
+  <ul>
+    <li><strong>Base.</strong> 4–6 in compacted ¾ in clean drain rock, flush against the back of the bottom block course, laid on the existing grade.</li>
+    <li><strong>Column.</strong> ~12 in wide vertical column of clean ¾ in drain rock (washed, angular, no fines), built up in step with the wall courses. <strong>Terminates 12–16 in below finished grade</strong> so the topsoil cap can extend over the top of it and remain plantable.</li>
+    <li><strong>Filter wrap.</strong> A biodegradable natural-fiber filter cloth — <a href="https://en.wikipedia.org/wiki/Coir">coir (coconut-husk fiber) felt</a> or jute mesh — on the soil side and the top of the gravel column. Sold as "coir filter cloth," "coir erosion blanket," or "jute mesh" at landscape supply yards (American Soil &amp; Stone and Acapulco Rock &amp; Soil both stock these). Lifespan is 5–10 years; by the time the fiber breaks down, the surrounding clay has fully consolidated and the filter role is much less critical. No plastic geotextile in the ground.</li>
+    <li><strong>Cap on top of the drain.</strong> 12–16 in of topsoil cap sits over the gravel column, sealed off from the gravel by the filter wrap. That's enough rooting depth to plant shallow-rooted shrubs, groundcovers, and guild perennials directly above the drain — see <a href="#planting-band">Planting band notes</a> below. Surface water filters down through this cap before reaching gravel.</li>
+    <li><strong>Outlet.</strong> The drainage gaps between block courses sit just above the existing pavement grade on the outside of the wall. Water exits there and runs onto the surrounding driveway. The north wall sees the most flow (low point of the lot); confirm during build that the north driveway outside it slopes <em>away</em> from the wall, not back toward the foundation.</li>
+  </ul>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="dr-rock" width="10" height="10" patternUnits="userSpaceOnUse">
+          <rect width="10" height="10" fill="#B8B0A0"/>
+          <circle cx="3" cy="3" r="2" fill="#7E7568"/>
+          <circle cx="7" cy="6" r="2.2" fill="#8B8378"/>
+          <circle cx="2" cy="8" r="1.4" fill="#9A9388"/>
+        </pattern>
+        <marker id="flowarrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#3B7DD8"/>
+        </marker>
+      </defs>
+      <rect x="0" y="0" width="720" height="400" fill="#F7F4EB"/>
+
+      <text x="290" y="22" text-anchor="middle" font-family="Georgia, serif" font-size="14" font-weight="700" fill="#2F5233">Side view: cross-section at the wall (with French drain)</text>
+
+      <!-- Outside pavement -->
+      <rect x="50" y="290" width="60" height="60" fill="#D9D2C2" stroke="#8B7E62" stroke-width="0.5"/>
+      <text x="80" y="318" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#5A4A30">north</text>
+      <text x="80" y="332" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#5A4A30">driveway</text>
+      <text x="80" y="346" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" fill="#5A6661" font-style="italic">(slopes away)</text>
+
+      <!-- Wall blocks: 8 courses, slight batter toward fill (right) -->
+      <g fill="#8B8378" stroke="#3F3833" stroke-width="0.5">
+        <rect x="110" y="270" width="32" height="20"/>
+        <rect x="111" y="250" width="32" height="20"/>
+        <rect x="112" y="230" width="32" height="20"/>
+        <rect x="113" y="210" width="32" height="20"/>
+        <rect x="114" y="190" width="32" height="20"/>
+        <rect x="115" y="170" width="32" height="20"/>
+        <rect x="116" y="150" width="32" height="20"/>
+        <rect x="117" y="130" width="32" height="20"/>
+      </g>
+
+      <!-- Wall base course gravel -->
+      <rect x="100" y="290" width="56" height="12" fill="#A8A0A0" stroke="#5A4A30" stroke-width="0.3"/>
+
+      <!-- Gravel drain column — terminates 16 in below finish so cap above is plantable -->
+      <rect x="149" y="183" width="40" height="107" fill="url(#dr-rock)" stroke="#5A4A30" stroke-width="0.5"/>
+
+      <!-- Filter cloth on soil side + top of (shorter) column -->
+      <line x1="189" y1="183" x2="189" y2="290" stroke="#3F6B36" stroke-width="2.5" stroke-dasharray="6 4"/>
+      <line x1="149" y1="183" x2="189" y2="183" stroke="#3F6B36" stroke-width="2.5" stroke-dasharray="6 4"/>
+
+      <!-- Mulch ribbon — now extends over the drain too (it's plantable up there) -->
+      <rect x="149" y="118" width="440" height="12" fill="#A87A4A" stroke="#6E4E3F" stroke-width="0.3"/>
+
+      <!-- Topsoil cap — continuous over the gravel column and the lot fill, ~16 in thick -->
+      <rect x="149" y="130" width="440" height="53" fill="#6E4E3F"/>
+
+      <!-- Structural fill (bottom slopes with existing — rises going right into the lot, away from wall) -->
+      <polygon points="189,183 589,183 589,263 189,290" fill="#8E5A39"/>
+      <line x1="189" y1="220" x2="589" y2="220" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
+      <line x1="189" y1="250" x2="589" y2="250" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
+
+      <!-- Existing grade scarified wavy line — slopes up going right (south, away from wall) -->
+      <path d="M 156 290 Q 180 287 210 287 Q 240 285 270 283 Q 300 281 330 279 Q 360 277 390 274 Q 420 271 450 269 Q 480 267 510 265 Q 540 263 570 263 L 589 263" stroke="#3F2818" stroke-width="1.5" fill="none"/>
+
+      <!-- Existing subgrade (top slopes up from y=290 at wall to y=263 at far end) -->
+      <polygon points="156,290 589,263 589,360 156,360" fill="#5A3823"/>
+
+      <!-- Water exit arrow -->
+      <line x1="158" y1="284" x2="135" y2="293" stroke="#3B7DD8" stroke-width="2"/>
+      <line x1="135" y1="293" x2="105" y2="300" stroke="#3B7DD8" stroke-width="2" marker-end="url(#flowarrow)"/>
+      <text x="55" y="278" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="#3B7DD8">water exits</text>
+      <text x="55" y="290" font-family="-apple-system, sans-serif" font-size="10" fill="#3B7DD8">through gap between</text>
+      <text x="55" y="302" font-family="-apple-system, sans-serif" font-size="10" fill="#3B7DD8">bottom block courses</text>
+
+      <!-- Labels -->
+      <g font-family="-apple-system, sans-serif">
+        <!-- Wall -->
+        <line x1="130" y1="125" x2="130" y2="50" stroke="#3F2818" stroke-width="0.5"/>
+        <text x="130" y="44" text-anchor="middle" font-size="11" font-weight="700" fill="#3F2818">wall</text>
+        <text x="130" y="56" text-anchor="middle" font-size="10" fill="#5A6661">8 courses ≈ 4 ft</text>
+
+        <!-- Gravel column -->
+        <line x1="169" y1="220" x2="169" y2="78" stroke="#3F2818" stroke-width="0.5"/>
+        <text x="169" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#3F2818">¾ in clean drain rock</text>
+        <text x="169" y="86" text-anchor="middle" font-size="10" fill="#5A6661" font-style="italic">~12 in wide column,</text>
+        <text x="169" y="98" text-anchor="middle" font-size="10" fill="#5A6661" font-style="italic">terminates 16 in below finish</text>
+
+        <!-- Filter cloth -->
+        <line x1="189" y1="240" x2="240" y2="240" stroke="#3F6B36" stroke-width="0.5"/>
+        <line x1="240" y1="240" x2="275" y2="270" stroke="#3F6B36" stroke-width="0.5"/>
+        <text x="282" y="266" font-size="11" font-weight="700" fill="#3F6B36">natural-fiber</text>
+        <text x="282" y="278" font-size="11" font-weight="700" fill="#3F6B36">filter cloth</text>
+        <text x="282" y="290" font-size="10" fill="#3F6B36" font-style="italic">(coir or jute)</text>
+
+        <!-- Topsoil cap — now continuous over the drain too -->
+        <line x1="589" y1="157" x2="610" y2="157" stroke="#3F2818" stroke-width="0.5"/>
+        <text x="615" y="154" font-size="11" font-weight="700" fill="#3F2818">topsoil cap (16 in)</text>
+        <text x="615" y="166" font-size="10" fill="#5A6661">continuous over drain —</text>
+        <text x="615" y="178" font-size="10" fill="#5A6661">plantable for shrubs,</text>
+        <text x="615" y="190" font-size="10" fill="#5A6661">groundcovers, perennials</text>
+
+        <!-- Structural fill -->
+        <line x1="589" y1="245" x2="610" y2="245" stroke="#3F2818" stroke-width="0.5"/>
+        <text x="615" y="242" font-size="11" font-weight="700" fill="#3F2818">structural clay fill</text>
+        <text x="615" y="254" font-size="10" fill="#5A6661">~18 in, compacted lifts</text>
+
+        <!-- Existing -->
+        <line x1="589" y1="320" x2="610" y2="320" stroke="#3F2818" stroke-width="0.5"/>
+        <text x="615" y="317" font-size="11" font-weight="700" fill="#3F2818">existing clay</text>
+        <text x="615" y="329" font-size="10" fill="#5A6661">(undisturbed)</text>
+
+        <!-- Base course label -->
+        <text x="365" y="384" text-anchor="middle" font-size="10" font-style="italic" fill="#5A4A30">grey strip under wall = 4–6 in compacted ¾ in-minus gravel base</text>
+      </g>
+    </svg>
+  </div>
+  <div class="diagram-caption">Cross-section through the wall at the deepest stretch (~4 ft at the north end). Topsoil cap extends continuously over the gravel drain column (16 in deep, plantable). Existing subgrade slopes upward going right, away from the wall, toward the south end of the lot. Proportions illustrative.</div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="dr-rock-top" width="14" height="14" patternUnits="userSpaceOnUse">
+          <rect width="14" height="14" fill="#B8B0A0"/>
+          <circle cx="3" cy="4" r="3" fill="#7E7568"/>
+          <circle cx="10" cy="7" r="3" fill="#8B8378"/>
+          <circle cx="5" cy="11" r="2.5" fill="#9A9388"/>
+        </pattern>
+      </defs>
+      <rect x="0" y="0" width="720" height="360" fill="#F7F4EB"/>
+
+      <text x="290" y="22" text-anchor="middle" font-family="Georgia, serif" font-size="14" font-weight="700" fill="#2F5233">Top view: drain-rock column behind wall (with rock-size key)</text>
+
+      <!-- Outside pavement -->
+      <rect x="50" y="60" width="70" height="220" fill="#D9D2C2" stroke="#8B7E62" stroke-width="0.5"/>
+      <g transform="translate(85, 170) rotate(-90)">
+        <text text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#5A4A30">walkway / driveway (outside)</text>
+      </g>
+
+      <!-- Wall (as bar) -->
+      <rect x="120" y="60" width="36" height="220" fill="#8B8378" stroke="#3F3833" stroke-width="0.7"/>
+      <text x="138" y="50" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="#3F2818">wall (9 in deep)</text>
+
+      <!-- Gravel column (12 in wide ≈ 120 px in this view) -->
+      <rect x="156" y="60" width="120" height="220" fill="url(#dr-rock-top)"/>
+
+      <!-- Filter cloth dashed line on soil side -->
+      <line x1="276" y1="60" x2="276" y2="280" stroke="#3F6B36" stroke-width="2.5" stroke-dasharray="6 4"/>
+
+      <!-- Backfill (topsoil cap above, structural clay below — top-down view) -->
+      <rect x="276" y="60" width="240" height="220" fill="#6E4E3F"/>
+      <text x="396" y="155" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="13" font-weight="700" fill="white">backfill</text>
+      <text x="396" y="174" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="white" font-style="italic">(topsoil cap on top,</text>
+      <text x="396" y="189" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="white" font-style="italic">structural clay underneath)</text>
+
+      <!-- Width dimension -->
+      <g stroke="#3F2818" stroke-width="0.9" fill="none">
+        <line x1="156" y1="305" x2="156" y2="290"/>
+        <line x1="276" y1="305" x2="276" y2="290"/>
+        <line x1="156" y1="298" x2="276" y2="298"/>
+      </g>
+      <polygon points="156,298 164,295 164,301" fill="#3F2818"/>
+      <polygon points="276,298 268,295 268,301" fill="#3F2818"/>
+      <text x="216" y="322" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="13" font-weight="700" fill="#3F2818">~12 in</text>
+      <text x="216" y="336" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#5A6661">gravel drain column</text>
+
+      <!-- Filter cloth label -->
+      <line x1="276" y1="100" x2="296" y2="80" stroke="#3F6B36" stroke-width="0.7"/>
+      <text x="300" y="76" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="#3F6B36">natural-fiber filter cloth</text>
+
+      <!-- Rock-size key -->
+      <g transform="translate(548, 60)" font-family="-apple-system, sans-serif">
+        <rect x="0" y="0" width="152" height="240" fill="white" stroke="#5A6661" stroke-width="0.8" rx="4"/>
+        <text x="76" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#2F5233">Rock sizes</text>
+        <line x1="14" y1="32" x2="138" y2="32" stroke="#D9D2C2" stroke-width="0.5"/>
+
+        <!-- ¾ in clean drain rock -->
+        <g transform="translate(0, 45)">
+          <circle cx="22" cy="14" r="11" fill="#8B8378" stroke="#3F3833" stroke-width="0.5"/>
+          <text x="44" y="10" font-size="11" font-weight="700" fill="#3F2818">¾ in clean</text>
+          <text x="44" y="22" font-size="11" font-weight="700" fill="#3F2818">drain rock</text>
+          <text x="44" y="36" font-size="10" fill="#5A6661" font-style="italic">drain column</text>
+          <text x="44" y="48" font-size="9" fill="#5A6661">washed, angular,</text>
+          <text x="44" y="58" font-size="9" fill="#5A6661">no fines</text>
+        </g>
+
+        <!-- ¾ in minus -->
+        <g transform="translate(0, 125)">
+          <g transform="translate(22, 14)">
+            <circle cx="0" cy="0" r="8" fill="#A8A0A0" stroke="#3F3833" stroke-width="0.4"/>
+            <circle cx="-7" cy="3" r="3" fill="#9A9388" stroke="#3F3833" stroke-width="0.4"/>
+            <circle cx="6" cy="-5" r="2.5" fill="#7E7568" stroke="#3F3833" stroke-width="0.4"/>
+          </g>
+          <text x="44" y="10" font-size="11" font-weight="700" fill="#3F2818">¾ in minus</text>
+          <text x="44" y="22" font-size="11" font-weight="700" fill="#3F2818">crushed gravel</text>
+          <text x="44" y="36" font-size="10" fill="#5A6661" font-style="italic">wall base course</text>
+          <text x="44" y="48" font-size="9" fill="#5A6661">has fines —</text>
+          <text x="44" y="58" font-size="9" fill="#5A6661">compactable</text>
+        </g>
+
+        <!-- Avoid note -->
+        <line x1="14" y1="200" x2="138" y2="200" stroke="#D9D2C2" stroke-width="0.5"/>
+        <text x="76" y="216" text-anchor="middle" font-size="10" font-weight="700" fill="#A03060">Do NOT use pea gravel</text>
+        <text x="76" y="228" text-anchor="middle" font-size="9" fill="#5A6661" font-style="italic">(rounded; won't lock under load)</text>
+      </g>
+    </svg>
+  </div>
+  <div class="diagram-caption">Top-down detail of the drain column behind any wall section. Same 12 in width applies everywhere the drain runs.</div>
+
+  <p><strong>Where the drain runs.</strong> Behind every wall — existing west, new north, new 45° diagonal, new east — forming a continuous "U" around three-and-a-half sides of the lot. The south side has no wall and no drain; the lot meets the patio at grade there, and the 1° finish slope carries any surface water away from the house toward the north.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 760" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="520" height="760" fill="#E8E4D8"/>
+
+      <!-- Lot interior pentagon: 30 × 60 ft with NW corner cut at 45° (15 ft each leg). 10.7 px/ft. -->
+      <polygon points="260,80 420,80 420,680 100,680 100,240" fill="#E6EFE3" stroke="#2F5233" stroke-width="2"/>
+
+      <!-- Direction-of-flow arrows along the lot interior -->
+      <g font-family="-apple-system, sans-serif" font-size="13" fill="#1F3823" font-weight="600">
+        <text x="200" y="560" text-anchor="middle">↑ flow ↑</text>
+        <text x="320" y="560" text-anchor="middle">↑ flow ↑</text>
+      </g>
+
+      <!-- Lawn label -->
+      <text x="260" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#2F5233" font-weight="700">Food forest / lawn</text>
+      <text x="260" y="445" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#5A6661" font-style="italic">finish slope ~1° south → north</text>
+
+      <!-- French drain dashed lines, just inside each wall -->
+      <!-- North wall drain -->
+      <line x1="268" y1="92" x2="408" y2="92" stroke="#B5462C" stroke-width="4" stroke-dasharray="8 5"/>
+      <!-- 45° diagonal drain -->
+      <line x1="268" y1="89" x2="108" y2="249" stroke="#B5462C" stroke-width="4" stroke-dasharray="8 5"/>
+      <!-- West wall drain (existing) -->
+      <line x1="112" y1="250" x2="112" y2="668" stroke="#B5462C" stroke-width="4" stroke-dasharray="8 5"/>
+      <!-- East wall drain -->
+      <line x1="408" y1="92" x2="408" y2="668" stroke="#B5462C" stroke-width="4" stroke-dasharray="8 5"/>
+
+      <!-- Outlet zone marker along the north wall -->
+      <circle cx="338" cy="92" r="9" fill="#B5462C" stroke="white" stroke-width="2"/>
+      <text x="338" y="58" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="13" font-weight="700" fill="#B5462C">Daylight to driveway</text>
+      <text x="338" y="73" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#5A6661">(low edge — via gaps between block courses)</text>
+
+      <!-- Patio / house south -->
+      <rect x="100" y="690" width="320" height="50" fill="#D9D2C2" stroke="#8B7E62"/>
+      <text x="260" y="720" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="13" font-weight="700" fill="#5A4A30">Patio / house (lawn meets at grade — no wall, no drain)</text>
+
+      <!-- Surrounding pavement labels -->
+      <text x="50" y="400" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" fill="#5A6661" transform="rotate(-90, 50, 400)">West driveway</text>
+      <text x="475" y="400" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" fill="#5A6661" transform="rotate(90, 475, 400)">East driveway</text>
+      <text x="260" y="30" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" fill="#5A6661">North driveway</text>
+
+      <!-- Wall labels -->
+      <text x="340" y="108" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#B5462C">north wall + drain</text>
+      <g transform="translate(195, 175) rotate(-45)">
+        <text text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#B5462C">45° wall + drain</text>
+      </g>
+      <text x="130" y="450" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#B5462C" transform="rotate(-90, 130, 450)">existing west wall + drain</text>
+      <text x="390" y="450" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#B5462C" transform="rotate(90, 390, 450)">east wall + drain</text>
+
+      <!-- Legend -->
+      <g transform="translate(20, 700)">
+        <line x1="0" y1="0" x2="30" y2="0" stroke="#B5462C" stroke-width="4" stroke-dasharray="8 5"/>
+        <text x="38" y="4" font-family="-apple-system, sans-serif" font-size="12" fill="#1F2421">Gravel drain column behind wall</text>
+      </g>
+      <g transform="translate(20, 722)">
+        <circle cx="6" cy="0" r="6" fill="#B5462C"/>
+        <text x="20" y="4" font-family="-apple-system, sans-serif" font-size="12" fill="#1F2421">Drainage outlet (low edge of lot)</text>
+      </g>
+    </svg>
+  </div>
+  <div class="diagram-caption">Top-down view: the gravel drain column runs behind every wall — west, 45° diagonal, north, east. The south side has no wall and no drain. Water sheds south-to-north on the ~1° finish slope and exits at the north wall through the gaps between block courses, onto the driveway.</div>
+</section>
+
+<section id="soil">
+  <h2>Soil Cap &amp; Mulch</h2>
+
+  <ol>
+    <li>Don't till the existing clay subgrade — the build-up sits on top of it. Within the new topsoil cap, sheet-mulch rather than till.</li>
+    <li>Soil-test a composite sample of the <em>new imported topsoil</em> once it's spread — pH, N–P–K, organic matter. A $30 mail-in test (UMass, A&amp;L Western Labs) tells you what amendments the cap actually needs.</li>
+    <li>Cap the topsoil with your stockpiled wood chips (cardboard sheet + 4–6 in chips) in the planting band; leave bare topsoil where the kid lawn will be seeded.</li>
+    <li>Inoculate at planting — every tree and guild plant gets a teaspoon of granular mycorrhizal inoculant in the planting hole.</li>
+    <li>Chop-and-drop forever — comfrey, borage, prunings stay on site.</li>
+    <li>Refresh wood-chip mulch twice yearly, 2–3 in deep, pulled 4 in back from every trunk.</li>
+  </ol>
+</section>
+
+<section id="planting-band">
+  <h2>The 6 ft Perimeter (Planting Band)</h2>
+
+  <p>The planting band is a ~6 ft strip running along each of the four walls (north, 45° diagonal, east, west) plus the two south corners where T15 and T16 (Cornelian cherries) sit. The middle of the south side has no planting band — the lawn meets the patio directly. The diagram below shows the cap-thickness pattern from above.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 760" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="520" height="760" fill="#E8E4D8"/>
+
+      <!-- Outer pentagon = full lot, filled with planting-band color (thicker cap) -->
+      <polygon points="260,80 420,80 420,680 100,680 100,240" fill="#6E4E3F" stroke="#2F5233" stroke-width="2"/>
+
+      <!-- Inner pentagon = lawn area (thinner cap), inset ~6 ft from each WALL; extends to the patio in the middle of the south side -->
+      <polygon points="290,140 356,140 356,620 340,620 340,680 180,680 180,620 164,620 164,267" fill="#C9B59A" stroke="#3F2818" stroke-width="1.2" stroke-dasharray="5 4"/>
+
+      <!-- Lawn label -->
+      <text x="260" y="395" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#3F2818" font-weight="700">Lawn area</text>
+      <text x="260" y="418" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#5A4A30" font-style="italic">~12 in cap</text>
+      <text x="260" y="435" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#5A4A30">(turf rooting depth)</text>
+      <text x="260" y="658" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#3F2818" font-style="italic">lawn extends to patio in the middle</text>
+
+      <!-- Planting band labels — one in each side zone, plus small labels for south corners -->
+      <text x="380" y="190" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="white" font-weight="700">Planting</text>
+      <text x="380" y="207" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="white" font-weight="700">band</text>
+      <text x="380" y="225" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="white" font-style="italic">16–24 in cap</text>
+
+      <text x="180" y="480" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="white" font-weight="700">Planting band</text>
+      <text x="180" y="498" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="white" font-style="italic">16–24 in cap</text>
+
+      <!-- SW corner mini-label (T15) -->
+      <text x="140" y="652" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" fill="white" font-weight="700">SW</text>
+      <text x="140" y="664" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="9" fill="white" font-style="italic">(T15)</text>
+
+      <!-- SE corner mini-label (T16) -->
+      <text x="380" y="652" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" fill="white" font-weight="700">SE</text>
+      <text x="380" y="664" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="9" fill="white" font-style="italic">(T16)</text>
+
+      <!-- Band width dimension callout (on the east side) -->
+      <g stroke="#FFE38C" stroke-width="2" fill="none">
+        <line x1="356" y1="330" x2="420" y2="330"/>
+      </g>
+      <polygon points="361,330 366,326 366,334" fill="#FFE38C"/>
+      <polygon points="415,330 410,326 410,334" fill="#FFE38C"/>
+      <rect x="370" y="312" width="36" height="14" fill="#2F5233" rx="2"/>
+      <text x="388" y="323" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="#FFE38C">6 ft</text>
+
+      <!-- Patio / house -->
+      <rect x="100" y="690" width="320" height="50" fill="#D9D2C2" stroke="#8B7E62"/>
+      <text x="260" y="720" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="13" font-weight="700" fill="#5A4A30">Patio / house — south</text>
+
+      <!-- Surround labels -->
+      <text x="50" y="400" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" fill="#5A6661" transform="rotate(-90, 50, 400)">West driveway</text>
+      <text x="475" y="400" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" fill="#5A6661" transform="rotate(90, 475, 400)">East driveway</text>
+      <text x="260" y="30" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" fill="#5A6661">North driveway</text>
+
+      <!-- Legend -->
+      <g font-family="-apple-system, sans-serif">
+        <rect x="20" y="700" width="22" height="14" fill="#6E4E3F" stroke="#2F5233" stroke-width="0.5"/>
+        <text x="50" y="711" font-size="12" fill="#1F2421">Planting band — <strong>16–24 in cap</strong>: trees, bridge shrubs, guild perennials</text>
+        <rect x="20" y="722" width="22" height="14" fill="#C9B59A" stroke="#3F2818" stroke-width="0.5" stroke-dasharray="3 2"/>
+        <text x="50" y="733" font-size="12" fill="#1F2421">Lawn — <strong>12 in cap</strong>: grass over compacted clay base</text>
+      </g>
+    </svg>
+  </div>
+  <div class="diagram-caption">Top-down view of cap thickness. The 6 ft strip along each wall (north, 45° diagonal, east, west) is planting band with a deeper cap; the two south-corner pockets stay planting band for T15 and T16. The middle of the south side is lawn all the way to the patio — no planting band there.</div>
+
+  <p>The rules that follow keep the planting band working with the wall + drain system:</p>
+
+  <ul>
+    <li><strong>Cap thickness 16–24 in here</strong>, vs. 12 in over the central lawn. Trees need deeper rooting depth than turf, and the structural clay underneath isn't where you want feeder roots living. Order the topsoil delivery with this in mind: the cap is thicker in a ring around the perimeter and thinner in the middle.</li>
+    <li><strong>Trunk distance from any wall: 3 ft minimum</strong> — applies to all four wall sections equally (north, 45° diagonal, east, west). Mature fruit-tree feeder roots concentrate within 2–3 ft of the trunk; 3 ft gives the tree its own root zone in cap soil and keeps pressure off the wall.</li>
+    <li><strong>The strip directly above the drain is plantable</strong> — that's the whole point of running the gravel column down to 12–16 in below finish and capping over it. Good fits for this zone: <em>bridge shrubs</em> (gooseberry, pineapple guava, pomegranate shrub form), <em>groundcovers</em> (alpine strawberry, trailing rosemary, creeping thyme), and <em>guild perennials</em> (comfrey, yarrow, chives). Don't put fruit-tree trunks directly over the drain — let their canopy and outer roots reach over the drain, but plant the trunk a few feet inboard where the cap sits on the full clay backing.</li>
+    <li><strong>Place the aggressive-root species furthest from the wall.</strong> Fig (T9 Black Mission, plus the wall-trellis Violette de Bordeaux on the east), mulberry (T4 Pakistan), and pomegranate (T10 Wonderful) all have notably exploratory roots. Sit those trees toward the lot-side edge of the planting band rather than tight against the wall, and accept that some root infiltration into the gravel column is likely over 15–20 years (the drain may need a partial rebuild at that point — design for it).</li>
+    <li><strong>Drip emitters on the lot side of each tree, not the wall side.</strong> Water trains roots; emitters between the tree and the wall pull roots toward the drain and the wall. Place them 12–18 in inboard of the trunk instead.</li>
+    <li><strong>Mulch right up to the wall is fine.</strong> The 3–4 ft mulched circle around each trunk can run all the way to the wall — the trailing rosemary planned for the wall-cascade tier will eventually overhang most of it.</li>
+  </ul>
+</section>
+
+<section id="topsoil-source">
+  <h2>Sourcing the Topsoil Cap</h2>
+
+  <p>~50 cu yd of sandy-loam / compost blend is the single biggest material order in this phase. Around Lafayette, the realistic options:</p>
+
+  <table>
+    <thead>
+      <tr><th>Yard</th><th>Location</th><th>What to ask for</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>American Soil &amp; Stone</strong></td><td>Richmond (~25 min)</td><td>"Diestel Structured Compost" + "Sandy Loam" custom blend, roughly 60/40 loam-to-compost by volume. Delivers in 10–18 yd loads.</td></tr>
+      <tr><td><strong>Acapulco Rock &amp; Soil</strong></td><td>Pleasant Hill (~10 min)</td><td>Closest yard. Ask for their "Garden Mix" or "Planting Mix" — sandy loam with compost. Cheaper delivery given proximity.</td></tr>
+      <tr><td><strong>Lyngso Garden Materials</strong></td><td>San Carlos (~45 min)</td><td>Top quality, screened. "Vegetable Garden Mix" or custom 50/50 sandy-loam + organic compost. Delivery surcharge for the distance.</td></tr>
+      <tr><td><strong>Grab N Grow / Soil Tech</strong></td><td>Walnut Creek / Concord</td><td>Backup options. Useful if the main yards are booked during spring rush.</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>What to specify on the order:</strong></p>
+  <ul>
+    <li>Texture: sandy loam, <em>not</em> "topsoil" — generic topsoil is often screened native clay.</li>
+    <li>~25–35% organic matter / aged compost by volume.</li>
+    <li>Screened to ½ in minus.</li>
+    <li>No biosolids, no construction-screened fill.</li>
+    <li>pH 6.0–7.0.</li>
+    <li>Delivery in 2–3 dumps over a day or two — staging 50 yd in one drop overwhelms the access route. Confirm the truck can reach the lot edge across the patio / driveway without driving on it.</li>
+  </ul>
+
+  <p><strong>Don't accept</strong> "free fill dirt" from a Craigslist or Nextdoor listing for the cap. That material is typically clay-heavy spoils from a construction site — exactly what you're trying to <em>not</em> have under your trees. Use those leads only if you ever need extra structural fill.</p>
+</section>
+
+<section id="other-prep">
+  <h2>Other Prep Considerations</h2>
+
+  <h3>Material staging &amp; access</h3>
+  <ul>
+    <li><strong>Stockpile zones.</strong> The lot is surrounded by pavement, so material has to stage <em>somewhere</em>. Identify zones up front: imported topsoil in one corner, drain rock in another, block on pallets in a third. Lay plywood under any pile that sits on the driveway to protect the surface.</li>
+    <li><strong>Sequence the deliveries.</strong> Drain rock + wall block arrive first (you build walls + drain column first). Imported topsoil cap arrives last (after structural fill is in place). Receiving 50 cu yd of topsoil on day one means it sits getting weedy and compacted for weeks.</li>
+  </ul>
+
+  <h3>Timing</h3>
+  <ul>
+    <li><strong>Best season for the earthworks: late summer through early fall</strong> (August–October). Bay Area clay is at the right moisture for compaction then — dry but not bone-dry. Winter is the worst window: lifts will be too wet to compact and the work site turns to mud.</li>
+    <li><strong>Plant in the following winter / early spring.</strong> Bare-root fruit trees go in January–February, after the cap has had a month or two to settle.</li>
+  </ul>
+</section>
+
+<footer class="fine">
+  Phase 1 of the Lafayette food forest plan.<br>
+  <a href="index.html" style="color:var(--green); font-weight:600;">← Overview</a> ·
+  <a href="Planting.html" style="color:var(--green); font-weight:600;">Phase 2: Planting →</a> ·
+  <a href="Plant_Reference.html" style="color:var(--green); font-weight:600;">Plant Reference</a>
+</footer>
+
+</div>
+</body>
+</html>
