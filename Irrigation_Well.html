@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phase 3: Irrigation &amp; Well Pump — Lafayette Food Forest</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --green: #2F5233;
+    --green-dark: #1F3823;
+    --green-light: #E6EFE3;
+    --clay: #C2845B;
+    --clay-dark: #8E5A39;
+    --clay-light: #F4E8DD;
+    --bg: #FAF7F0;
+    --paper: #FFFFFF;
+    --ink: #1F2421;
+    --ink-muted: #5A6661;
+    --line: #D9D2C2;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Arial, sans-serif; font-size: 16px; line-height: 1.6; }
+  .page { max-width: 920px; margin: 0 auto; padding: 48px 32px 96px; background: var(--paper); box-shadow: 0 0 0 1px var(--line), 0 24px 60px rgba(31,36,33,0.06); }
+  @media (max-width: 700px) { .page { padding: 28px 18px 64px; } }
+
+  h1, h2, h3, h4 { font-family: "Georgia", serif; color: var(--green-dark); line-height: 1.25; margin: 0; }
+  h1 { font-size: 2.4em; margin-bottom: 8px; }
+  h2 { font-size: 1.7em; margin-top: 56px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--green); }
+  h3 { font-size: 1.25em; color: var(--clay-dark); margin-top: 32px; margin-bottom: 10px; }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 16px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  strong { color: var(--ink); }
+  a { color: var(--green); text-decoration: underline; text-underline-offset: 2px; }
+
+  header.hero { text-align: center; padding: 8px 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 32px; }
+  header.hero .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.78em; color: var(--clay-dark); font-weight: 600; margin-bottom: 16px; }
+  header.hero h1 { font-size: 2.8em; }
+  header.hero .subtitle { color: var(--ink-muted); font-size: 1.1em; font-style: italic; margin-bottom: 18px; }
+
+  .callout { background: var(--green-light); border-left: 6px solid var(--green); padding: 18px 22px; border-radius: 6px; margin: 20px 0; }
+  .callout h4 { margin-top: 0; color: var(--green-dark); }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 0.95em; }
+  th { background: var(--green); color: white; text-align: left; padding: 10px 12px; font-weight: 600; font-size: 0.92em; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tbody tr:nth-child(even) td { background: #FBF8F1; }
+
+  footer.fine { text-align: center; color: var(--ink-muted); font-size: 0.85em; margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .back-link { display: inline-block; color: var(--green); text-decoration: none; font-weight: 600; font-size: 0.95em; margin-bottom: 16px; }
+  .back-link:hover { text-decoration: underline; }
+  .back-link::before { content: "← "; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<a class="back-link" href="index.html">Back to overview</a>
+
+<header class="hero">
+  <div class="eyebrow">Phase 3 · Lafayette, CA Food Forest</div>
+  <h1>Irrigation &amp; Well Pump</h1>
+  <div class="subtitle">Bare-bones drip irrigation off the existing well, with a new pump</div>
+</header>
+
+<section>
+  <h2 style="margin-top:0;">Overview</h2>
+  <p>Water comes from the existing well on the property. The well casing and bore stay as-is; a <strong>new pump</strong> goes in to replace the current one. Everything downstream of the pump is a simple gravity-and-pressure drip system: pressure tank, filter, mainline, zone manifold, and ¼ in drip lines to each tree, shrub, and bed.</p>
+  <p>This phase is intentionally minimal. No greywater, no rainwater capture, no smart-controller automation in the first pass — just a clean, reliable drip backbone that the planting in Phase 2 can rely on.</p>
+</section>
+
+<section>
+  <h2>System components</h2>
+
+  <table>
+    <thead>
+      <tr><th>Component</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Existing well</strong></td>
+        <td>Keep as-is. Confirm static water level, recovery rate (gpm), and casing diameter before sizing the pump. A 5–10 gpm sustained recovery is plenty for this lot.</td>
+      </tr>
+      <tr>
+        <td><strong>New pump</strong></td>
+        <td>Submersible pump if the well is deeper than ~25 ft to water; shallow-well jet pump otherwise. Target: ½–¾ HP, 10–15 gpm at 40–60 psi. Stainless wet end (well water often has minerals/iron).</td>
+      </tr>
+      <tr>
+        <td><strong>Pressure tank</strong></td>
+        <td>20–30 gallon bladder tank near the pump (or in a small utility enclosure). Keeps the pump from short-cycling. Pressure switch typically set 40 psi cut-in / 60 psi cut-out.</td>
+      </tr>
+      <tr>
+        <td><strong>Sediment + iron filter</strong></td>
+        <td>Inline cartridge filter (5 micron) after the pressure tank. Iron filter optional — add if a water test shows &gt; 0.3 ppm iron, otherwise drip emitters will clog.</td>
+      </tr>
+      <tr>
+        <td><strong>Backflow preventer</strong></td>
+        <td>Required by code where irrigation tees off potable supply. Single-check valve at minimum; reduced-pressure backflow assembly if locally required.</td>
+      </tr>
+      <tr>
+        <td><strong>Mainline</strong></td>
+        <td>¾ in or 1 in poly pipe from the pump house out to the lot. Bury 12 in down under the driveway transitions; surface or shallow-bury along the lot perimeter under the planting band cap.</td>
+      </tr>
+      <tr>
+        <td><strong>Zone manifold</strong></td>
+        <td>Four to six manual ball valves (one per zone) at a single hub near the south or east edge of the lot. Manual is fine for the first season; add a simple battery timer per zone if you want set-and-forget watering.</td>
+      </tr>
+      <tr>
+        <td><strong>Drip lines</strong></td>
+        <td>½ in poly sub-mainline → ¼ in drip line with pressure-compensating emitters (1–2 gph). Each fruit tree gets 4–6 emitters at the drip line. Bridge shrubs get 2 emitters. Guild perennials share a soaker loop within each tree's mulch ring.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Zones</h2>
+  <p>Group the drip system into independent zones so each can be tuned (or shut off) separately. Five zones is the natural fit for this lot:</p>
+  <ol>
+    <li><strong>North band trees</strong> — T1 Apple + T2 Pear + T14 Loquat + T17 Hachiya</li>
+    <li><strong>West band trees</strong> — T4 Mulberry + T5 Plum + T6 Peach + T7 Apricot + T8 Jujube + T3 Fuyu</li>
+    <li><strong>East band trees</strong> — T9 Fig + T10 Pomegranate + T11 Olive + T12 Lemon + T13 Mandarin</li>
+    <li><strong>South corners + east wall trellis</strong> — T15 + T16 Cornelian cherries, plus the east-wall blackberry, grape, fan-trained fig</li>
+    <li><strong>Lawn</strong> — pop-up spray or rotor heads on a separate valve, fed off the same mainline</li>
+  </ol>
+  <p>Each tree zone runs 30–45 min, 2–3× per week in summer once trees are established. Lawn runs on its own schedule.</p>
+</section>
+
+<section>
+  <h2>Build order</h2>
+  <ol>
+    <li>Get the well tested — water quality (iron, hardness, bacteria), static level, recovery rate. Quote a pump installer with those numbers in hand.</li>
+    <li>New pump, pressure tank, filter, backflow installed at the pump house.</li>
+    <li>Trench/lay the mainline from pump to the lot. Pressure-test before burying.</li>
+    <li>Build the zone manifold at the hub.</li>
+    <li>Run ½ in sub-mainlines to each planting zone before the topsoil cap goes down — pin them where the tree positions will be so the cap covers them.</li>
+    <li>After planting (Phase 2), attach ¼ in drip and emitters at each tree.</li>
+    <li>Run the system for a full cycle; check every emitter, look for leaks, adjust zone run times.</li>
+  </ol>
+</section>
+
+<footer class="fine">
+  Phase 3 of the Lafayette food forest plan.<br>
+  <a href="index.html" style="color:var(--green); font-weight:600;">← Overview</a> ·
+  <a href="Hardscape_LotPrep.html" style="color:var(--green); font-weight:600;">Phase 1: Hardscape</a> ·
+  <a href="Planting.html" style="color:var(--green); font-weight:600;">Phase 2: Planting</a> ·
+  <a href="Plant_Reference.html" style="color:var(--green); font-weight:600;">Plant Reference</a>
+</footer>
+
+</div>
+</body>
+</html>
