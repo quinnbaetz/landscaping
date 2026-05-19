@@ -26,7 +26,7 @@
 | Layer | Volume | Material |
 |---|---|---|
 | Structural fill (bottom) | ~45 cu yd | On-site stockpiled clay, 6–8 in compacted lifts |
-| Topsoil cap (top) | ~50 cu yd | Imported sandy loam + compost, 12–18 in thick (16–24 in in planting band, 12 in in lawn) |
+| Topsoil cap (top) | ~50 cu yd | Imported sandy loam + compost, 12–24 in thick (12 in over central lawn, 16–24 in in 6 ft perimeter planting band) |
 
 Average fill ~1.5 ft. South end: just cap (existing already at finish). North end: ~3 ft total.
 
