@@ -72,7 +72,7 @@ Spacing: BOC 7 ft on center. Trees pruned to ~10 ft tall by summer pruning.
 
 ## Planting band layout
 
-- ~6 ft strip along each wall + SW/SE south corners (for T15, T16)
+- ~6 ft strip along each wall. East + west strips run full length down to the patio (T15 at south end of west band, T16 at south end of east band)
 - Middle of south: lawn extends to patio (no planting band there)
 - Cap depth in planting band: 16–24 in (deeper than lawn for tree roots)
 - Cap depth in lawn: 12 in

@@ -410,16 +410,25 @@
       <line x1="189" y1="223" x2="189" y2="290" stroke="#3F6B36" stroke-width="2.5" stroke-dasharray="6 4"/>
       <line x1="149" y1="223" x2="189" y2="223" stroke="#3F6B36" stroke-width="2.5" stroke-dasharray="6 4"/>
 
-      <!-- Mulch ribbon (planting band) -->
-      <rect x="149" y="158" width="440" height="12" fill="#A87A4A" stroke="#6E4E3F" stroke-width="0.3"/>
+      <!-- Mulch ribbon (planting band only — does NOT extend over lawn) -->
+      <rect x="149" y="158" width="280" height="12" fill="#A87A4A" stroke="#6E4E3F" stroke-width="0.3"/>
 
-      <!-- Topsoil cap — continuous over the gravel column and the lot fill, ~16 in thick -->
-      <rect x="149" y="170" width="440" height="53" fill="#6E4E3F"/>
+      <!-- Topsoil cap — varies by zone: 16 in over drain, 18 in in 6 ft planting band, 12 in over lawn -->
+      <polygon points="149,170 589,170 589,210 429,210 429,230 189,230 189,223 149,223" fill="#6E4E3F"/>
 
-      <!-- Structural fill (bottom slopes with existing — rises going right into the lot, away from wall) -->
-      <polygon points="189,223 589,223 589,263 189,290" fill="#8E5A39"/>
-      <line x1="189" y1="245" x2="589" y2="245" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
-      <line x1="189" y1="270" x2="485" y2="270" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
+      <!-- In-cap depth labels -->
+      <text x="169" y="201" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" fill="white">16 in</text>
+      <text x="309" y="205" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="white">18 in</text>
+      <text x="509" y="195" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="white">12 in</text>
+
+      <!-- Vertical dashed boundary line at planting-band edge (6 ft from drain) -->
+      <line x1="429" y1="170" x2="429" y2="210" stroke="#F4E8DD" stroke-width="0.7" stroke-dasharray="3 3"/>
+
+      <!-- Structural fill (top steps with cap depth; bottom slopes with existing) -->
+      <polygon points="189,230 429,230 429,210 589,210 589,263 189,288" fill="#8E5A39"/>
+      <line x1="189" y1="250" x2="429" y2="250" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
+      <line x1="429" y1="230" x2="589" y2="230" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
+      <line x1="189" y1="275" x2="465" y2="275" stroke="#3F2818" stroke-dasharray="3 4" stroke-width="0.8"/>
 
       <!-- Existing grade scarified wavy line — slopes up going right (south, away from wall) -->
       <path d="M 156 290 Q 180 287 210 287 Q 240 285 270 283 Q 300 281 330 279 Q 360 277 390 274 Q 420 271 450 269 Q 480 267 510 265 Q 540 263 570 263 L 589 263" stroke="#3F2818" stroke-width="1.5" fill="none"/>
@@ -454,12 +463,12 @@
         <text x="282" y="298" font-size="11" font-weight="700" fill="#3F6B36">filter cloth</text>
         <text x="282" y="310" font-size="10" fill="#3F6B36" font-style="italic">(coir or jute)</text>
 
-        <!-- Topsoil cap — now continuous over the drain too -->
+        <!-- Topsoil cap — three depth zones -->
         <line x1="589" y1="195" x2="610" y2="195" stroke="#3F2818" stroke-width="0.5"/>
-        <text x="615" y="192" font-size="11" font-weight="700" fill="#3F2818">topsoil cap (16 in)</text>
-        <text x="615" y="204" font-size="10" fill="#5A6661">continuous over drain —</text>
-        <text x="615" y="216" font-size="10" fill="#5A6661">plantable for shrubs,</text>
-        <text x="615" y="228" font-size="10" fill="#5A6661">groundcovers, perennials</text>
+        <text x="615" y="192" font-size="11" font-weight="700" fill="#3F2818">topsoil cap</text>
+        <text x="615" y="206" font-size="10" fill="#5A6661">12 in lawn → 18 in in</text>
+        <text x="615" y="218" font-size="10" fill="#5A6661">6 ft planting band →</text>
+        <text x="615" y="230" font-size="10" fill="#5A6661">16 in over the drain</text>
 
         <!-- Structural fill -->
         <line x1="589" y1="245" x2="610" y2="245" stroke="#3F2818" stroke-width="0.5"/>
@@ -476,7 +485,7 @@
       </g>
     </svg>
   </div>
-  <div class="diagram-caption">Cross-section through the wall at the deepest stretch (3 ft retained at the north end — the difference between existing grade and finish grade). Topsoil cap extends continuously over the gravel drain column (16 in deep, plantable). Existing subgrade slopes upward going right, away from the wall, toward the south end of the lot. Proportions illustrative.</div>
+  <div class="diagram-caption">Cross-section through the wall at the deepest stretch (3 ft retained at the north end). Topsoil cap varies by zone: <strong>16 in over the gravel drain</strong>, stepping up to <strong>18 in for the 6 ft planting band</strong>, then down to <strong>12 in over the lawn</strong>. Mulch (planting-band only) is the orange ribbon — does not extend over the lawn. Existing subgrade slopes upward going right, away from the wall. Proportions illustrative.</div>
 
   <div class="diagram-wrap">
     <svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg">
@@ -649,7 +658,7 @@
 <section id="planting-band">
   <h2>The 6 ft Perimeter (Planting Band)</h2>
 
-  <p>The planting band is a ~6 ft strip running along each of the four walls (north, 45° diagonal, east, west) plus the two south corners where T15 and T16 (Cornelian cherries) sit. The middle of the south side has no planting band — the lawn meets the patio directly. The diagram below shows the cap-thickness pattern from above.</p>
+  <p>The planting band is a ~6 ft strip running along each of the four walls (north, 45° diagonal, east, west). The east and west strips run the full length of the lot down to the patio — T15 sits at the south end of the west band, T16 at the south end of the east band. The middle of the south side has no planting band — the lawn meets the patio directly. The diagram below shows the cap-thickness pattern from above.</p>
 
   <div class="diagram-wrap">
     <svg viewBox="0 0 520 760" xmlns="http://www.w3.org/2000/svg">
@@ -658,30 +667,28 @@
       <!-- Outer pentagon = full lot, filled with planting-band color (thicker cap) -->
       <polygon points="260,80 420,80 420,680 100,680 100,240" fill="#6E4E3F" stroke="#2F5233" stroke-width="2"/>
 
-      <!-- Inner pentagon = lawn area (thinner cap), inset ~6 ft from each WALL; extends to the patio in the middle of the south side -->
-      <polygon points="290,140 356,140 356,620 340,620 340,680 180,680 180,620 164,620 164,267" fill="#C9B59A" stroke="#3F2818" stroke-width="1.2" stroke-dasharray="5 4"/>
+      <!-- Inner pentagon = lawn area (thinner cap). East + west lawn edges run straight to the patio.
+           Planting band = continuous ring along N, 45° diagonal, E, W walls. South middle (x=164-356 at y=680) = lawn meets patio directly. -->
+      <polygon points="290,140 356,140 356,680 164,680 164,267" fill="#C9B59A" stroke="#3F2818" stroke-width="1.2" stroke-dasharray="5 4"/>
 
       <!-- Lawn label -->
       <text x="260" y="395" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#3F2818" font-weight="700">Lawn area</text>
       <text x="260" y="418" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#5A4A30" font-style="italic">~12 in cap</text>
       <text x="260" y="435" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#5A4A30">(turf rooting depth)</text>
-      <text x="260" y="658" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#3F2818" font-style="italic">lawn extends to patio in the middle</text>
+      <text x="260" y="658" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#3F2818" font-style="italic">east + west lawn edges run straight to the patio</text>
 
-      <!-- Planting band labels — one in each side zone, plus small labels for south corners -->
-      <text x="380" y="190" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="white" font-weight="700">Planting</text>
-      <text x="380" y="207" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="white" font-weight="700">band</text>
-      <text x="380" y="225" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="white" font-style="italic">16–24 in cap</text>
+      <!-- Planting band labels — east and west strips run full length now -->
+      <text x="388" y="190" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="white" font-weight="700">Planting</text>
+      <text x="388" y="207" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="white" font-weight="700">band (east)</text>
+      <text x="388" y="225" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="white" font-style="italic">16–24 in cap</text>
 
-      <text x="180" y="480" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="white" font-weight="700">Planting band</text>
-      <text x="180" y="498" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="white" font-style="italic">16–24 in cap</text>
+      <text x="130" y="480" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="white" font-weight="700">Planting band</text>
+      <text x="130" y="498" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="white" font-weight="700">(west)</text>
+      <text x="130" y="516" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="white" font-style="italic">16–24 in cap</text>
 
-      <!-- SW corner mini-label (T15) -->
-      <text x="140" y="652" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" fill="white" font-weight="700">SW</text>
-      <text x="140" y="664" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="9" fill="white" font-style="italic">(T15)</text>
-
-      <!-- SE corner mini-label (T16) -->
-      <text x="380" y="652" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" fill="white" font-weight="700">SE</text>
-      <text x="380" y="664" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="9" fill="white" font-style="italic">(T16)</text>
+      <!-- South-end markers for T15 (west band) and T16 (east band) -->
+      <text x="388" y="652" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" fill="white" font-weight="700">T16</text>
+      <text x="130" y="652" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" fill="white" font-weight="700">T15</text>
 
       <!-- Band width dimension callout (on the east side) -->
       <g stroke="#FFE38C" stroke-width="2" fill="none">
@@ -710,7 +717,7 @@
       </g>
     </svg>
   </div>
-  <div class="diagram-caption">Top-down view of cap thickness. The 6 ft strip along each wall (north, 45° diagonal, east, west) is planting band with a deeper cap; the two south-corner pockets stay planting band for T15 and T16. The middle of the south side is lawn all the way to the patio — no planting band there.</div>
+  <div class="diagram-caption">Top-down view of cap thickness. The 6 ft strip along each wall (north, 45° diagonal, east, west) is planting band with a deeper cap. East and west strips run continuously down to the patio — T15 lives at the south end of the west band, T16 at the south end of the east band. The middle of the south side is lawn all the way to the patio (no planting band there).</div>
 
   <p>The rules that follow keep the planting band working with the wall + drain system:</p>
 
