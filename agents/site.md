@@ -44,4 +44,4 @@ All four sides treated identically (same lip-style segmental block spec):
 | East | ~60 ft | To build |
 | South | — | No wall (lot meets patio at grade) |
 
-Max wall height ~3 ft retained (just under 4 ft block height). Walls taper toward the south end (existing grade rises south).
+Max wall height **3 ft** (6 courses × 6 in block). Walls taper toward the south end (existing grade rises south to meet finish grade at the patio).

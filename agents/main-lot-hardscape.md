@@ -13,13 +13,13 @@
 
 | Spec | Value |
 |---|---|
-| Block | Oldcastle 6 H × 16 L × 9 D in lip-style segmental concrete (or equivalent with cast-in setback lip) |
+| Block | [Oldcastle 6 H × 16 L × 9 D in lip-style segmental concrete](https://www.lowes.com/pd/Oldcastle-6-in-H-x-16-in-L-x-9-in-D-Gray-Char-Concrete-Retaining-wall-block/5016590759) (or equivalent with cast-in setback lip) |
 | Base | 4–6 in compacted ¾ in-minus crushed gravel on existing grade (no trench, no mortar) |
 | Total linear ft | ~141 (west 45 + north 15 + diagonal 21 + east 60) |
-| Max retained height | ~3 ft (just under 4 ft block height at the north) |
-| Block count (new walls only) | ~420 (north + diagonal + east; west already built) |
-| Reinforcement | Lay 1 row of geogrid between courses 4 and 5 of the north wall, extended ~4 ft back into fill |
-| Permit | At/under CBC 4 ft exemption — confirm with Lafayette Building Division |
+| Max retained height | **3 ft** (north end; = existing -4 ft to finish -1 ft = 6 block courses × 6 in) |
+| Block count (new walls only) | **~350** (north ~70 + diagonal ~90 + east ~160, +10% for diagonal corner cuts). West wall already built. |
+| Reinforcement | None — 3 ft is at the gravity-wall rating for lip-style block |
+| Permit | Comfortably under CBC 4 ft exemption (no surcharge) — confirm with Lafayette Building Division anyway |
 
 ## Fill (~95 cu yd total)
 
